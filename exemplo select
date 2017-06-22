@@ -1,0 +1,26 @@
+Exemplo de select das notas de todas as atividades de todas as disciplinas em um semestre de um usuário em um curso. (Tela Atividades_usuario)
+Lembrando que não tenho o banco populado, então não sei se vai funfar de primeira.
+
+USE Eduflix;
+select * from 
+	  tb_notas n,
+    tb_curso c,
+    tb_disciplina d,
+    ta_usuario_cursos uc,
+    ta_disciplina_cursos dc,
+    tb_assunto a
+where uc.cod_usuario = ?
+	and uc.cod_curso = ?
+    and c.idt_curso = uc.cod_curso
+    and dc.cod_curso = c.cod_curso
+    and d.idt_disciplina = dc.cod_disciplina
+    and d.sem_disciplina = ?
+    and a.cod_disciplina = dc.cod_disciplina
+    and n.cod_assunto = a.idt_assunto
+    and n.cod_usuario = ?
+    and n.cod_assunto = a.idt_assunto
+    and c.sts_curso = 1
+    and d.sts_disciplina = 1
+    and uc.sts_usuario_cursos = 1
+    and dc.disciplina_cursos = 1
+    and a.sts_assunto = 1;
