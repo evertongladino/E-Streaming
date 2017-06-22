@@ -1,7 +1,7 @@
-Administrador Geral - 5
+Administrador Geral - id=5
 
-CRUD instituição
-CRUD usuários
+CRUD instituiÃ§Ã£o
+CRUD usuÃ¡rios
 CRUD faculdades
 CRUD cursos
 CRUD disciplinas
@@ -10,30 +10,30 @@ CRUD midia
 Fazer atividade
 Visualizar notas
 
-Administrador Instituição - 4
+Administrador InstituiÃ§Ã£o - id=4
 
-CRUD usuários - (Administrador Faculdade, Professor, Aluno)
+CRUD usuÃ¡rios - (Administrador Faculdade, Professor, Aluno)
 CRUD faculdades
 CRUD cursos
 CRUD disciplinas
 CRUD assunto
 CRUD midia
 
-Administrador Faculdade - 3
+Administrador Faculdade - id=3
 
-CRUD usuários - (Professor, Aluno)
+CRUD usuÃ¡rios - (Professor, Aluno)
 CRUD cursos
 CRUD disciplinas
 CRUD assunto
 CRUD midia
 
-Professor - 2
-Update usuário - (self)
+Professor - id=2
+Update usuÃ¡rio - (self)
 CRUD assunto
 CRUD midia
 
-Aluno - 1
+Aluno - id=1
 
-Update usuário - (self)
+Update usuÃ¡rio - (self)
 Fazer atividade
 Visualizar notas
