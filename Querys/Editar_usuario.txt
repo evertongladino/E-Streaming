@@ -1,5 +1,0 @@
--- Tela editar_aluno
-
-SELECT * FROM tb_usuario where idt_usuario = ?;
-
-UPDATE tb_usuario SET tel_usuario=?, eml_usuario=?, pwd_usuario=? WHERE idt_usuario=?;
