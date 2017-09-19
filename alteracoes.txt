@@ -9,6 +9,10 @@ Regra: ao criar novo curso/disciplina, este é criado inativo, para permitir a c
 Tela: manter_disciplina_admin_inst --> adicionar coluna de 'Faculdade' e comboBox de curso, para filtrar informações pelo curso;
 Tela: nova_disciplina_admin_inst --> adicionar comboBox de faculdade para filtrar cursos ao criar nova disciplina;
 Tela: manter_assunto_admin_inst --> adicionar filtros por disciplina e por curso;
+Tela: editar_asssunto_admin_inst --> após criar atividade, não é possível alterar o curso ou disciplina aos quais ela foi vinculada;
+Tela: Manter_usuario_admin_faculdade --> adicionar filtro por curso; Inserir a coluna 'Curso' na tabela de listagem;
+Tela: Manter_disciplina_admin_faculdade --> adicionar filtro por curso;
+Tela: Manter_assunto_admin_faculdade --> adicionar filtro por curso e disciplina;
 
 Observação: validar a palavra e desabilitar case sensitive.
 
