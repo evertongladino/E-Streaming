@@ -1,6 +1,6 @@
 <snippet>
   <content><![CDATA[
-# ${1:E-Streaming}
+# ${1:Project Name}
 Sistema que alia o carregamento de materiais para estudo em diversos formatos à criação (pelo professor) de atividades variadas e execução (pelo aluno) destas. Objetiva-se atingir grandes Instituições de Ensino Superior com a aplicação, que tem parte web, e parte mobile.
 ## Instalação
 TODO: Descrever futuramente
