@@ -1,4 +1,3 @@
-Sistema de Streaming educacional
 <snippet>
   <content><![CDATA[
 # ${1:E-Streaming}
