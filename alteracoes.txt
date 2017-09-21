@@ -14,7 +14,13 @@ Tela: Manter_usuario_admin_faculdade --> adicionar filtro por curso; Inserir a c
 Tela: Manter_disciplina_admin_faculdade --> adicionar filtro por curso;
 Tela: Manter_assunto_admin_faculdade --> adicionar filtro por curso e disciplina;
 
+Telas: editar_assunto_admin_inst, editar_assunto_admin_faculdade e editar_assunto_professor  --> adicionar opção de inativação de assunto;
+Tela: Manter_assunto_coord_curso --> adicionar filtro por disciplina;
+Tela: Manter_assunto_professor --> adicionar filtro por disciplina;
+
 Observação: validar a palavra e desabilitar case sensitive.
 
 Paramos na tela questoes_novo_admin_inst
-Precisamos fazer ata de reunião
+Elaborar ata de reunião (15/09/2017) (Caio, Guilherme, José);
+Elaborar ata de reunião (18/09/2017) (Caio, Guilherme, José);
+Elaborar ata de reunião (20/09/2017) (Everton, Guilherme, José).
