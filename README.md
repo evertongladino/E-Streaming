@@ -14,12 +14,12 @@ TODO: Descrever futuramente
 ## Historia
 TODO: Escrever história
 ## Créditos
-Ao professor orientador Gilberto Hiragi, do UniCEUB.
-Aos alunos:
-  Caio Henrique Maia Menezes
-  Everton Galdino da Silva
-  Guilherme Isidoro Alves da Silva
-  José Maria dos Reis Lisboa
-  Litchi Sun Zulato
+Ao professor orientador Gilberto Hiragi, do UniCEUB.  
+Aos alunos:  
+  Caio Henrique Maia Menezes  
+  Everton Galdino da Silva  
+  Guilherme Isidoro Alves da Silva  
+  José Maria dos Reis Lisboa  
+  Litchi Sun Zulato  
 ## Licença
 TODO: Escrever licença
