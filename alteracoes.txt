@@ -23,4 +23,7 @@ Observação: validar a palavra e desabilitar case sensitive.
 Paramos na tela questoes_novo_admin_inst
 Elaborar ata de reunião (15/09/2017) (Caio, Guilherme, José);
 Elaborar ata de reunião (18/09/2017) (Caio, Guilherme, José);
-Elaborar ata de reunião (20/09/2017) (Everton, Guilherme, José).
+Elaborar ata de reunião (20/09/2017) (Everton, Guilherme, José);
+Elaborar ata de reunião (21/09/2017) (Caio, Everton, Guilherme, José);
+Elaborar ata de reunião (22/09/2017) (Caio, Everton, Guilherme).
+
