@@ -31,3 +31,5 @@ Elaborar ata de reunião (28/09/2017) (Geral).
 
 Regra de negócio: Ficou definido que na criação de um novo assunto, a mídia uploadada deverá ser um arquivo local.
 Arranjar um método no banco que informe que o aluno finalizou a disciplina.(uma tabela relacional entre usuário e disciplina)
+
+Tela: Adicionar tela para gerar relatório de Relação de disciplinas que o aluno cursa, junto com as atividades e suas notas.
