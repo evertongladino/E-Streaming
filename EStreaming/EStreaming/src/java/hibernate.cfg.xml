@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.connection.password"/>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost/estreaming?zeroDateTimeBehavior=convertToNull</property>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.show_sql">true</property>
+    <mapping class="model.TbSomatorio"/>
+    <mapping class="model.TbDisciplina"/>
+    <mapping class="model.TbVF"/>
+    <mapping class="model.TaDisciplinaCursosId"/>
+    <mapping class="model.TbCurso"/>
+    <mapping class="model.TbCompletar"/>
+    <mapping class="model.TbTipoMidia"/>
+    <mapping class="model.TbAssunto"/>
+    <mapping class="model.TbMultEscolha"/>
+    <mapping class="model.TbNotas"/>
+    <mapping class="model.TbCompletarAlternativas"/>
+    <mapping class="model.TbVFAlternativas"/>
+    <mapping class="model.TbUsuario"/>
+    <mapping class="model.TaUsuarioFaculdadeId"/>
+    <mapping class="model.TaAssuntoMidiaId"/>
+    <mapping class="model.TaUsuarioFaculdade"/>
+    <mapping class="model.TaUsuarioCursosId"/>
+    <mapping class="model.TbSomatorioAlternativas"/>
+    <mapping class="model.TbFaculdade"/>
+    <mapping class="model.TaUsuarioCursos"/>
+    <mapping class="model.TbInstituicao"/>
+    <mapping class="model.TbMultAlternativas"/>
+    <mapping class="model.TbNotasId"/>
+    <mapping class="model.TbMidia"/>
+    <mapping class="model.TbTipoQuestao"/>
+    <mapping class="model.TaDisciplinaCursos"/>
+    <mapping class="model.TaAssuntoMidia"/>
+  </session-factory>
+</hibernate-configuration>

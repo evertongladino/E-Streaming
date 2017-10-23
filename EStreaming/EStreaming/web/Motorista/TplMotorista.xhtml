@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF8" />
+        <title>SchoolBus</title>
+    </h:head>
+
+    <h:body>
+
+        <p:layout fullPage="true">
+
+            <p:layoutUnit  position="north" size="150" header="SchoolBus" resizable="true" closable="true" collapsible="true">
+                <p:panel header="SchoolBus" footer="Versão: 1.0 - UniCEUB - Centro Universitário de Brasília">  
+                    <h:outputText value="Bem vindo ao sistema SchoolBus!"/>
+                </p:panel> 
+            </p:layoutUnit>
+
+            <p:layoutUnit position="west" size="300" header="Menu" resizable="true" closable="true" collapsible="true">
+                <h:form>
+                    <p:menu style="width:270px">
+                        <p:submenu label="Manutenção">
+                            <p:menuitem value="Manter Cor" icon="ui-icon-calculator" url="/Motorista/ManterCor.xhtml"/>
+                        </p:submenu>
+                        <p:submenu label="Cadastros">
+                            <p:menuitem value="Cadastro de Motorista" icon="ui-icon-contact" url="/faces/Modelo.xhtml"/>
+                        </p:submenu>
+                        <p:submenu label="Atividades">
+                            <p:menuitem value="Itinerário" icon="ui-icon-star" url="/faces/DispCores.xhtml"/>
+                        </p:submenu>
+                        <p:submenu label="Consultas">
+                        </p:submenu>
+                        <p:submenu label="Relatórios">
+                        </p:submenu>
+                    </p:menu>
+                </h:form>
+                <p:ajaxStatus>  
+                    <f:facet name="start">  
+                        <p:graphicImage value="/SchoolBus/imagens/loading.gif" />  
+                    </f:facet>  
+                    <f:facet name="complete">  
+                        <h:outputText value="" />  
+                    </f:facet>  
+                </p:ajaxStatus>  
+            </p:layoutUnit>
+
+
+            <p:layoutUnit position="center" header="Conteúdo">
+                <ui:insert name="conteudo">
+                    <p:panel header="SchoolBus">  
+                        <h:outputText value="Seja Bem vindo!"/>
+                    </p:panel>
+                </ui:insert>
+            </p:layoutUnit>
+
+        </p:layout>
+    </h:body>
+</html>
+

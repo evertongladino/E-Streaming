@@ -1,0 +1,35 @@
+Alterações em banco de dados e/ou telas - 15/09/2017
+Tela: atividades_usuario_2 --> Alterar o comboBox de 'Disciplina' para 'Curso'; - OK
+Banco de dados: Adição de coluna 'qtd_atividades' à tabela tb_assunto, para guardar o total de atividades em um assunto, 
+facilitando a geração da tela 'Minhas Atividades';
+Adição da coluna 'flg_finalizada' a todas as tabelas de atividades, para determinar se o exercício foi concluído ou não;
+Super admin: só cadastra IES e o administrador da respectiva instituição;
+Tela: novo_curso_admin_inst --> Adicionar campo (comboBox) 'Faculdade' ao inserir novo curso; - OK
+Regra: ao criar novo curso/disciplina, este é criado inativo, para permitir a criação de outras informações componentes do curso;
+Tela: manter_disciplina_admin_inst --> adicionar coluna de 'Faculdade' e comboBox de curso, para filtrar informações pelo curso; - OK
+Tela: nova_disciplina_admin_inst --> adicionar comboBox de faculdade para filtrar cursos ao criar nova disciplina; - OK
+Tela: manter_assunto_admin_inst --> adicionar filtros por disciplina e por curso; - OK
+Tela: editar_asssunto_admin_inst --> após criar atividade, não é possível alterar o curso ou disciplina aos quais ela foi vinculada;
+Tela: Manter_usuario_admin_faculdade --> adicionar filtro por curso; Inserir a coluna 'Curso' na tabela de listagem;
+Tela: Manter_disciplina_admin_faculdade --> adicionar filtro por curso;
+Tela: Manter_assunto_admin_faculdade --> adicionar filtro por curso e disciplina;
+
+Telas: editar_assunto_admin_inst, editar_assunto_admin_faculdade e editar_assunto_professor  --> adicionar opção de inativação de assunto;
+Tela: Manter_assunto_coord_curso --> adicionar filtro por disciplina;
+Tela: Manter_assunto_professor --> adicionar filtro por disciplina;
+Tela: Adicionar uma tela que apresenta gabarito e a nota do aluno;
+
+Observação: validar a palavra e desabilitar case sensitive.
+
+Paramos na tela questoes_novo_admin_inst
+Elaborar ata de reunião (15/09/2017) (Caio, Guilherme, José); OK
+Elaborar ata de reunião (18/09/2017) (Caio, Guilherme, José); OK
+Elaborar ata de reunião (20/09/2017) (Everton, Guilherme, José); OK
+Elaborar ata de reunião (21/09/2017) (Caio, Everton, Guilherme, José);
+Elaborar ata de reunião (22/09/2017) (Caio, Everton, Guilherme);
+Elaborar ata de reunião (28/09/2017) (Geral).
+
+Regra de negócio: Ficou definido que na criação de um novo assunto, a mídia uploadada deverá ser um arquivo local.
+Arranjar um método no banco que informe que o aluno finalizou a disciplina.(uma tabela relacional entre usuário e disciplina)
+
+Tela: Adicionar tela para gerar relatório de Relação de disciplinas que o aluno cursa, junto com as atividades e suas notas.
