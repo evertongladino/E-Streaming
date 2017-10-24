@@ -31,7 +31,7 @@ public class LoginMB {
      * Creates a new instance of ControleAcessoMB
      */
     public LoginMB() {
-
+        
     }
 
     public String validar() {
