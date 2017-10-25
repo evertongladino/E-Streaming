@@ -91,7 +91,7 @@ public class BaseDAO<Tab> {
         lista = qy.list();
         return lista;
     }
-
+    
     public List<Tab> consultarPorSgl(String sgl) {
         List<Tab> lista;
         Query qy = hib.createQuery("SELECT obj FROM " + getClasse().getSimpleName() + " obj WHERE sgl" + getClasse().getSimpleName().substring(2) + " LIKE ?");
