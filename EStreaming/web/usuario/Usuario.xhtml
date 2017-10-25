@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
-                template="Usuario.xhtml"
+                template="TplUsuario.xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:c="http://java.sun.com/jsp/jstl/core"
                 xmlns:f="http://java.sun.com/jsf/core"
@@ -17,7 +17,7 @@
 
                 <p:panelGrid columns="4">
                     <p:column>
-                        Nome do Usuário:
+                        CPF do Usuário:
                     </p:column>
                     <p:column>
                         <p:inputText size="30" maxlength="50" value="#{usuarioMB.cpfUsuario}"/>
@@ -64,12 +64,50 @@
             <h:form id="frmEditar">
                 <p:panelGrid id="pngEditar" columns="2">  
                     <p:column>
-                        <h:outputText value="Nome da Tipo Questao" />  
+                        <h:outputText value="CPF do Usuário" />  
                     </p:column>
                     <p:column>
-                        <p:inputText id="nmeTipoQuestao" value="#{usuarioMB.selecionado.cpfUsuario}" size="50" required="true" requiredMessage="Nome do Tipo de Questão é um campo obrigatório!"/>  
+                        <p:inputText id="cpfUsuario" value="#{usuarioMB.selecionado.cpfUsuario}" size="11" required="true" requiredMessage="CPF do Usuário é um campo obrigatório!"/>                          
                     </p:column>
-
+                    
+                    <p:column>
+                        <h:outputText value="Nome do Usuário" />  
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="nmeUsuario" value="#{usuarioMB.selecionado.nmeUsuario}" size="80" required="true" requiredMessage="Nome do Usuário é um campo obrigatório!"/>  
+                    </p:column>
+                    
+                    <p:column>
+                        <h:outputText value="E-mail do Usuário" />  
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="emlUsuario" value="#{usuarioMB.selecionado.emlUsuario}" size="80" required="true" requiredMessage="E-mail do Usuário é um campo obrigatório!"/>  
+                    </p:column>    
+                    
+                    <p:column>
+                        <h:outputText value="Senha do Usuário" />  
+                    </p:column>
+                    <p:column>
+                        <p:password id="pwdUsuario" value="#{usuarioMB.selecionado.pwdUsuario}" size="80" required="true" requiredMessage="Senha do Usuário é um campo obrigatório!"/>  
+                    </p:column>
+                    
+                    <p:column>
+                        <h:outputText value="Tipo do Usuário" />  
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="tpoUsuario" value="#{usuarioMB.selecionado.tpoUsuario}" size="80" required="true" requiredMessage="Tipo do Usuário é um campo obrigatório!"/>  
+                    </p:column>
+                    
+                    <p:column>
+                        <h:outputText value="Status do Usuário" />  
+                    </p:column>
+                    <p:column>
+                        <p:selectOneMenu id="stsUsuario" value="#{usuarioMB.selecionado.stsUsuario}">
+                            <f:selectItem itemLabel="Ativo" itemValue="1" noSelectionOption="false" />
+                            <f:selectItem itemLabel="Inativo" itemValue="0" noSelectionOption="false" />
+                        </p:selectOneMenu>
+                    </p:column>
+                    
                     <p:column>
                         <p:commandButton id="btnSalvar" update=":frmConsulta, :frmEditar" icon="ui-icon-disk" value="Salvar"  actionListener="#{usuarioMB.salvar()}" ajax="true"/>
                     </p:column>
