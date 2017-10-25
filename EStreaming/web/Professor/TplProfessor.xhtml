@@ -8,32 +8,30 @@
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF8" />
-        <title>SchoolBus</title>
+        <title>E-Streaming</title>
     </h:head>
 
     <h:body>
 
         <p:layout fullPage="true">
 
-            <p:layoutUnit  position="north" size="150" header="SchoolBus" resizable="true" closable="true" collapsible="true">
-                <p:panel header="SchoolBus" footer="Versão: 1.0 - UniCEUB - Centro Universitário de Brasília">  
-                    <h:outputText value="Bem vindo ao sistema SchoolBus!"/>
+            <p:layoutUnit  position="north" size="150" header="E-Streaming" resizable="true" closable="true" collapsible="true">
+                <p:panel header="E-Streaming" footer="Versão: 1.0 - UniCEUB - Centro Universitário de Brasília">  
+                    <h:outputText value="Bem Vindo ao E-Streaming!"/>
                 </p:panel> 
             </p:layoutUnit>
 
-            <p:layoutUnit position="west" size="300" header="Menu" resizable="true" closable="true" collapsible="true">
+            <p:layoutUnit position="west" size="300" header="Menu do Professor" resizable="true" closable="true" collapsible="true">
                 <h:form>
                     <p:menu style="width:270px">
-                        <p:submenu label="Manutenção">
-                            <p:menuitem value="Manter Cor" icon="ui-icon-calculator" url="/Motorista/ManterCor.xhtml"/>
+                        <p:submenu label="Disciplinas">
+                            <p:menuitem value="Minhas Disciplinas" icon="ui-icon-note" url="/#"/>
                         </p:submenu>
-                        <p:submenu label="Cadastros">
-                            <p:menuitem value="Cadastro de Motorista" icon="ui-icon-contact" url="/faces/Modelo.xhtml"/>
+                        <p:submenu label="Assuntos">
+                            <p:menuitem value="CRUD de Assunto" icon="ui-icon-pin-w" url="/Professor/Assunto.xhtml"/>
                         </p:submenu>
-                        <p:submenu label="Atividades">
-                            <p:menuitem value="Itinerário" icon="ui-icon-star" url="/faces/DispCores.xhtml"/>
-                        </p:submenu>
-                        <p:submenu label="Consultas">
+                        <p:submenu label="Mídias">
+                            <p:menuitem value="CRUD de Mídia" icon="ui-icon-play" url="/Professor/Midia.xhtml"/>
                         </p:submenu>
                         <p:submenu label="Relatórios">
                         </p:submenu>
@@ -41,7 +39,7 @@
                 </h:form>
                 <p:ajaxStatus>  
                     <f:facet name="start">  
-                        <p:graphicImage value="/SchoolBus/imagens/loading.gif" />  
+                        <p:graphicImage value="/imagens/loading.gif" />  
                     </f:facet>  
                     <f:facet name="complete">  
                         <h:outputText value="" />  
@@ -52,7 +50,7 @@
 
             <p:layoutUnit position="center" header="Conteúdo">
                 <ui:insert name="conteudo">
-                    <p:panel header="SchoolBus">  
+                    <p:panel header="EStreaming">  
                         <h:outputText value="Seja Bem vindo!"/>
                     </p:panel>
                 </ui:insert>

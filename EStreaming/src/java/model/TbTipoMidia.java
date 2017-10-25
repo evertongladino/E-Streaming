@@ -24,7 +24,7 @@ public class TbTipoMidia  implements java.io.Serializable {
 
 
      private Integer idtTipoMidia;
-     private char tpoMidia;
+     private String tpoMidia;
      private boolean stsTipoMidia;
      private Set<TbMidia> tbMidias = new HashSet<TbMidia>(0);
 
@@ -32,11 +32,11 @@ public class TbTipoMidia  implements java.io.Serializable {
     }
 
 	
-    public TbTipoMidia(char tpoMidia, boolean stsTipoMidia) {
+    public TbTipoMidia(String tpoMidia, boolean stsTipoMidia) {
         this.tpoMidia = tpoMidia;
         this.stsTipoMidia = stsTipoMidia;
     }
-    public TbTipoMidia(char tpoMidia, boolean stsTipoMidia, Set<TbMidia> tbMidias) {
+    public TbTipoMidia(String tpoMidia, boolean stsTipoMidia, Set<TbMidia> tbMidias) {
        this.tpoMidia = tpoMidia;
        this.stsTipoMidia = stsTipoMidia;
        this.tbMidias = tbMidias;
@@ -56,11 +56,11 @@ public class TbTipoMidia  implements java.io.Serializable {
 
     
     @Column(name="tpo_midia", nullable=false, length=1)
-    public char getTpoMidia() {
+    public String getTpoMidia() {
         return this.tpoMidia;
     }
     
-    public void setTpoMidia(char tpoMidia) {
+    public void setTpoMidia(String tpoMidia) {
         this.tpoMidia = tpoMidia;
     }
 

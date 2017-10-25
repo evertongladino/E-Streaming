@@ -61,7 +61,7 @@ public class TbMidia  implements java.io.Serializable {
         return this.idtMidia;
     }
     
-    public void setIdtMidia(int idtMidia) {
+    public void setIdtMidia(Integer idtMidia) {
         this.idtMidia = idtMidia;
     }
 
