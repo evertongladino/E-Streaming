@@ -30,6 +30,7 @@ public class UsuarioMB {
     public UsuarioMB() {
         selecionado = new TbUsuario();
         cpfUsuario = "";
+        
         filtrar();
     }
 
