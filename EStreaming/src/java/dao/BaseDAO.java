@@ -5,7 +5,11 @@
 package dao;
 
 import java.lang.reflect.ParameterizedType;
+import java.util.Date;
 import java.util.List;
+import model.TbCurso;
+import model.TbFaculdade;
+import model.TbInstituicao;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -26,6 +30,39 @@ public class BaseDAO<Tab> {
 
     public Class<Tab> getClasse() {
         return this.classe;
+    }
+    
+    public TbInstituicao incluirInstituicao(Tab obj) {
+        TbInstituicao tbInstituicao = new TbInstituicao();
+        tbInstituicao = (TbInstituicao) obj;
+        tbInstituicao.setDtaInsercao(new Date());
+        Transaction ts = hib.beginTransaction();
+        hib.persist(tbInstituicao);
+        hib.flush();
+        ts.commit();
+        return tbInstituicao;
+    }
+    
+    public TbFaculdade incluirFaculdade(Tab obj) {
+        TbFaculdade tbFaculdade = new TbFaculdade();
+        tbFaculdade = (TbFaculdade) obj;
+        tbFaculdade.setDtaInsercao(new Date());
+        Transaction ts = hib.beginTransaction();
+        hib.persist(tbFaculdade);
+        hib.flush();
+        ts.commit();
+        return tbFaculdade;
+    }
+    
+    public TbCurso incluirCurso(Tab obj) {
+        TbCurso tbCurso = new TbCurso();
+        tbCurso = (TbCurso) obj;
+        tbCurso.setDtaInsercao(new Date());
+        Transaction ts = hib.beginTransaction();
+        hib.persist(tbCurso);
+        hib.flush();
+        ts.commit();
+        return tbCurso;
     }
 
     public Tab incluir(Tab obj) {

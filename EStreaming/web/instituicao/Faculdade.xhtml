@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="TplInstituicao.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="conteudo">
+
+        <p:panel header="Manter Faculdade">
+
+            <h:form id="frmConsulta">  
+
+                <p:growl id="msgs" showDetail="true"/>
+
+                <p:panelGrid columns="4">
+                    <p:column>
+                        Nome da Faculdade:
+                    </p:column>
+                    <p:column>
+                        <p:inputText size="30" maxlength="50" value="#{faculdadeMB.nmeFaculdade}"/>
+                    </p:column>
+                    <p:column>
+                        <p:commandButton value="Consultar" actionListener="#{faculdadeMB.filtrar()}" update=":frmConsulta, :frmEditar" icon="ui-icon-search"/>
+                    </p:column>
+                </p:panelGrid>
+
+                <p:dataTable id="dtbConsulta" var="reg" value="#{faculdadeMB.tbFaculdade}" tableStyle="width:auto;" paginator="true" rows="5">  
+
+                    <p:column headerText="Identificador" >  
+                        <h:outputText value="#{reg.idtFaculdade}" />  
+                    </p:column>  
+
+                    <p:column headerText="Nome">  
+                        <h:outputText value="#{reg.nmeFaculdade}" />  
+                    </p:column>  
+
+                    <p:column headerText="Operação">  
+                        <p:commandButton id="btnEditar" update=":frmEditar" icon="ui-icon-pencil" value="Editar">  
+                            <f:setPropertyActionListener value="#{reg}" target="#{faculdadeMB.selecionado}" />  
+                        </p:commandButton>
+                        <p:commandButton id="btnExcluir" update=":frmExcluir" oncomplete="PF('dlgConfExclusaoView').show()" icon="ui-icon-trash" value="Excluir">  
+                            <f:setPropertyActionListener value="#{reg}" target="#{faculdadeMB.selecionado}" />  
+                        </p:commandButton>
+                    </p:column>
+                </p:dataTable>  
+
+                <p:commandButton value="Novo" actionListener="#{faculdadeMB.novo()}" update=":frmEditar" icon="ui-icon-star"/>
+
+            </h:form>
+
+            <p:confirmDialog id="dlgConfExclusao" message="Tem certeza que deseja excluir (#{faculdadeMB.selecionado.nmeFaculdade})?"  
+                             header="Exclusão de Registro" severity="alert" widgetVar="dlgConfExclusaoView" appendTo="@(body)">  
+                <h:form id="frmExcluir">
+                    <p:commandButton id="btnConfirm" value="Sim" update=":frmConsulta, :frmEditar, :frmExcluir" oncomplete="PF('dlgConfExclusaoView').hide()" actionListener="#{faculdadeMB.excluir()}" />  
+                    <p:commandButton id="btnDecline" value="Não" onclick="PF('dlgConfExclusaoView').hide()" type="button" />   
+                </h:form> 
+            </p:confirmDialog> 
+
+            <br/>
+            <br/>
+            <h:form id="frmEditar">
+                <p:panelGrid id="pngEditar" columns="2">  
+                    <p:column>
+                        <h:outputText value="Nome da Faculdade" />  
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="nmeFaculdade" value="#{faculdadeMB.selecionado.nmeFaculdade}" size="50" required="true" requiredMessage="Nome da Faculdade é um campo obrigatório!"/>  
+                    </p:column>
+                     <p:column>
+                        <h:outputText value="Código da Instituição" />  
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="codInstituicao" value="#{faculdadeMB.selecionado.tbInstituicao}" size="50" required="true" requiredMessage="Nome da Faculdade é um campo obrigatório!"/>  
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="Status da Instituição" />  
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="stsFaculdade" value="#{faculdadeMB.selecionado.stsFaculdade}" size="50" required="true" requiredMessage="Nome da Faculdade é um campo obrigatório!"/>  
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="Código do Usuário Admin" />  
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="codUsuarioAdmin" value="#{faculdadeMB.selecionado.codUsuarioAdmin}" size="50" required="true" requiredMessage="Nome da Faculdade é um campo obrigatório!"/>  
+                    </p:column>
+
+                    <p:column>
+                        <p:commandButton id="btnSalvar" update=":frmConsulta, :frmEditar" icon="ui-icon-disk" value="Salvar"  actionListener="#{faculdadeMB.salvar()}" ajax="true"/>
+                    </p:column>
+
+                    <p:column>
+
+                    </p:column>
+
+                </p:panelGrid>  
+
+            </h:form> 
+
+
+        </p:panel>
+
+    </ui:define>
+</ui:composition>

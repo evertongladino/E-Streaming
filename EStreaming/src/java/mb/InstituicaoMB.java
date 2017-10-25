@@ -18,7 +18,7 @@ import javax.faces.context.FacesContext;
  */
 @ManagedBean
 @ViewScoped
-public class IntituicaoMB {
+public class InstituicaoMB {
 
     private TbInstituicao selecionado;
     private List<TbInstituicao> tbInstituicao;
@@ -27,7 +27,7 @@ public class IntituicaoMB {
     /**
      * Creates a new instance of ProdutoMB
      */
-    public IntituicaoMB() {
+    public InstituicaoMB() {
         selecionado = new TbInstituicao();
         nmeInstituicao = "";
         filtrar();
@@ -48,7 +48,7 @@ public class IntituicaoMB {
         TbInstituicaoDAO dao = new TbInstituicaoDAO();
         if (getSelecionado().getIdtInstituicao() == 0) {
             getSelecionado().setIdtInstituicao(null);
-            dao.incluir(getSelecionado());
+            dao.incluirInstituicao(getSelecionado());
         } else {
             dao.juntar(getSelecionado());
         }

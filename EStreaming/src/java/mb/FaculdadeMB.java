@@ -48,7 +48,7 @@ public class FaculdadeMB {
         TbFaculdadeDAO dao = new TbFaculdadeDAO();
         if (getSelecionado().getIdtFaculdade() == 0) {
             getSelecionado().setIdtFaculdade(null);
-            dao.incluir(getSelecionado());
+            dao.incluirFaculdade(getSelecionado());
         } else {
             dao.juntar(getSelecionado());
         }

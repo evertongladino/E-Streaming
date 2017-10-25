@@ -48,7 +48,7 @@ public class CursoMB {
         TbCursoDAO dao = new TbCursoDAO();
         if (getSelecionado().getIdtCurso() == 0) {
             getSelecionado().setIdtCurso(0);
-            dao.incluir(getSelecionado());
+            dao.incluirCurso(getSelecionado());
         } else {
             dao.juntar(getSelecionado());
         }

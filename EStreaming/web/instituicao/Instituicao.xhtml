@@ -69,6 +69,54 @@
                     <p:column>
                         <p:inputText id="nmeInstituicao" value="#{instituicaoMB.selecionado.nmeInstituicao}" size="50" required="true" requiredMessage="Nome da Instituicao é um campo obrigatório!"/>  
                     </p:column>
+                    <p:column>
+                        <h:outputText value="CNPJ da Instituicao" />  
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="cnpjInstituicao" value="#{instituicaoMB.selecionado.cnpjInstituicao}" size="50" required="true" requiredMessage="Nome da Instituicao é um campo obrigatório!"/>  
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="Endereço da Instituicao" />  
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="endInstituicao" value="#{instituicaoMB.selecionado.endInstituicao}" size="50" required="true" requiredMessage="Nome da Instituicao é um campo obrigatório!"/>  
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="URL da Instituicao" />  
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="urlInstituicao" value="#{instituicaoMB.selecionado.urlInstituicao}" size="50" required="true" requiredMessage="Nome da Instituicao é um campo obrigatório!"/>  
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="CEP da Instituicao" />  
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="cepInstituicao" value="#{instituicaoMB.selecionado.cepInstituicao}" size="50" required="true" requiredMessage="Nome da Instituicao é um campo obrigatório!"/>  
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="Telefone da Instituicao" />  
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="telInstituicao1" value="#{instituicaoMB.selecionado.telInstituicao1}" size="50" required="true" requiredMessage="Nome da Instituicao é um campo obrigatório!"/>  
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="E-mail da Instituicao" />  
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="emlInstituicao" value="#{instituicaoMB.selecionado.emlInstituicao}" size="50" required="true" requiredMessage="Nome da Instituicao é um campo obrigatório!"/>  
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="Status da Instituicao" />  
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="stsInstituicao" value="#{instituicaoMB.selecionado.stsInstituicao}" size="50" required="true" requiredMessage="Nome da Instituicao é um campo obrigatório!"/>  
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="Razão social da Instituicao" />  
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="razaoSocial" value="#{instituicaoMB.selecionado.razaoSocial}" size="50" required="true" requiredMessage="Nome da Instituicao é um campo obrigatório!"/>  
+                    </p:column>
 
                     <p:column>
                         <p:commandButton id="btnSalvar" update=":frmConsulta, :frmEditar" icon="ui-icon-disk" value="Salvar"  actionListener="#{instituicaoMB.salvar()}" ajax="true"/>
