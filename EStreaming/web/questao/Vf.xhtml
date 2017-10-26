@@ -64,29 +64,53 @@
             <h:form id="frmEditar">
                 <p:panelGrid id="pngEditar" columns="2">  
                     <p:column>
-                        <h:outputText value="Enunciado da Questao: " />  
+                        <h:outputText value="Enunciado da Questao: " />
+                    </p:column>
+                    <p:column>
                         <p:inputText id="txtEnunciado" value="#{vfMB.selecionado.txtEnunciado}" size="50" required="true" requiredMessage="Nome do Tipo de Questão é um campo obrigatório!"/>  
                     </p:column>
                     <p:column>
-                        <h:outputText value="Status do V ou F: " />  
+                        <h:outputText value="Status do V ou F: " />
+                    </p:column>
+                    <p:column>
                         <p:inputText id="stsVF" value="#{vfMB.selecionado.stsVF}" size="50" required="true" requiredMessage="Nome do Tipo de Questão é um campo obrigatório!"/>
                     </p:column>
                     <p:column>
-                        <h:outputText value="Ordem do V ou F: " /> 
+                        <h:outputText value="Ordem do V ou F: " />
+                    </p:column>
+                    <p:column>
                         <p:inputText id="ordVF" value="#{vfMB.selecionado.ordVF}" size="50" required="true" requiredMessage="Nome do Tipo de Questão é um campo obrigatório!"/>  
                     </p:column>
                     <p:column> 
-                        <h:outputText value="Flag Finalizada: " /> 
+                        <h:outputText value="Flag Finalizada: " />
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="dtaInsercao" value="#{vfMB.selecionado.dtaInsercao}" size="50" required="true" requiredMessage="Nome do Tipo de Questão é um campo obrigatório!"/>
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="Cód. Assunto: " />
+                    </p:column>
+                    <p:column>
+                        <p:selectOneMenu id="codAssunto" value="#{VfMB.nmeInstituicao}" style="width:150px">
+                            <!--<f:selectItems value="{VfMB.tbAssunto}" />-->
+                            <f:selectItems value="1" />
+                        </p:selectOneMenu>  
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="Cód. Tipo Questao: " />
+                    </p:column>
+                    <p:column>
+                        <p:selectOneMenu id="codTipoQuestao" value="#{VfMB.nmeInstituicao}" style="width:150px">
+                            <!--<f:selectItems value="{VfMB.tbTipoQuestao}" />-->
+                            <f:selectItems value="1" />
+                        </p:selectOneMenu>  
+                    </p:column>
+                    <p:column> 
+                        <h:outputText value="Flag Finalizada: " />
+                    </p:column>
+                    <p:column>
                         <p:inputText id="flgFinalizada" value="#{vfMB.selecionado.flgFinalizada}" size="50" required="true" requiredMessage="Nome do Tipo de Questão é um campo obrigatório!"/>
                     </p:column>
-<!--                    <p:column>    
-                        <p:outputLabel for="assunto" value="Assunto: " />
-                            <p:selectOneMenu id="idtAssunto" value="{VfMb.selecionado.tbAssunto}" style="width:150px">
-                            <f:selectItem itemLabel="Selecione o assunto que deseja" itemValue="" noSelectionOption="true" />
-                            <f:selectItems value="{VfMB.selecionado.tbAssunto.idtAssunto}" />
-                            </p:selectOneMenu>
-                    </p:column>-->
-
                     <p:column>
                         <p:commandButton id="btnSalvar" update=":frmConsulta, :frmEditar" icon="ui-icon-disk" value="Salvar"  actionListener="#{vfMB.salvar()}" ajax="true"/>
                     </p:column>
