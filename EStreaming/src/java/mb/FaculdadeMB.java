@@ -5,12 +5,14 @@
 package mb;
 
 import dao.TbFaculdadeDAO;
+import dao.TbInstituicaoDAO;
 import model.TbFaculdade;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import model.TbInstituicao;
 
 /**
  *
@@ -22,6 +24,9 @@ public class FaculdadeMB {
 
     private TbFaculdade selecionado;
     private List<TbFaculdade> tbFaculdade;
+    private List<TbInstituicao> tbInstituicao;
+
+    private String nmeInstituicao;
     private String nmeFaculdade;
 
     /**
@@ -35,7 +40,9 @@ public class FaculdadeMB {
 
     public void filtrar() {
         TbFaculdadeDAO dao = new TbFaculdadeDAO();
+        TbInstituicaoDAO daoInstituicao = new TbInstituicaoDAO();
         setTbFaculdade(dao.consultarPorNme(getNmeFaculdade()));
+        setTbInstituicao(daoInstituicao.consultarTodos());
     }
 
     public void novo() {
@@ -105,6 +112,28 @@ public class FaculdadeMB {
      */
     public void setTbFaculdade(List<TbFaculdade> tbFaculdade) {
         this.tbFaculdade = tbFaculdade;
+    }
+    
+        public List<TbInstituicao> getTbInstituicao() {
+        return tbInstituicao;
+    }
+
+    public void setTbInstituicao(List<TbInstituicao> tbInstituicao) {
+        this.tbInstituicao = tbInstituicao;
+    }
+
+    /**
+     * @return the nmeInstituicao
+     */
+    public String getNmeInstituicao() {
+        return nmeInstituicao;
+    }
+
+    /**
+     * @param nmeInstituicao the nmeInstituicao to set
+     */
+    public void setNmeInstituicao(String nmeInstituicao) {
+        this.nmeInstituicao = nmeInstituicao;
     }
 
 }

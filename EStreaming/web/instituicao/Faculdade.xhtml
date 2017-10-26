@@ -73,7 +73,9 @@
                         <h:outputText value="Código da Instituição" />  
                     </p:column>
                     <p:column>
-                        <p:inputText id="codInstituicao" value="#{faculdadeMB.selecionado.tbInstituicao}" size="50" required="true" requiredMessage="Nome da Faculdade é um campo obrigatório!"/>  
+                        <p:selectOneMenu id="codInstituicao" value="#{faculdadeMB.nmeInstituicao}" style="width:150px">
+                            <f:selectItems value="#{faculdadeMB.tbInstituicao}" />
+                        </p:selectOneMenu>  
                     </p:column>
                     <p:column>
                         <h:outputText value="Status da Instituição" />  
