@@ -88,14 +88,14 @@
                         <h:outputText value="Senha do Usuário" />  
                     </p:column>
                     <p:column>
-                        <p:password id="pwdUsuario" value="#{usuarioMB.selecionado.pwdUsuario}" size="80" required="true" requiredMessage="Senha do Usuário é um campo obrigatório!"/>  
+                        <p:password id="pwdUsuario" value="#{usuarioMB.selecionado.pwdUsuario}" size="80" required="false"/>  
                     </p:column>
                     
                     <p:column>
                         <h:outputText value="Tipo do Usuário" />  
                     </p:column>
                     <p:column>
-                        <p:inputText id="tpoUsuario" value="#{usuarioMB.selecionado.tpoUsuario}" size="80" required="true" requiredMessage="Tipo do Usuário é um campo obrigatório!"/>  
+                        <p:inputText id="tpoUsuario" value="#{usuarioMB.selecionado.tpoUsuario}" required="true" requiredMessage="Tipo do Usuário é um campo obrigatório!"/>  
                     </p:column>
                     
                     <p:column>
@@ -106,6 +106,20 @@
                             <f:selectItem itemLabel="Ativo" itemValue="1" noSelectionOption="false" />
                             <f:selectItem itemLabel="Inativo" itemValue="0" noSelectionOption="false" />
                         </p:selectOneMenu>
+                    </p:column>
+                    
+                    <p:column>
+                        <h:outputText value="Login especial" />  
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="lgnEspecial" value="#{usuarioMB.selecionado.lgnEspecial}" size="20" required="false"/>  
+                    </p:column>
+                    
+                    <p:column>
+                        <h:outputText value="Telefone" />  
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="telUsuario" value="#{usuarioMB.selecionado.telUsuario}" size="11" required="true"/>  
                     </p:column>
                     
                     <p:column>

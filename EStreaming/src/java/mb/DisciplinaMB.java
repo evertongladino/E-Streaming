@@ -4,13 +4,13 @@
  */
 package mb;
 
-import dao.TbUsuarioDAO;
+import dao.TbDisciplinaDAO;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import model.TbUsuario;
+import model.TbDisciplina;
 
 /**
  *
@@ -18,38 +18,38 @@ import model.TbUsuario;
  */
 @ManagedBean
 @ViewScoped
-public class UsuarioMB {
+public class DisciplinaMB {
 
-    private TbUsuario selecionado;
-    private List<TbUsuario> tbUsuario;
-    private String cpfUsuario;
+    private TbDisciplina selecionado;
+    private List<TbDisciplina> tbDisciplina;
+    private String nmeDisciplina;
 
     /**
      * Creates a new instance of ProdutoMB
      */
-    public UsuarioMB() {
-        selecionado = new TbUsuario();
-        cpfUsuario = "";
+    public DisciplinaMB() {
+        selecionado = new TbDisciplina();
+        nmeDisciplina = "";
         
         filtrar();
     }
 
     public void filtrar() {
-        TbUsuarioDAO dao = new TbUsuarioDAO();
-        setTbUsuario(dao.consultarPorCPF(getCpfUsuario()));
+        TbDisciplinaDAO dao = new TbDisciplinaDAO();
+        setTbDisciplina(dao.consultarPorNme(getNmeDisciplina()));
     }
 
     public void novo() {
-        setSelecionado(new TbUsuario());
-        getSelecionado().setIdtUsuario(0);
-        cpfUsuario = "";
+        setSelecionado(new TbDisciplina());
+        getSelecionado().setIdtDisciplina(0);
+        nmeDisciplina = "";
     }
 
     public void salvar() {
-        TbUsuarioDAO dao = new TbUsuarioDAO();
-        if (getSelecionado().getIdtUsuario() == 0) {
-            getSelecionado().setIdtUsuario(null);
-            dao.incluirUsuario(getSelecionado());
+        TbDisciplinaDAO dao = new TbDisciplinaDAO();
+        if (getSelecionado().getIdtDisciplina() == 0) {
+            getSelecionado().setIdtDisciplina(0);
+            dao.incluirDisciplina(getSelecionado());
         } else {
             dao.juntar(getSelecionado());
         }
@@ -60,9 +60,9 @@ public class UsuarioMB {
     }
 
     public void excluir() {
-        TbUsuarioDAO dao = new TbUsuarioDAO();
-        if (getSelecionado().getIdtUsuario() != 0) {
-            if (dao.excluir(getSelecionado().getIdtUsuario())) {
+        TbDisciplinaDAO dao = new TbDisciplinaDAO();
+        if (getSelecionado().getIdtDisciplina() != 0) {
+            if (dao.excluir(getSelecionado().getIdtDisciplina())) {
                 FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Resultado da Exclusão", "Exclusão efetuada com sucesso.");
                 FacesContext.getCurrentInstance().addMessage(null, msg);
             } else {
@@ -77,43 +77,43 @@ public class UsuarioMB {
     /**
      * @return the selecionado
      */
-    public TbUsuario getSelecionado() {
+    public TbDisciplina getSelecionado() {
         return selecionado;
     }
 
     /**
      * @param selecionado the selecionado to set
      */
-    public void setSelecionado(TbUsuario selecionado) {
+    public void setSelecionado(TbDisciplina selecionado) {
         this.selecionado = selecionado;
     }
 
     /**
      * @return the cpfUsuario
      */
-    public String getCpfUsuario() {
-        return cpfUsuario;
+    public String getNmeDisciplina() {
+        return nmeDisciplina;
     }
 
     /**
      * @param cpfUsuario the cpfUsuario to set
      */
-    public void setCpfUsuario(String cpfUsuario) {
-        this.cpfUsuario = cpfUsuario;
+    public void setNmeDisciplina(String nmeDisciplina) {
+        this.nmeDisciplina = nmeDisciplina;
     }
 
     /**
      * @return the tbUsuario
      */
-    public List<TbUsuario> getTbUsuario() {
-        return tbUsuario;
+    public List<TbDisciplina> getTbDisciplina() {
+        return tbDisciplina;
     }
 
     /**
      * @param tbUsuario the tbUsuario to set
      */
-    public void setTbUsuario(List<TbUsuario> tbUsuario) {
-        this.tbUsuario = tbUsuario;
+    public void setTbDisciplina(List<TbDisciplina> tbDisciplina) {
+        this.tbDisciplina = tbDisciplina;
     }
 
 }

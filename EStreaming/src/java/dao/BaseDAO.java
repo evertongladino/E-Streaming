@@ -5,7 +5,10 @@
 package dao;
 
 import java.lang.reflect.ParameterizedType;
+import java.util.Date;
 import java.util.List;
+import model.TbDisciplina;
+import model.TbUsuario;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -34,6 +37,27 @@ public class BaseDAO<Tab> {
         hib.flush();
         ts.commit();
         return obj;
+    }
+    
+    public TbDisciplina incluirDisciplina(Tab obj) {
+        Transaction ts = hib.beginTransaction();
+        TbDisciplina tbDisciplina = new TbDisciplina();
+        tbDisciplina = (TbDisciplina) obj;
+        tbDisciplina.setDtaInsercao(new Date());
+        hib.persist(tbDisciplina);
+        hib.flush();
+        ts.commit();
+        return tbDisciplina;
+    }
+    
+        public TbUsuario incluirUsuario(Tab obj) {
+        Transaction ts = hib.beginTransaction();
+        TbUsuario usuario = (TbUsuario) obj;
+        usuario.setDtaInsercao(new Date());
+        hib.persist(usuario);
+        hib.flush();
+        ts.commit();
+        return usuario;
     }
 
     public boolean excluir(int idt) {
@@ -88,6 +112,14 @@ public class BaseDAO<Tab> {
         List<Tab> lista;
         Query qy = hib.createQuery("SELECT obj FROM " + getClasse().getSimpleName() + " obj WHERE nme" + getClasse().getSimpleName().substring(2) + " LIKE ?");
         qy.setString(0, "%" + nme + "%");
+        lista = qy.list();
+        return lista;
+    }
+    
+        public List<Tab> consultarPorCPF(String cpf) {
+        List<Tab> lista;
+        Query qy = hib.createQuery("SELECT obj FROM " + getClasse().getSimpleName() + " obj WHERE cpf" + getClasse().getSimpleName().substring(2) + " LIKE ?");
+        qy.setString(0, "%" + cpf + "%");
         lista = qy.list();
         return lista;
     }
