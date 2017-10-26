@@ -7,6 +7,7 @@
 // */
 package mb;
 
+import dao.TbAssuntoDAO;
 import dao.TbMultEscolhaDAO;
 import java.util.Date;
 import model.TbMultEscolha;
@@ -28,35 +29,30 @@ import model.TbAssunto;
 public class MultEscolhaMB {
 
     private TbMultEscolha selecionado;
-    private List<TbMultEscolha> tbTipoQuestoes;
-    private Integer idtMultEscolha;
-    private TbAssunto tbAssunto;
-    private TbMultEscolha tbMultEscolha;
+    private List<TbMultEscolha> tbMultEscolhas;
     private String txtEnunciado;
-    private boolean stsMultEscolha;
-    private int ordMultEscolha;
-    private Date dtaInsercao;
-    private String vlrQuestao;
-    private char flgFinalizada;
 
     /**
      * Creates a new instance of ProdutoMB
      */
     public MultEscolhaMB() {
         selecionado = new TbMultEscolha();
-        idtMultEscolha = null;
+        txtEnunciado = "";
         filtrar();
     }
 
     public void filtrar() {
         TbMultEscolhaDAO dao = new TbMultEscolhaDAO();
-        setTbMultEscolha(dao.consultarPorIdt(getIdtMultEscolha()));
+        //TbAssuntoDAO daoAssunto = new TbAssuntoDAO();
+        setTbMultEscolhas(dao.consultarPorTxt(getTxtEnunciado(), "txtEnunciado"));
+        //setTbAssunto(daoAssunto.consultarPorTipoAssunto(getSelecionado().getTbAssunto().getIdtAssunto()));
     }
 
     public void novo() {
         setSelecionado(new TbMultEscolha());
         getSelecionado().setIdtMultEscolha(0);
-        idtMultEscolha = null;
+        txtEnunciado = "";
+        
     }
 
     public void salvar() {
@@ -105,61 +101,19 @@ public class MultEscolhaMB {
     /**
      * @return the tbTipoQuestoes
      */
-    public List<TbMultEscolha> getTbTipoQuestoes() {
-        return tbTipoQuestoes;
+    public List<TbMultEscolha> getTbtbMultEscolhas() {
+        return tbMultEscolhas;
     }
 
-    /**
-     * @param tbTipoQuestoes the tdMultEscolhaes to set
-     */
-    public void setTbMultEscolhaes(List<TbMultEscolha> tbTipoQuestoes) {
-        this.tbTipoQuestoes = tbTipoQuestoes;
+//    /**
+//     * @param tbTipoQuestoes the tdMultEscolhaes to set
+//     */
+    public void setTbMultEscolhas(List<TbMultEscolha> tbtbMultEscolhas) {
+        this.tbMultEscolhas = tbtbMultEscolhas;
     }
 
     /**
      * @return the idtMultEscolha
-     */
-    public Integer getIdtMultEscolha() {
-        return idtMultEscolha;
-    }
-
-    /**
-     * @param idtMultEscolha the idtMultEscolha to set
-     */
-    public void setIdtMultEscolha(Integer idtMultEscolha) {
-        this.idtMultEscolha = idtMultEscolha;
-    }
-
-    /**
-     * @return the tbAssunto
-     */
-    public TbAssunto getTbAssunto() {
-        return tbAssunto;
-    }
-
-    /**
-     * @param tbAssunto the tbAssunto to set
-     */
-    public void setTbAssunto(TbAssunto tbAssunto) {
-        this.tbAssunto = tbAssunto;
-    }
-
-    /**
-     * @return the tbMultEscolha
-     */
-    public TbMultEscolha getTbMultEscolha() {
-        return tbMultEscolha;
-    }
-
-    /**
-     * @param tbMultEscolha the tbMultEscolha to set
-     */
-    public void setTbMultEscolha(TbMultEscolha tbMultEscolha) {
-        this.tbMultEscolha = tbMultEscolha;
-    }
-
-    /**
-     * @return the txtEnunciado
      */
     public String getTxtEnunciado() {
         return txtEnunciado;
@@ -171,75 +125,4 @@ public class MultEscolhaMB {
     public void setTxtEnunciado(String txtEnunciado) {
         this.txtEnunciado = txtEnunciado;
     }
-
-    /**
-     * @return the stsMultEscolha
-     */
-    public boolean isStsMultEscolha() {
-        return stsMultEscolha;
-    }
-
-    /**
-     * @param stsMultEscolha the stsMultEscolha to set
-     */
-    public void setStsMultEscolha(boolean stsMultEscolha) {
-        this.stsMultEscolha = stsMultEscolha;
-    }
-
-    /**
-     * @return the ordMultEscolha
-     */
-    public int getOrdMultEscolha() {
-        return ordMultEscolha;
-    }
-
-    /**
-     * @param ordMultEscolha the ordMultEscolha to set
-     */
-    public void setOrdMultEscolha(int ordMultEscolha) {
-        this.ordMultEscolha = ordMultEscolha;
-    }
-
-    /**
-     * @return the dtaInsercao
-     */
-    public Date getDtaInsercao() {
-        return dtaInsercao;
-    }
-
-    /**
-     * @param dtaInsercao the dtaInsercao to set
-     */
-    public void setDtaInsercao(Date dtaInsercao) {
-        this.dtaInsercao = dtaInsercao;
-    }
-
-    /**
-     * @return the vlrQuestao
-     */
-    public String getVlrQuestao() {
-        return vlrQuestao;
-    }
-
-    /**
-     * @param vlrQuestao the vlrQuestao to set
-     */
-    public void setVlrQuestao(String vlrQuestao) {
-        this.vlrQuestao = vlrQuestao;
-    }
-
-    /**
-     * @return the flgFinalizada
-     */
-    public char getFlgFinalizada() {
-        return flgFinalizada;
-    }
-
-    /**
-     * @param flgFinalizada the flgFinalizada to set
-     */
-    public void setFlgFinalizada(char flgFinalizada) {
-        this.flgFinalizada = flgFinalizada;
-    }
-
 }

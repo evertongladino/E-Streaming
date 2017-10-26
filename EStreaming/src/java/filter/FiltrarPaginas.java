@@ -30,8 +30,8 @@ public class FiltrarPaginas implements PhaseListener {
             
             String perfil = (sessao.getAttribute("SESSAO_PERFIL") == null ? "INVALIDO" : (String) sessao.getAttribute("SESSAO_PERFIL"));
             if (!pagina.contains(perfil)) {
-                NavigationHandler navHandler = contexto.getApplication().getNavigationHandler();
-                navHandler.handleNavigation(contexto, null, "/nok");
+                //NavigationHandler navHandler = contexto.getApplication().getNavigationHandler();
+               // navHandler.handleNavigation(contexto, null, "/nok");
             }
         }
 

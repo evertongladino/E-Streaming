@@ -1,0 +1,133 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/instituicao/TplInstituicao.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="conteudo">
+
+        <p:panel header="Manter Questao Multi-Escolha">
+
+            <h:form id="frmConsulta">  
+
+                <p:growl id="msgs" showDetail="true"/>
+
+                <p:panelGrid columns="4">
+                    <p:column>
+                        Enunciado:
+                    </p:column>
+                    <p:column>
+                        <p:inputText size="30" maxlength="50" value="#{MultEscolhaMB.txtEnunciado}"/>
+                    </p:column>
+                    <p:column>
+                        <p:commandButton value="Consultar" actionListener="#{MultEscolhaMB.filtrar()}" update=":frmConsulta, :frmEditar" icon="ui-icon-search"/>
+                    </p:column>
+                </p:panelGrid>
+
+                <p:dataTable id="dtbConsulta" var="reg" value="#{MultEscolhaMB.tbMultiEscolha}" tableStyle="width:auto;" paginator="true" rows="5">  
+
+                    <p:column headerText="Identificador" >  
+                        <h:outputText value="#{reg.idtMultiEscolha}" />  
+                    </p:column>  
+
+                    <p:column headerText="Enunciado">  
+                        <h:outputText value="#{reg.txtEnunciado}" />  
+                    </p:column>  
+
+                    <p:column headerText="Operação">  
+                        <p:commandButton id="btnEditar" update=":frmEditar" icon="ui-icon-pencil" value="Editar">  
+                            <f:setPropertyActionListener value="#{reg}" target="#{MultEscolhaMB.selecionado}" />  
+                        </p:commandButton>
+                        <p:commandButton id="btnExcluir" update=":frmExcluir" oncomplete="PF('dlgConfExclusaoView').show()" icon="ui-icon-trash" value="Excluir">  
+                            <f:setPropertyActionListener value="#{reg}" target="#{MultEscolhaMB.selecionado}" />  
+                        </p:commandButton>
+                    </p:column>
+                </p:dataTable>  
+
+                <p:commandButton value="Novo" actionListener="#{MultEscolhaMB.novo()}" update=":frmEditar" icon="ui-icon-star"/>
+
+            </h:form>
+
+            <p:confirmDialog id="dlgConfExclusao" message="Tem certeza que deseja excluir (#{MultEscolhaMB.selecionado.txtEnunciado})?"  
+                             header="Exclusão de Registro" severity="alert" widgetVar="dlgConfExclusaoView" appendTo="@(body)">  
+                <h:form id="frmExcluir">
+                    <p:commandButton id="btnConfirm" value="Sim" update=":frmConsulta, :frmEditar, :frmExcluir" oncomplete="PF('dlgConfExclusaoView').hide()" actionListener="#{MultEscolhaMB.excluir()}" />  
+                    <p:commandButton id="btnDecline" value="Não" onclick="PF('dlgConfExclusaoView').hide()" type="button" />   
+                </h:form> 
+            </p:confirmDialog> 
+
+            <br/>
+            <br/>
+            <h:form id="frmEditar">
+                <p:panelGrid id="pngEditar" columns="2">  
+                    <p:column>
+                        <h:outputText value="Enunciado" />  
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="txtEnunciado" value="#{MultEscolhaMB.selecionado.txtEnunciado}" size="50" required="true" requiredMessage="Enunciado é um campo obrigatório!"/>  
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="Assunto" />  
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="codAssunto" value="#{MultEscolhaMB.selecionado.tbAssunto}" size="50" required="true" requiredMessage="Assunto é um campo obrigatório!"/>  
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="Status da Questao" />  
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="stsMultEscolha" value="#{MultEscolhaMB.selecionado.stsMultEscolha}" size="50" required="true" requiredMessage="Status é um campo obrigatório!"/>  
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="Identificador" />  
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="idtMultEscolha" value="#{MultEscolhaMB.selecionado.idtMultEscolha}" size="50" required="true" requiredMessage="Ordem é um campo obrigatório!"/>  
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="Ordem" />  
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="ordMultEscolha" value="#{MultEscolhaMB.selecionado.ordMultEscolha}" size="50" required="true" requiredMessage="Ordem é um campo obrigatório!"/>  
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="Data" />  
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="dtaInsercao" value="#{MultEscolhaMB.selecionado.dtaInsercao}" size="50" required="true" requiredMessage="Data é um campo obrigatório!"/>  
+                    </p:column>
+                    <p:column>
+                    <h:outputText value="Valor" />  
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="vlrQuestao" value="#{MultEscolhaMB.selecionado.vlrQuestao}" size="50" required="true" requiredMessage="Valor é um campo obrigatório!"/>  
+                    </p:column>
+                    <p:column>
+                    <h:outputText value="Tipo de Questao" />  
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="codTipoQuestao" value="#{MultEscolhaMB.selecionado.tbTipoQuestao}" size="50" required="true" requiredMessage="Tipo de questao é um campo obrigatório!"/>  
+                    </p:column>
+                    <p:column>
+                    <h:outputText value="Flag" />  
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="flgFinalizada" value="#{MultEscolhaMB.selecionado.flgFinalizada}" size="50" required="true" requiredMessage="Flag é um campo obrigatório!"/>  
+                    </p:column>
+
+                    <p:column>
+                        <p:commandButton id="btnSalvar" update=":frmConsulta, :frmEditar" icon="ui-icon-disk" value="Salvar"  actionListener="#{MultEscolhaMB.salvar()}" ajax="true"/>
+                    </p:column>
+
+                </p:panelGrid>  
+
+            </h:form> 
+
+
+        </p:panel>
+
+    </ui:define>
+</ui:composition>
