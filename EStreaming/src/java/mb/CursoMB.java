@@ -5,12 +5,14 @@
 package mb;
 
 import dao.TbCursoDAO;
+import dao.TbFaculdadeDAO;
 import model.TbCurso;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import model.TbFaculdade;
 
 /**
  *
@@ -22,7 +24,11 @@ public class CursoMB {
 
     private TbCurso selecionado;
     private List<TbCurso> tbCurso;
-    private String nmeCurso;
+    private List<TbFaculdade> tbFaculdade;
+    private String nmeFaculdade;
+
+    
+    
 
     /**
      * Creates a new instance of ProdutoMB
@@ -35,7 +41,9 @@ public class CursoMB {
 
     public void filtrar() {
         TbCursoDAO dao = new TbCursoDAO();
+        TbFaculdadeDAO daoFaculdade = new TbFaculdadeDAO();
         setTbCurso(dao.consultarPorNme(getNmeCurso()));
+        setTbFaculdade(daoFaculdade.consultarTodos());
     }
 
     public void novo() {
@@ -106,5 +114,20 @@ public class CursoMB {
     public void setTbCurso(List<TbCurso> tbCurso) {
         this.tbCurso = tbCurso;
     }
+public List<TbFaculdade> getTbFaculdade() {
+        return tbFaculdade;
+    }
 
+    public void setTbFaculdade(List<TbFaculdade> tbFaculdade) {
+        this.tbFaculdade = tbFaculdade;
+    }
+    private String nmeCurso;
+    
+    public String getNmeFaculdade() {
+        return nmeFaculdade;
+    }
+
+    public void setNmeFaculdade(String nmeFaculdade) {
+        this.nmeFaculdade = nmeFaculdade;
+    }
 }

@@ -73,7 +73,9 @@
                         <h:outputText value="Código da Faculdade" />  
                     </p:column>
                     <p:column>
-                        <p:inputText id="codFaculdade" value="#{cursoMB.selecionado.tbFaculdade}" size="50" required="true" requiredMessage="Nome da Curso é um campo obrigatório!"/>  
+                        <p:selectOneMenu id="codInstituicao" value="#{cursoMB.nmeFaculdade}" style="width:150px">
+                            <f:selectItems value="#{cursoMB.tbFaculdade}" />
+                        </p:selectOneMenu>  
                     </p:column>
                     <p:column>
                         <h:outputText value="Status do Curso" />  
