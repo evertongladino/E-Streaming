@@ -9,7 +9,7 @@
 
     <ui:define name="conteudo">
 
-        <p:panel header="Manter Questao Multi-Escolha">
+        <p:panel header="Manter Questao Somatorio">
 
             <h:form id="frmConsulta">  
 
@@ -20,50 +20,45 @@
                         Enunciado:
                     </p:column>
                     <p:column>
-                        <p:inputText size="30" maxlength="50" value="#{multEscolhaMB.txtEnunciado}"/>
+                        <p:inputText size="30" maxlength="50" value="#{somatorioMB.txtEnunciado}"/>
                     </p:column>
                     <p:column>
-                        <p:commandButton value="Consultar" actionListener="#{multEscolhaMB.filtrar()}" update=":frmConsulta, :frmEditar" icon="ui-icon-search"/>
+                        <p:commandButton value="Consultar" actionListener="#{somatorioMB.filtrar()}" update=":frmConsulta, :frmEditar" icon="ui-icon-search"/>
                     </p:column>
                 </p:panelGrid>
 
-                <p:dataTable id="dtbConsulta" var="reg" value="#{multEscolhaMB.tbMultEscolhas}" tableStyle="width:auto;" paginator="true" rows="5">  
+                <p:dataTable id="dtbConsulta" var="reg" value="#{somatorioMB.tbSomatorios}" tableStyle="width:auto;" paginator="true" rows="5">  
 
                     <p:column headerText="Identificador" >  
-                        <h:outputText value="#{reg.idtMultEscolha}" />  
+                        <h:outputText value="#{reg.idtSomatorio}" />  
                     </p:column>  
 
                     <p:column headerText="Enunciado">  
                         <h:outputText value="#{reg.txtEnunciado}" />  
                     </p:column> 
 
-                    <p:column headerText="Valor">  
-                        <h:outputText value="#{reg.vlrQuestao}" />  
+                    <p:column headerText="Soma">  
+                        <h:outputText value="#{reg.soma}" />  
                     </p:column> 
-
-                    <p:column headerText="Data de Inserção">  
-                        <h:outputText value="#{reg.dtaInsercao}" />  
-                    </p:column> 
-
 
                     <p:column headerText="Operação">  
                         <p:commandButton id="btnEditar" update=":frmEditar" icon="ui-icon-pencil" value="Editar">  
-                            <f:setPropertyActionListener value="#{reg}" target="#{multEscolhaMB.selecionado}" />  
+                            <f:setPropertyActionListener value="#{reg}" target="#{somatorioMB.selecionado}" />  
                         </p:commandButton>
                         <p:commandButton id="btnExcluir" update=":frmExcluir" oncomplete="PF('dlgConfExclusaoView').show()" icon="ui-icon-trash" value="Excluir">  
-                            <f:setPropertyActionListener value="#{reg}" target="#{multEscolhaMB.selecionado}" />  
+                            <f:setPropertyActionListener value="#{reg}" target="#{somatorioMB.selecionado}" />  
                         </p:commandButton>
                     </p:column>
                 </p:dataTable>  
 
-                <p:commandButton value="Novo" actionListener="#{multEscolhaMB.novo()}" update=":frmEditar" icon="ui-icon-star"/>
+                <p:commandButton value="Novo" actionListener="#{somatorioMB.novo()}" update=":frmEditar" icon="ui-icon-star"/>
 
             </h:form>
 
-            <p:confirmDialog id="dlgConfExclusao" message="Tem certeza que deseja excluir (#{multEscolhaMB.selecionado.idtMultEscolha})?"  
+            <p:confirmDialog id="dlgConfExclusao" message="Tem certeza que deseja excluir (#{somatorioMB.selecionado.idtSomatorio})?"  
                              header="Exclusão de Registro" severity="alert" widgetVar="dlgConfExclusaoView" appendTo="@(body)">  
                 <h:form id="frmExcluir">
-                    <p:commandButton id="btnConfirm" value="Sim" update=":frmConsulta, :frmEditar, :frmExcluir" oncomplete="PF('dlgConfExclusaoView').hide()" actionListener="#{multEscolhaMB.excluir()}" />  
+                    <p:commandButton id="btnConfirm" value="Sim" update=":frmConsulta, :frmEditar, :frmExcluir" oncomplete="PF('dlgConfExclusaoView').hide()" actionListener="#{somatorioMB.excluir()}" />  
                     <p:commandButton id="btnDecline" value="Não" onclick="PF('dlgConfExclusaoView').hide()" type="button" />   
                 </h:form> 
             </p:confirmDialog> 
@@ -76,21 +71,21 @@
                         <h:outputText value="Enunciado" />  
                     </p:column>
                     <p:column>
-                        <p:inputText id="txtEnunciado" value="#{multEscolhaMB.selecionado.txtEnunciado}" size="50" required="true" requiredMessage="Enunciado é um campo obrigatório!"/>  
+                        <p:inputText id="txtEnunciado" value="#{somatorioMB.selecionado.txtEnunciado}" size="50" required="true" requiredMessage="Enunciado é um campo obrigatório!"/>  
                     </p:column>
                     <p:column>
                         <h:outputText value="Assunto" />  
                     </p:column>
                     <p:column>
-                        <p:selectOneMenu id="cmbAssunto" value="#{multEscolhaMB.selecionado.tbAssunto}" effect="fold" editable="false" converter="assuntoCV">
-                            <f:selectItems value="#{multEscolhaMB.assuntos}" var="c" itemLabel="#{c.txtTemaAssunto}" itemValue="#{c}"/>  
+                        <p:selectOneMenu id="cmbAssunto" value="#{somatorioMB.selecionado.tbAssunto}" effect="fold" editable="false" converter="assuntoCV">
+                            <f:selectItems value="#{somatorioMB.assuntos}" var="c" itemLabel="#{c.txtTemaAssunto}" itemValue="#{c}"/>  
                         </p:selectOneMenu>
                     </p:column>
                     <p:column>
                         <h:outputText value="Status da Questao" />  
                     </p:column>
                     <p:column>
-                        <p:selectOneRadio id="stsMultEscolha" value="#{multEscolhaMB.selecionado.stsMultEscolha}">
+                        <p:selectOneRadio id="stsSomatorio" value="#{somatorioMB.selecionado.stsSomatorio}">
                             <f:selectItem itemLabel="Ativo" itemValue="#{true}"  />
                             <f:selectItem itemLabel="Inativo" itemValue="#{false}" /> 
                         </p:selectOneRadio>
@@ -99,30 +94,33 @@
                         <h:outputText value="Ordem" />  
                     </p:column>
                     <p:column>
-                        <p:inputText id="ordMultEscolha" value="#{multEscolhaMB.selecionado.ordMultEscolha}" size="50" required="true" requiredMessage="Ordem é um campo obrigatório!"/>  
+                        <p:inputText id="ordSomatorio" value="#{somatorioMB.selecionado.ordSomatorio}" size="50" required="true" requiredMessage="Ordem é um campo obrigatório!"/>  
                     </p:column>
                     <p:column>
-                        <h:outputText value="Valor" />  
+                        <h:outputText value="Soma" />  
                     </p:column>
                     <p:column>
-                        <p:inputText id="vlrQuestao" value="#{multEscolhaMB.selecionado.vlrQuestao}" size="50" required="true" requiredMessage="Valor é um campo obrigatório!"/>  
+                        <p:inputText id="soma" value="#{somatorioMB.selecionado.soma}" size="50" required="true" requiredMessage="Soma é um campo obrigatório!"/>  
                     </p:column>
                     <p:column>
                         <h:outputText value="Tipo de Questao" />  
                     </p:column>
                     <p:column>
-                        <p:selectOneMenu id="cmbTipoQuestao" value="#{multEscolhaMB.selecionado.tbTipoQuestao}" effect="fold" editable="false" converter="tipoQuestaoCV">
-                            <f:selectItems value="#{multEscolhaMB.tipoQuestoes}" var="c" itemLabel="#{c.nmeTipoQuestao}" itemValue="#{c}"/>  
+                        <p:selectOneMenu id="cmbTipoQuestao" value="#{somatorioMB.selecionado.tbTipoQuestao}" effect="fold" editable="false" converter="tipoQuestaoCV">
+                            <f:selectItems value="#{somatorioMB.tipoQuestoes}" var="c" itemLabel="#{c.nmeTipoQuestao}" itemValue="#{c}"/>  
                         </p:selectOneMenu>
                     </p:column>
                     <p:column>
-                        <h:outputText value="Finalizado" />  
+                        <h:outputText value="Finalizado?" />  
                     </p:column>
                     <p:column>
-                        <p:selectOneRadio id="flgFinalizada" value="#{multEscolhaMB.selecionado.flgFinalizada}">
+                        <p:selectOneRadio id="flgFinalizada" value="#{somatorioMB.selecionado.stsSomatorio}">
                             <f:selectItem itemLabel="Sim" itemValue="#{true}"  />
                             <f:selectItem itemLabel="Nao" itemValue="#{false}" /> 
                         </p:selectOneRadio>
+                    </p:column>
+                    <p:column>
+                        <p:commandButton id="btnSalvar" update=":frmConsulta, :frmEditar" icon="ui-icon-disk" value="Salvar"  actionListener="#{somatorioMB.salvar()}" ajax="true"/>
                     </p:column>
 
                 </p:panelGrid>  

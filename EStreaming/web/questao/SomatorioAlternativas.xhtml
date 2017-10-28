@@ -9,7 +9,7 @@
 
     <ui:define name="conteudo">
 
-        <p:panel header="Manter Alternativas Multipla Escolha ">
+        <p:panel header="Manter Alternativas Somatorio ">
 
             <h:form id="frmConsulta">  
 
@@ -20,45 +20,49 @@
                         Item:
                     </p:column>
                     <p:column>
-                        <p:inputText size="30" maxlength="50" value="#{multAlternativasMB.txtItem}"/>
+                        <p:inputText size="30" maxlength="50" value="#{somatorioAlternativasMB.txtItem}"/>
                     </p:column>
                     <p:column>
-                        <p:commandButton value="Consultar" actionListener="#{multAlternativasMB.filtrar()}" update=":frmConsulta, :frmEditar" icon="ui-icon-search"/>
+                        <p:commandButton value="Consultar" actionListener="#{somatorioAlternativasMB.filtrar()}" update=":frmConsulta, :frmEditar" icon="ui-icon-search"/>
                     </p:column>
                 </p:panelGrid>
 
-                <p:dataTable id="dtbConsulta" var="reg" value="#{multAlternativasMB.tbMultAlternativass}" tableStyle="width:auto;" paginator="true" rows="5">  
+                <p:dataTable id="dtbConsulta" var="reg" value="#{somatorioAlternativasMB.tbSomatorioAlternativass}" tableStyle="width:auto;" paginator="true" rows="5">  
+
+                    <p:column headerText="Questão" >  
+                        <h:outputText value="#{reg.tbSomatorio.txtEnunciado}" />  
+                    </p:column> 
 
                     <p:column headerText="Identificador" >  
-                        <h:outputText value="#{reg.idtAlternativas}" />  
+                        <h:outputText value="#{reg.idtSomatorioAlternativas}" />  
                     </p:column>  
 
                     <p:column headerText="Item">  
                         <h:outputText value="#{reg.txtItem}" />  
                     </p:column> 
 
-                    <p:column headerText="Correto?">  
-                        <h:outputText value="#{reg.correto}" />  
+                    <p:column headerText="Valor">  
+                        <h:outputText value="#{reg.vlrSomatorioAlternativas}" />  
                     </p:column> 
 
                     <p:column headerText="Operação">  
                         <p:commandButton id="btnEditar" update=":frmEditar" icon="ui-icon-pencil" value="Editar">  
-                            <f:setPropertyActionListener value="#{reg}" target="#{multAlternativasMB.selecionado}" />  
+                            <f:setPropertyActionListener value="#{reg}" target="#{somatorioAlternativasMB.selecionado}" />  
                         </p:commandButton>
                         <p:commandButton id="btnExcluir" update=":frmExcluir" oncomplete="PF('dlgConfExclusaoView').show()" icon="ui-icon-trash" value="Excluir">  
-                            <f:setPropertyActionListener value="#{reg}" target="#{multAlternativasMB.selecionado}" />  
+                            <f:setPropertyActionListener value="#{reg}" target="#{somatorioAlternativasMB.selecionado}" />  
                         </p:commandButton>
                     </p:column>
                 </p:dataTable>  
 
-                <p:commandButton value="Novo" actionListener="#{multAlternativasMB.novo()}" update=":frmEditar" icon="ui-icon-star"/>
+                <p:commandButton value="Novo" actionListener="#{somatorioAlternativasMB.novo()}" update=":frmEditar" icon="ui-icon-star"/>
 
             </h:form>
 
-            <p:confirmDialog id="dlgConfExclusao" message="Tem certeza que deseja excluir (#{multAlternativasMB.selecionado.idtAlternativas})?"  
+            <p:confirmDialog id="dlgConfExclusao" message="Tem certeza que deseja excluir (#{somatorioAlternativasMB.selecionado.idtSomatorioAlternativas})?"  
                              header="Exclusão de Registro" severity="alert" widgetVar="dlgConfExclusaoView" appendTo="@(body)">  
                 <h:form id="frmExcluir">
-                    <p:commandButton id="btnConfirm" value="Sim" update=":frmConsulta, :frmEditar, :frmExcluir" oncomplete="PF('dlgConfExclusaoView').hide()" actionListener="#{multAlternativasMB.excluir()}" />  
+                    <p:commandButton id="btnConfirm" value="Sim" update=":frmConsulta, :frmEditar, :frmExcluir" oncomplete="PF('dlgConfExclusaoView').hide()" actionListener="#{somatorioAlternativasMB.excluir()}" />  
                     <p:commandButton id="btnDecline" value="Não" onclick="PF('dlgConfExclusaoView').hide()" type="button" />   
                 </h:form> 
             </p:confirmDialog> 
@@ -71,36 +75,33 @@
                         <h:outputText value="Item" />  
                     </p:column>
                     <p:column>
-                        <p:inputText id="txtItem" value="#{multAlternativasMB.selecionado.txtItem}" size="50" required="true" requiredMessage="Item é um campo obrigatório!"/>  
-                    </p:column>
-                    <p:column>
-                        <h:outputText value="Correcao" />  
-                    </p:column>
-                    <p:column>
-                        <p:selectOneRadio id="correto" value="#{multAlternativasMB.selecionado.correto}">
-                            <f:selectItem itemLabel="Certo" itemValue="#{true}"  />
-                            <f:selectItem itemLabel="Errado" itemValue="#{false}" /> 
-                        </p:selectOneRadio>
+                        <p:inputText id="txtItem" value="#{somatorioAlternativasMB.selecionado.txtItem}" size="50" required="true" requiredMessage="Item é um campo obrigatório!"/>  
                     </p:column>
                     <p:column>
                         <h:outputText value="Questao" />  
                     </p:column>
                     <p:column>
-                        <p:selectOneMenu id="cmbQuestao" value="#{multAlternativasMB.selecionado.tbMultEscolha}" effect="fold" editable="false" converter="multEscolhaCV">
-                            <f:selectItems value="#{multAlternativasMB.multEscolhas}" var="c" itemLabel="#{c.txtEnunciado}" itemValue="#{c}"/>  
+                        <p:selectOneMenu id="cmbQuestao" value="#{somatorioAlternativasMB.selecionado.tbSomatorio}" effect="fold" editable="false" converter="somatorioCV">
+                            <f:selectItems value="#{somatorioAlternativasMB.somatorios}" var="c" itemLabel="#{c.txtEnunciado}" itemValue="#{c}"/>  
                         </p:selectOneMenu>
                     </p:column>
                     <p:column>
-                        <h:outputText value="Status da Alternativa" />  
+                        <h:outputText value="Status da Questao" />  
                     </p:column>
                     <p:column>
-                        <p:selectOneRadio id="stsAlternativa" value="#{multAlternativasMB.selecionado.stsMultAlternativas}">
+                        <p:selectOneRadio id="stsAlternativa" value="#{somatorioAlternativasMB.selecionado.stsSomatorioAlternativas}">
                             <f:selectItem itemLabel="Ativo" itemValue="#{true}"  />
                             <f:selectItem itemLabel="Inativo" itemValue="#{false}" /> 
                         </p:selectOneRadio>
                     </p:column>
                     <p:column>
-                        <p:commandButton id="btnSalvar" update=":frmConsulta, :frmEditar" icon="ui-icon-disk" value="Salvar"  actionListener="#{multAlternativasMB.salvar()}" ajax="true"/>
+                        <h:outputText value="Valor da alternativa" />  
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="vlrAlternativa" value="#{somatorioAlternativasMB.selecionado.vlrSomatorioAlternativas}" size="50" required="true" requiredMessage="Valor da Alternativa é um campo obrigatório!"/>  
+                    </p:column>
+                    <p:column>
+                        <p:commandButton id="btnSalvar" update=":frmConsulta, :frmEditar" icon="ui-icon-disk" value="Salvar"  actionListener="#{somatorioAlternativasMB.salvar()}" ajax="true"/>
                     </p:column>
 
                 </p:panelGrid>  
