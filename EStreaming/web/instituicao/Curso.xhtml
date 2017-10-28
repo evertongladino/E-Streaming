@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="TplInstituicao.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="conteudo">
+
+        <p:panel header="Manter Curso">
+
+            <h:form id="frmConsulta">  
+
+                <p:growl id="msgs" showDetail="true"/>
+
+                <p:panelGrid columns="4">
+                    <p:column>
+                        Nome do Curso
+                    </p:column>
+                    <p:column>
+                        <p:inputText size="30" maxlength="50" value="#{cursoMB.nmeCurso}"/>
+                    </p:column>
+                    <p:column>
+                        <p:commandButton value="Consultar" actionListener="#{cursoMB.filtrar()}" update=":frmConsulta, :frmEditar" icon="ui-icon-search"/>
+                    </p:column>
+                </p:panelGrid>
+
+                <p:dataTable id="dtbConsulta" var="reg" value="#{cursoMB.tbCurso}" tableStyle="width:auto;" paginator="true" rows="5">  
+
+                    <p:column headerText="Identificador" >  
+                        <h:outputText value="#{reg.idtCurso}" />  
+                    </p:column>  
+
+                    <p:column headerText="Nome">  
+                        <h:outputText value="#{reg.nmeCurso}" />  
+                    </p:column>  
+
+                    <p:column headerText="Operação">  
+                        <p:commandButton id="btnEditar" update=":frmEditar" icon="ui-icon-pencil" value="Editar">  
+                            <f:setPropertyActionListener value="#{reg}" target="#{cursoMB.selecionado}" />  
+                        </p:commandButton>
+                        <p:commandButton id="btnExcluir" update=":frmExcluir" oncomplete="PF('dlgConfExclusaoView').show()" icon="ui-icon-trash" value="Excluir">  
+                            <f:setPropertyActionListener value="#{reg}" target="#{cursoMB.selecionado}" />  
+                        </p:commandButton>
+                    </p:column>
+                </p:dataTable>  
+
+                <p:commandButton value="Novo" actionListener="#{cursoMB.novo()}" update=":frmEditar" icon="ui-icon-star"/>
+
+            </h:form>
+
+            <p:confirmDialog id="dlgConfExclusao" message="Tem certeza que deseja excluir (#{cursoMB.selecionado.nmeCurso})?"  
+                             header="Exclusão de Registro" severity="alert" widgetVar="dlgConfExclusaoView" appendTo="@(body)">  
+                <h:form id="frmExcluir">
+                    <p:commandButton id="btnConfirm" value="Sim" update=":frmConsulta, :frmEditar, :frmExcluir" oncomplete="PF('dlgConfExclusaoView').hide()" actionListener="#{cursoMB.excluir()}" />  
+                    <p:commandButton id="btnDecline" value="Não" onclick="PF('dlgConfExclusaoView').hide()" type="button" />   
+                </h:form> 
+            </p:confirmDialog> 
+
+            <br/>
+            <br/>
+            <h:form id="frmEditar">
+                <p:panelGrid id="pngEditar" columns="2">  
+                    <p:column>
+                        <h:outputText value="Nome do Curso" />  
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="nmeCurso" value="#{cursoMB.selecionado.nmeCurso}" size="50" required="true" requiredMessage="Nome da Curso é um campo obrigatório!"/>  
+                    </p:column>
+                     <p:column>
+                        <h:outputText value="Código da Faculdade" />  
+                    </p:column>
+                    <p:column>
+                        <p:selectOneMenu id="codFaculdade" value="#{cursoMB.selecionado.tbFaculdade}" style="width:150px" converter="faculdadeCV">
+                            <f:selectItems value="#{cursoMB.tbFaculdade}" var="i" itemLabel="#{i.nmeFaculdade}" itemValue="#{i}"/>
+                        </p:selectOneMenu>  
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="Status do Curso" />  
+                    </p:column>
+                    <p:column>
+                    <p:selectOneRadio id="console" value="#{cursoMB.selecionado.stsCurso}">
+                        <f:selectItem itemLabel="Ativo" itemValue="#{true}" />
+                        <f:selectItem itemLabel="Inativo" itemValue="#{false}" />
+                    </p:selectOneRadio>
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="Quantidade de Semestres" />  
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="qtdSemestres" value="#{cursoMB.selecionado.qtdSemestres}" size="50" required="true" requiredMessage="Nome da Curso é um campo obrigatório!"/>  
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="Código do Coordenador" />  
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="codUsuarioCoordenador" value="#{cursoMB.selecionado.codUsuarioCoordenador}" size="50" required="true" requiredMessage="Nome da Curso é um campo obrigatório!"/>  
+                    </p:column>
+
+                    <p:column>
+                        <p:commandButton id="btnSalvar" update=":frmConsulta, :frmEditar" icon="ui-icon-disk" value="Salvar"  actionListener="#{cursoMB.salvar()}" ajax="true"/>
+                    </p:column>
+
+                    <p:column>
+
+                    </p:column>
+
+                </p:panelGrid>  
+
+            </h:form> 
+
+
+        </p:panel>
+
+    </ui:define>
+</ui:composition>

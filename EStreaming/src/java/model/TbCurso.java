@@ -65,11 +65,11 @@ public class TbCurso  implements java.io.Serializable {
 
     
     @Column(name="idt_curso", unique=true, nullable=false)
-    public int getIdtCurso() {
+    public Integer getIdtCurso() {
         return this.idtCurso;
     }
     
-    public void setIdtCurso(int idtCurso) {
+    public void setIdtCurso(Integer idtCurso) {
         this.idtCurso = idtCurso;
     }
 

@@ -1,0 +1,146 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="TplInstituicao.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="conteudo">
+
+        <p:panel header="Manter Instituição">
+
+            <h:form id="frmConsulta">  
+
+                <p:growl id="msgs" showDetail="true"/>
+
+                <p:panelGrid columns="4">
+                    <p:column>
+                        Nome da Instituição:
+                    </p:column>
+                    <p:column>
+                        <p:inputText size="30" maxlength="50" value="#{instituicaoMB.nmeInstituicao}"/>
+                    </p:column>
+                    <p:column>
+                        <p:commandButton value="Consultar" actionListener="#{instituicaoMB.filtrar()}" update=":frmConsulta, :frmEditar" icon="ui-icon-search"/>
+                    </p:column>
+                </p:panelGrid>
+
+                <p:dataTable id="dtbConsulta" var="reg" value="#{instituicaoMB.tbInstituicao}" tableStyle="width:auto;" paginator="true" rows="5">  
+
+                    <p:column headerText="Identificador" >  
+                        <h:outputText value="#{reg.idtInstituicao}" />  
+                    </p:column>  
+
+                    <p:column headerText="Nome">  
+                        <h:outputText value="#{reg.nmeInstituicao}" />  
+                    </p:column>  
+
+                    <p:column headerText="Operação">  
+                        <p:commandButton id="btnEditar" update=":frmEditar" icon="ui-icon-pencil" value="Editar">  
+                            <f:setPropertyActionListener value="#{reg}" target="#{instituicaoMB.selecionado}" />  
+                        </p:commandButton>
+                        <p:commandButton id="btnExcluir" update=":frmExcluir" oncomplete="PF('dlgConfExclusaoView').show()" icon="ui-icon-trash" value="Excluir">  
+                            <f:setPropertyActionListener value="#{reg}" target="#{instituicaoMB.selecionado}" />  
+                        </p:commandButton>
+                    </p:column>
+                </p:dataTable>  
+
+                <p:commandButton value="Novo" actionListener="#{instituicaoMB.novo()}" update=":frmEditar" icon="ui-icon-star"/>
+
+            </h:form>
+
+            <p:confirmDialog id="dlgConfExclusao" message="Tem certeza que deseja excluir (#{instituicaoMB.selecionado.nmeInstituicao})?"  
+                             header="Exclusão de Registro" severity="alert" widgetVar="dlgConfExclusaoView" appendTo="@(body)">  
+                <h:form id="frmExcluir">
+                    <p:commandButton id="btnConfirm" value="Sim" update=":frmConsulta, :frmEditar, :frmExcluir" oncomplete="PF('dlgConfExclusaoView').hide()" actionListener="#{instituicaoMB.excluir()}" />  
+                    <p:commandButton id="btnDecline" value="Não" onclick="PF('dlgConfExclusaoView').hide()" type="button" />   
+                </h:form> 
+            </p:confirmDialog> 
+
+            <br/>
+            <br/>
+            <h:form id="frmEditar">
+                <p:panelGrid id="pngEditar" columns="2">  
+                    <p:column>
+                        <h:outputText value="Nome da Instituicao" />  
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="nmeInstituicao" value="#{instituicaoMB.selecionado.nmeInstituicao}" size="50" required="true" requiredMessage="Nome da Instituicao é um campo obrigatório!"/>  
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="CNPJ da Instituicao" />  
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="cnpjInstituicao" value="#{instituicaoMB.selecionado.cnpjInstituicao}" size="50" required="true" requiredMessage="Nome da Instituicao é um campo obrigatório!"/>  
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="Endereço da Instituicao" />  
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="endInstituicao" value="#{instituicaoMB.selecionado.endInstituicao}" size="50" required="true" requiredMessage="Nome da Instituicao é um campo obrigatório!"/>  
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="URL da Instituicao" />  
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="urlInstituicao" value="#{instituicaoMB.selecionado.urlInstituicao}" size="50" required="true" requiredMessage="Nome da Instituicao é um campo obrigatório!"/>  
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="CEP da Instituicao" />  
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="cepInstituicao" value="#{instituicaoMB.selecionado.cepInstituicao}" size="50" required="true" requiredMessage="Nome da Instituicao é um campo obrigatório!"/>  
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="Telefone da Instituicao" />  
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="telInstituicao1" value="#{instituicaoMB.selecionado.telInstituicao1}" size="50" required="true" requiredMessage="Nome da Instituicao é um campo obrigatório!"/>  
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="Telefone da Instituicao 2" />  
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="telInstituicao2" value="#{instituicaoMB.selecionado.telInstituicao1}" size="50" required="false" requiredMessage="Nome da Instituicao é um campo obrigatório!"/>  
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="E-mail da Instituicao" />  
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="emlInstituicao" value="#{instituicaoMB.selecionado.emlInstituicao}" size="50" required="true" requiredMessage="Nome da Instituicao é um campo obrigatório!"/>  
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="Status da Instituicao" />  
+                    </p:column>
+                    <p:column>
+                        <p:selectOneRadio id="console" value="#{instituicaoMB.selecionado.stsInstituicao}">
+                            <f:selectItem itemLabel="Ativo" itemValue="#{true}" />
+                            <f:selectItem itemLabel="Inativo" itemValue="#{false}" />
+                        </p:selectOneRadio>
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="Razão social da Instituicao" />  
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="razaoSocial" value="#{instituicaoMB.selecionado.razaoSocial}" size="50" required="true" requiredMessage="Nome da Instituicao é um campo obrigatório!"/>  
+                    </p:column>
+
+                    <p:column>
+                        <p:commandButton id="btnSalvar" update=":frmConsulta, :frmEditar" icon="ui-icon-disk" value="Salvar"  actionListener="#{instituicaoMB.salvar()}" ajax="true"/>
+                    </p:column>
+
+                    <p:column>
+
+                    </p:column>
+
+                </p:panelGrid>  
+
+            </h:form> 
+
+
+        </p:panel>
+
+    </ui:define>
+</ui:composition>
