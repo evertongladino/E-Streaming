@@ -57,7 +57,7 @@ public class CursoMB {
     public void salvar() {
         TbCursoDAO dao = new TbCursoDAO();
         if (getSelecionado().getIdtCurso() == 0) {
-            getSelecionado().setIdtCurso(0);
+            getSelecionado().setIdtCurso(1);
             getSelecionado().setDtaInsercao(new java.util.Date());
             dao.incluirCurso(getSelecionado());
         } else {
