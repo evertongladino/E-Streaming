@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
-                template="/instituicao/TplInstituicao.xhtml"
+                template="TplQuestao.xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:c="http://java.sun.com/jsp/jstl/core"
                 xmlns:f="http://java.sun.com/jsf/core"
@@ -20,41 +20,50 @@
                         Enunciado:
                     </p:column>
                     <p:column>
-                        <p:inputText size="30" maxlength="50" value="#{MultEscolhaMB.txtEnunciado}"/>
+                        <p:inputText size="30" maxlength="50" value="#{multEscolhaMB.txtEnunciado}"/>
                     </p:column>
                     <p:column>
-                        <p:commandButton value="Consultar" actionListener="#{MultEscolhaMB.filtrar()}" update=":frmConsulta, :frmEditar" icon="ui-icon-search"/>
+                        <p:commandButton value="Consultar" actionListener="#{multEscolhaMB.filtrar()}" update=":frmConsulta, :frmEditar" icon="ui-icon-search"/>
                     </p:column>
                 </p:panelGrid>
 
-                <p:dataTable id="dtbConsulta" var="reg" value="#{MultEscolhaMB.tbMultiEscolha}" tableStyle="width:auto;" paginator="true" rows="5">  
+                <p:dataTable id="dtbConsulta" var="reg" value="#{multEscolhaMB.tbMultEscolhas}" tableStyle="width:auto;" paginator="true" rows="5">  
 
                     <p:column headerText="Identificador" >  
-                        <h:outputText value="#{reg.idtMultiEscolha}" />  
+                        <h:outputText value="#{reg.idtMultEscolha}" />  
                     </p:column>  
 
                     <p:column headerText="Enunciado">  
                         <h:outputText value="#{reg.txtEnunciado}" />  
-                    </p:column>  
+                    </p:column> 
+
+                    <p:column headerText="Valor">  
+                        <h:outputText value="#{reg.vlrQuestao}" />  
+                    </p:column> 
+
+                    <p:column headerText="Data de Inserção">  
+                        <h:outputText value="#{reg.dtaInsercao}" />  
+                    </p:column> 
+
 
                     <p:column headerText="Operação">  
                         <p:commandButton id="btnEditar" update=":frmEditar" icon="ui-icon-pencil" value="Editar">  
-                            <f:setPropertyActionListener value="#{reg}" target="#{MultEscolhaMB.selecionado}" />  
+                            <f:setPropertyActionListener value="#{reg}" target="#{multEscolhaMB.selecionado}" />  
                         </p:commandButton>
                         <p:commandButton id="btnExcluir" update=":frmExcluir" oncomplete="PF('dlgConfExclusaoView').show()" icon="ui-icon-trash" value="Excluir">  
-                            <f:setPropertyActionListener value="#{reg}" target="#{MultEscolhaMB.selecionado}" />  
+                            <f:setPropertyActionListener value="#{reg}" target="#{multEscolhaMB.selecionado}" />  
                         </p:commandButton>
                     </p:column>
                 </p:dataTable>  
 
-                <p:commandButton value="Novo" actionListener="#{MultEscolhaMB.novo()}" update=":frmEditar" icon="ui-icon-star"/>
+                <p:commandButton value="Novo" actionListener="#{multEscolhaMB.novo()}" update=":frmEditar" icon="ui-icon-star"/>
 
             </h:form>
 
-            <p:confirmDialog id="dlgConfExclusao" message="Tem certeza que deseja excluir (#{MultEscolhaMB.selecionado.txtEnunciado})?"  
+            <p:confirmDialog id="dlgConfExclusao" message="Tem certeza que deseja excluir (#{multEscolhaMB.selecionado.idtMultEscolha})?"  
                              header="Exclusão de Registro" severity="alert" widgetVar="dlgConfExclusaoView" appendTo="@(body)">  
                 <h:form id="frmExcluir">
-                    <p:commandButton id="btnConfirm" value="Sim" update=":frmConsulta, :frmEditar, :frmExcluir" oncomplete="PF('dlgConfExclusaoView').hide()" actionListener="#{MultEscolhaMB.excluir()}" />  
+                    <p:commandButton id="btnConfirm" value="Sim" update=":frmConsulta, :frmEditar, :frmExcluir" oncomplete="PF('dlgConfExclusaoView').hide()" actionListener="#{multEscolhaMB.excluir()}" />  
                     <p:commandButton id="btnDecline" value="Não" onclick="PF('dlgConfExclusaoView').hide()" type="button" />   
                 </h:form> 
             </p:confirmDialog> 
@@ -67,59 +76,53 @@
                         <h:outputText value="Enunciado" />  
                     </p:column>
                     <p:column>
-                        <p:inputText id="txtEnunciado" value="#{MultEscolhaMB.selecionado.txtEnunciado}" size="50" required="true" requiredMessage="Enunciado é um campo obrigatório!"/>  
+                        <p:inputText id="txtEnunciado" value="#{multEscolhaMB.selecionado.txtEnunciado}" size="50" required="true" requiredMessage="Enunciado é um campo obrigatório!"/>  
                     </p:column>
                     <p:column>
                         <h:outputText value="Assunto" />  
                     </p:column>
                     <p:column>
-                        <p:inputText id="codAssunto" value="#{MultEscolhaMB.selecionado.tbAssunto}" size="50" required="true" requiredMessage="Assunto é um campo obrigatório!"/>  
+                        <p:selectOneMenu id="cmbAssunto" value="#{multEscolhaMB.selecionado.tbAssunto}" effect="fold" editable="false" converter="assuntoCV">
+                            <f:selectItems value="#{multEscolhaMB.assuntos}" var="c" itemLabel="#{c.txtTemaAssunto}" itemValue="#{c}"/>  
+                        </p:selectOneMenu>
                     </p:column>
                     <p:column>
                         <h:outputText value="Status da Questao" />  
                     </p:column>
                     <p:column>
-                        <p:inputText id="stsMultEscolha" value="#{MultEscolhaMB.selecionado.stsMultEscolha}" size="50" required="true" requiredMessage="Status é um campo obrigatório!"/>  
-                    </p:column>
-                    <p:column>
-                        <h:outputText value="Identificador" />  
-                    </p:column>
-                    <p:column>
-                        <p:inputText id="idtMultEscolha" value="#{MultEscolhaMB.selecionado.idtMultEscolha}" size="50" required="true" requiredMessage="Ordem é um campo obrigatório!"/>  
+                        <p:selectOneRadio id="stsMultEscolha" value="#{multEscolhaMB.selecionado.stsMultEscolha}">
+                            <f:selectItem itemLabel="Ativo" itemValue="#{true}"  />
+                            <f:selectItem itemLabel="Inativo" itemValue="#{false}" /> 
+                        </p:selectOneRadio>
                     </p:column>
                     <p:column>
                         <h:outputText value="Ordem" />  
                     </p:column>
                     <p:column>
-                        <p:inputText id="ordMultEscolha" value="#{MultEscolhaMB.selecionado.ordMultEscolha}" size="50" required="true" requiredMessage="Ordem é um campo obrigatório!"/>  
+                        <p:inputText id="ordMultEscolha" value="#{multEscolhaMB.selecionado.ordMultEscolha}" size="50" required="true" requiredMessage="Ordem é um campo obrigatório!"/>  
                     </p:column>
                     <p:column>
-                        <h:outputText value="Data" />  
+                        <h:outputText value="Valor" />  
                     </p:column>
                     <p:column>
-                        <p:inputText id="dtaInsercao" value="#{MultEscolhaMB.selecionado.dtaInsercao}" size="50" required="true" requiredMessage="Data é um campo obrigatório!"/>  
+                        <p:inputText id="vlrQuestao" value="#{multEscolhaMB.selecionado.vlrQuestao}" size="50" required="true" requiredMessage="Valor é um campo obrigatório!"/>  
                     </p:column>
                     <p:column>
-                    <h:outputText value="Valor" />  
+                        <h:outputText value="Tipo de Questao" />  
                     </p:column>
                     <p:column>
-                        <p:inputText id="vlrQuestao" value="#{MultEscolhaMB.selecionado.vlrQuestao}" size="50" required="true" requiredMessage="Valor é um campo obrigatório!"/>  
+                        <p:selectOneMenu id="cmbTipoQuestao" value="#{multEscolhaMB.selecionado.tbTipoQuestao}" effect="fold" editable="false" converter="tipoQuestaoCV">
+                            <f:selectItems value="#{multEscolhaMB.tipoQuestoes}" var="c" itemLabel="#{c.nmeTipoQuestao}" itemValue="#{c}"/>  
+                        </p:selectOneMenu>
                     </p:column>
                     <p:column>
-                    <h:outputText value="Tipo de Questao" />  
+                        <h:outputText value="Flag" />  
                     </p:column>
                     <p:column>
-                        <p:inputText id="codTipoQuestao" value="#{MultEscolhaMB.selecionado.tbTipoQuestao}" size="50" required="true" requiredMessage="Tipo de questao é um campo obrigatório!"/>  
+                        <p:inputText id="flgFinalizada" value="#{multEscolhaMB.selecionado.flgFinalizada}" size="50" required="true" requiredMessage="Flag é um campo obrigatório!"/>  
                     </p:column>
                     <p:column>
-                    <h:outputText value="Flag" />  
-                    </p:column>
-                    <p:column>
-                        <p:inputText id="flgFinalizada" value="#{MultEscolhaMB.selecionado.flgFinalizada}" size="50" required="true" requiredMessage="Flag é um campo obrigatório!"/>  
-                    </p:column>
-
-                    <p:column>
-                        <p:commandButton id="btnSalvar" update=":frmConsulta, :frmEditar" icon="ui-icon-disk" value="Salvar"  actionListener="#{MultEscolhaMB.salvar()}" ajax="true"/>
+                        <p:commandButton id="btnSalvar" update=":frmConsulta, :frmEditar" icon="ui-icon-disk" value="Salvar"  actionListener="#{multEscolhaMB.salvar()}" ajax="true"/>
                     </p:column>
 
                 </p:panelGrid>  

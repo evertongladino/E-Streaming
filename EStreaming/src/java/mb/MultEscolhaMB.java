@@ -1,15 +1,12 @@
-// */
-// * To change this template, choose Tools | Templates
-// * and open the template in the editor.
-// */*/
-// * To change this template, choose Tools | Templates
-// * and open the template in the editor.
-// */
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package mb;
 
 import dao.TbAssuntoDAO;
 import dao.TbMultEscolhaDAO;
-import java.util.Date;
+import dao.TbTipoQuestaoDAO;
 import model.TbMultEscolha;
 import java.util.List;
 import javax.faces.application.FacesMessage;
@@ -17,48 +14,59 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import model.TbAssunto;
+import model.TbTipoQuestao;
 
 /**
  *
  * @author Hiragi
  */
-
-
 @ManagedBean
 @ViewScoped
 public class MultEscolhaMB {
 
     private TbMultEscolha selecionado;
     private List<TbMultEscolha> tbMultEscolhas;
-    private String txtEnunciado;
+    private List<TbAssunto> assuntos;
+    private List<TbTipoQuestao> tipoQuestoes;
+    private Integer idtMultEscolha;
+    private String txtEnunciado = "";
 
     /**
      * Creates a new instance of ProdutoMB
      */
     public MultEscolhaMB() {
         selecionado = new TbMultEscolha();
-        txtEnunciado = "";
+        idtMultEscolha = null;
+
+        TbAssuntoDAO daoAssunto = new TbAssuntoDAO();
+        assuntos = daoAssunto.consultarTodos();
+
+        TbTipoQuestaoDAO daoRestaurante = new TbTipoQuestaoDAO();
+        tipoQuestoes = daoRestaurante.consultarTodos();
+
         filtrar();
     }
 
     public void filtrar() {
         TbMultEscolhaDAO dao = new TbMultEscolhaDAO();
-        //TbAssuntoDAO daoAssunto = new TbAssuntoDAO();
+//        TbAssuntoDAO daoAssunto = new TbAssuntoDAO();
         setTbMultEscolhas(dao.consultarPorTxt(getTxtEnunciado(), "txtEnunciado"));
-        //setTbAssunto(daoAssunto.consultarPorTipoAssunto(getSelecionado().getTbAssunto().getIdtAssunto()));
+//        setTbMultEscolhas(dao.consultarPorIdt(getSelecionado().getIdtVf()));
+//        setTbAssunto(daoAssunto.consultarPorTipoAssunto(getSelecionado().getTbAssunto().getIdtAssunto()));
     }
 
     public void novo() {
         setSelecionado(new TbMultEscolha());
         getSelecionado().setIdtMultEscolha(0);
+        getSelecionado().setStsMultEscolha(true);
         txtEnunciado = "";
-        
     }
 
     public void salvar() {
         TbMultEscolhaDAO dao = new TbMultEscolhaDAO();
         if (getSelecionado().getIdtMultEscolha() == 0) {
             getSelecionado().setIdtMultEscolha(null);
+            getSelecionado().setDtaInsercao(new java.util.Date());
             dao.incluir(getSelecionado());
         } else {
             dao.juntar(getSelecionado());
@@ -91,38 +99,80 @@ public class MultEscolhaMB {
         return selecionado;
     }
 
-    /**
-     * @param selecionado the selecionado to set
-     */
     public void setSelecionado(TbMultEscolha selecionado) {
         this.selecionado = selecionado;
+    }
+
+    public List<TbMultEscolha> getTbMultEscolhas() {
+        return tbMultEscolhas;
+    }
+
+    public void setTbMultEscolhas(List<TbMultEscolha> tbMultEscolhas) {
+        this.tbMultEscolhas = tbMultEscolhas;
+    }
+
+    public String getTxtEnunciado() {
+        return txtEnunciado;
+    }
+
+    public void setTxtEnunciado(String txtEnunciado) {
+        this.txtEnunciado = txtEnunciado;
+    }
+
+    /**
+     * @return the tbAssuntos
+     */
+    public List<TbAssunto> getTbAssuntos() {
+        return getAssuntos();
+    }
+
+    /**
+     * @param tbAssuntos the tbAssuntos to set
+     */
+    public void setTbAssuntos(List<TbAssunto> tbAssuntos) {
+        this.setAssuntos(tbAssuntos);
     }
 
     /**
      * @return the tbTipoQuestoes
      */
-    public List<TbMultEscolha> getTbtbMultEscolhas() {
-        return tbMultEscolhas;
-    }
-
-//    /**
-//     * @param tbTipoQuestoes the tdMultEscolhaes to set
-//     */
-    public void setTbMultEscolhas(List<TbMultEscolha> tbtbMultEscolhas) {
-        this.tbMultEscolhas = tbtbMultEscolhas;
+    public List<TbTipoQuestao> getTbTipoQuestoes() {
+        return getTipoQuestoes();
     }
 
     /**
-     * @return the idtMultEscolha
+     * @param tbTipoQuestoes the tbTipoQuestoes to set
      */
-    public String getTxtEnunciado() {
-        return txtEnunciado;
+    public void setTbTipoQuestoes(List<TbTipoQuestao> tbTipoQuestoes) {
+        this.setTipoQuestoes(tbTipoQuestoes);
     }
 
     /**
-     * @param txtEnunciado the txtEnunciado to set
+     * @return the assuntos
      */
-    public void setTxtEnunciado(String txtEnunciado) {
-        this.txtEnunciado = txtEnunciado;
+    public List<TbAssunto> getAssuntos() {
+        return assuntos;
     }
+
+    /**
+     * @param assuntos the assuntos to set
+     */
+    public void setAssuntos(List<TbAssunto> assuntos) {
+        this.assuntos = assuntos;
+    }
+
+    /**
+     * @return the tipoQuestoes
+     */
+    public List<TbTipoQuestao> getTipoQuestoes() {
+        return tipoQuestoes;
+    }
+
+    /**
+     * @param tipoQuestoes the tipoQuestoes to set
+     */
+    public void setTipoQuestoes(List<TbTipoQuestao> tipoQuestoes) {
+        this.tipoQuestoes = tipoQuestoes;
+    }
+
 }
