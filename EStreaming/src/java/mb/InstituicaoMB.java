@@ -29,6 +29,8 @@ public class InstituicaoMB {
      */
     public InstituicaoMB() {
         selecionado = new TbInstituicao();
+        getSelecionado().getNmeInstituicao();
+        getSelecionado().setStsInstituicao(true);
         nmeInstituicao = "";
         filtrar();
     }
@@ -41,6 +43,7 @@ public class InstituicaoMB {
     public void novo() {
         setSelecionado(new TbInstituicao());
         getSelecionado().setIdtInstituicao(0);
+        getSelecionado().setStsInstituicao(true);
         nmeInstituicao = "";
     }
 
@@ -48,6 +51,7 @@ public class InstituicaoMB {
         TbInstituicaoDAO dao = new TbInstituicaoDAO();
         if (getSelecionado().getIdtInstituicao() == 0) {
             getSelecionado().setIdtInstituicao(null);
+            getSelecionado().setDtaInsercao(new java.util.Date());
             dao.incluirInstituicao(getSelecionado());
         } else {
             dao.juntar(getSelecionado());
@@ -59,6 +63,7 @@ public class InstituicaoMB {
     }
 
     public void excluir() {
+        try {
         TbInstituicaoDAO dao = new TbInstituicaoDAO();
         if (getSelecionado().getIdtInstituicao() != 0) {
             if (dao.excluir(getSelecionado().getIdtInstituicao())) {
@@ -71,6 +76,10 @@ public class InstituicaoMB {
         }
         novo();
         filtrar();
+        } catch (Exception e) {
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Resultado da Exclusão", "Não posso excluir faculdade pois existe objetos associados.");
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+        }
     }
 
     /**

@@ -36,6 +36,7 @@ public class CursoMB {
     public CursoMB() {
         selecionado = new TbCurso();
         nmeCurso = "";
+        getSelecionado().setStsCurso(true);
         filtrar();
     }
 
@@ -49,6 +50,7 @@ public class CursoMB {
     public void novo() {
         setSelecionado(new TbCurso());
         getSelecionado().setIdtCurso(0);
+        getSelecionado().setStsCurso(true);
         nmeCurso = "";
     }
 
@@ -56,6 +58,7 @@ public class CursoMB {
         TbCursoDAO dao = new TbCursoDAO();
         if (getSelecionado().getIdtCurso() == 0) {
             getSelecionado().setIdtCurso(0);
+            getSelecionado().setDtaInsercao(new java.util.Date());
             dao.incluirCurso(getSelecionado());
         } else {
             dao.juntar(getSelecionado());
@@ -67,6 +70,7 @@ public class CursoMB {
     }
 
     public void excluir() {
+       try{ 
         TbCursoDAO dao = new TbCursoDAO();
         if (getSelecionado().getIdtCurso() != 0) {
             if (dao.excluir(getSelecionado().getIdtCurso())) {
@@ -79,6 +83,10 @@ public class CursoMB {
         }
         novo();
         filtrar();
+       }catch (Exception e) {
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Resultado da Exclusão", "Não posso excluir faculdade pois existe objetos associados.");
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+        }
     }
 
     /**

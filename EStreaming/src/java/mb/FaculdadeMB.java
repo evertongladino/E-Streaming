@@ -34,6 +34,8 @@ public class FaculdadeMB {
      */
     public FaculdadeMB() {
         selecionado = new TbFaculdade();
+        getSelecionado().setIdtFaculdade(0);
+        getSelecionado().setStsFaculdade(true);
         nmeFaculdade = "";
         filtrar();
     }
@@ -48,6 +50,7 @@ public class FaculdadeMB {
     public void novo() {
         setSelecionado(new TbFaculdade());
         getSelecionado().setIdtFaculdade(0);
+        getSelecionado().setStsFaculdade(true);
         nmeFaculdade = "";
     }
 
@@ -55,6 +58,7 @@ public class FaculdadeMB {
         TbFaculdadeDAO dao = new TbFaculdadeDAO();
         if (getSelecionado().getIdtFaculdade() == 0) {
             getSelecionado().setIdtFaculdade(null);
+            getSelecionado().setDtaInsercao(new java.util.Date());
             dao.incluirFaculdade(getSelecionado());
         } else {
             dao.juntar(getSelecionado());
@@ -66,18 +70,23 @@ public class FaculdadeMB {
     }
 
     public void excluir() {
-        TbFaculdadeDAO dao = new TbFaculdadeDAO();
-        if (getSelecionado().getIdtFaculdade() != 0) {
-            if (dao.excluir(getSelecionado().getIdtFaculdade())) {
-                FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Resultado da Exclusão", "Exclusão efetuada com sucesso.");
-                FacesContext.getCurrentInstance().addMessage(null, msg);
-            } else {
-                FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Resultado da Exclusao", "Não foi possível excluir.");
-                FacesContext.getCurrentInstance().addMessage(null, msg);
+        try {
+            TbFaculdadeDAO dao = new TbFaculdadeDAO();
+            if (getSelecionado().getIdtFaculdade() != 0) {
+                if (dao.excluir(getSelecionado().getIdtFaculdade())) {
+                    FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Resultado da Exclusão", "Exclusão efetuada com sucesso.");
+                    FacesContext.getCurrentInstance().addMessage(null, msg);
+                } else {
+                    FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Resultado da Exclusao", "Não foi possível excluir.");
+                    FacesContext.getCurrentInstance().addMessage(null, msg);
+                }
             }
+            novo();
+            filtrar();
+        } catch (Exception e) {
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Resultado da Exclusão", "Não posso excluir faculdade pois existe objetos associados.");
+            FacesContext.getCurrentInstance().addMessage(null, msg);
         }
-        novo();
-        filtrar();
     }
 
     /**
@@ -98,12 +107,10 @@ public class FaculdadeMB {
         return nmeFaculdade;
     }
 
-  
     public void setNmeFaculdade(String nmeFaculdade) {
         this.nmeFaculdade = nmeFaculdade;
     }
 
-  
     public List<TbFaculdade> getTbFaculdade() {
         return tbFaculdade;
     }
@@ -113,8 +120,8 @@ public class FaculdadeMB {
     public void setTbFaculdade(List<TbFaculdade> tbFaculdade) {
         this.tbFaculdade = tbFaculdade;
     }
-    
-        public List<TbInstituicao> getTbInstituicao() {
+
+    public List<TbInstituicao> getTbInstituicao() {
         return tbInstituicao;
     }
 

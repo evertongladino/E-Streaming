@@ -35,7 +35,12 @@
 
                     <p:column headerText="Nome">  
                         <h:outputText value="#{reg.nmeFaculdade}" />  
-                    </p:column>  
+                    </p:column>
+                    <p:column headerText="Data">  
+                        <h:outputText value="#{reg.dtaInsercao}">
+                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        </h:outputText>
+                    </p:column>
 
                     <p:column headerText="Operação">  
                         <p:commandButton id="btnEditar" update=":frmEditar" icon="ui-icon-pencil" value="Editar">  
@@ -69,19 +74,22 @@
                     <p:column>
                         <p:inputText id="nmeFaculdade" value="#{faculdadeMB.selecionado.nmeFaculdade}" size="50" required="true" requiredMessage="Nome da Faculdade é um campo obrigatório!"/>  
                     </p:column>
-                     <p:column>
+                    <p:column>
                         <h:outputText value="Código da Instituição" />  
                     </p:column>
                     <p:column>
-                        <p:selectOneMenu id="codInstituicao" value="#{faculdadeMB.nmeInstituicao}" style="width:150px">
-                            <f:selectItems value="#{faculdadeMB.tbInstituicao}" />
+                        <p:selectOneMenu id="codInstituicao" value="#{faculdadeMB.selecionado.tbInstituicao}" style="width:150px" converter="instituicaoCV">
+                            <f:selectItems value="#{faculdadeMB.tbInstituicao}" var="i" itemLabel="#{i.nmeInstituicao}" itemValue="#{i}"/>
                         </p:selectOneMenu>  
                     </p:column>
                     <p:column>
-                        <h:outputText value="Status da Instituição" />  
+                        <h:outputText value="Status da Faculdade" />  
                     </p:column>
                     <p:column>
-                        <p:inputText id="stsFaculdade" value="#{faculdadeMB.selecionado.stsFaculdade}" size="50" required="true" requiredMessage="Nome da Faculdade é um campo obrigatório!"/>  
+                        <p:selectOneRadio id="console" value="#{faculdadeMB.selecionado.stsFaculdade}">
+                            <f:selectItem itemLabel="Ativo" itemValue="#{true}"  />
+                            <f:selectItem itemLabel="Inativo" itemValue="#{false}" /> 
+                        </p:selectOneRadio>
                     </p:column>
                     <p:column>
                         <h:outputText value="Código do Usuário Admin" />  

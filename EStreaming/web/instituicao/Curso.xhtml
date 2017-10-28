@@ -73,15 +73,18 @@
                         <h:outputText value="Código da Faculdade" />  
                     </p:column>
                     <p:column>
-                        <p:selectOneMenu id="codInstituicao" value="#{cursoMB.nmeFaculdade}" style="width:150px">
-                            <f:selectItems value="#{cursoMB.tbFaculdade}" />
+                        <p:selectOneMenu id="codFaculdade" value="#{cursoMB.selecionado.tbFaculdade}" style="width:150px" converter="faculdadeCV">
+                            <f:selectItems value="#{cursoMB.tbFaculdade}" var="i" itemLabel="#{i.nmeFaculdade}" itemValue="#{i}"/>
                         </p:selectOneMenu>  
                     </p:column>
                     <p:column>
                         <h:outputText value="Status do Curso" />  
                     </p:column>
                     <p:column>
-                        <p:inputText id="stsCurso" value="#{cursoMB.selecionado.stsCurso}" size="50" required="true" requiredMessage="Nome da Curso é um campo obrigatório!"/>  
+                    <p:selectOneRadio id="console" value="#{cursoMB.selecionado.stsCurso}">
+                        <f:selectItem itemLabel="Ativo" itemValue="#{true}" />
+                        <f:selectItem itemLabel="Inativo" itemValue="#{false}" />
+                    </p:selectOneRadio>
                     </p:column>
                     <p:column>
                         <h:outputText value="Quantidade de Semestres" />  
