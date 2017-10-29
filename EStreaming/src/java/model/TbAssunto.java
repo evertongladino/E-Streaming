@@ -2,12 +2,15 @@ package model;
 // Generated 21/10/2017 10:26:18 by Hibernate Tools 4.3.1
 
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -69,7 +72,7 @@ public class TbAssunto  implements java.io.Serializable {
        this.taAssuntoMidias = taAssuntoMidias;
     }
    
-     @Id 
+     @Id @GeneratedValue(strategy=IDENTITY)
 
     
     @Column(name="idt_assunto", unique=true, nullable=false)

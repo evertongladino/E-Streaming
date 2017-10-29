@@ -68,11 +68,23 @@ public class BaseDAO<Tab> {
     }
 
     public Tab incluir(Tab obj) {
-        Transaction ts = hib.beginTransaction();
-        hib.persist(obj);
-        hib.flush();
-        ts.commit();
-        return obj;
+    	
+    	Transaction ts = null;   	
+    	
+    	try {
+		    ts = hib.beginTransaction();
+		    hib.persist(obj);
+		    hib.flush();
+		    ts.commit();
+		    
+    	} catch (Exception e) {
+    		
+    		ts.rollback();    		
+    	} finally {
+    		
+    		//hib.close();
+    	}
+    	return obj;
     }
     
     public TbDisciplina incluirDisciplina(Tab obj) {

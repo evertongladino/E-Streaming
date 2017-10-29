@@ -2,12 +2,15 @@ package model;
 // Generated 21/10/2017 10:26:18 by Hibernate Tools 4.3.1
 
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -53,7 +56,7 @@ public class TbDisciplina  implements java.io.Serializable {
        this.taDisciplinaCursoses = taDisciplinaCursoses;
     }
    
-     @Id 
+     @Id @GeneratedValue(strategy=IDENTITY)
 
     
     @Column(name="idt_disciplina", unique=true, nullable=false)

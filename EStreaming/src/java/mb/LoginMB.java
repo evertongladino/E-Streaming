@@ -68,6 +68,7 @@ public class LoginMB {
             }
         }
         sessao.setAttribute("SESSAO_PERFIL", getPerfil());
+        sessao.setAttribute("IDT_USUARIO", pessoa.getIdtUsuario());
         return ret;
     }
     
