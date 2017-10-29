@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="TplQuestao.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="conteudo">
+
+        <p:panel header="Manter Questão V ou F Alternativas">
+
+            <h:form id="frmConsulta">  
+
+                <p:growl id="msgs" showDetail="true"/>
+
+                <p:panelGrid columns="4">
+                    <p:column>
+                        Enunciado da Alternativas de V ou F:
+                    </p:column>
+                    <p:column>
+                        <p:inputText size="30" maxlength="50" value="#{vfAlternativasMB.txtItem}"/>
+                    </p:column>
+                    <p:column>
+                        <p:commandButton value="Consultar" actionListener="#{vfAlternativasMB.filtrar()}" update=":frmConsulta, :frmEditar" icon="ui-icon-search"/>
+                    </p:column>
+                </p:panelGrid>
+
+                <p:dataTable id="dtbConsulta" var="reg" value="#{vfAlternativasMB.tbVfAlternativas}" tableStyle="width:auto;" paginator="true" rows="5">  
+                    
+                    <p:column headerText="Identificador" >  
+                        <h:outputText value="#{reg.idtVfAlternativas}" />  
+                    </p:column>  
+
+                    <p:column headerText="Nome">  
+                        <h:outputText value="#{reg.txtItem}" />  
+                    </p:column>  
+
+                    <p:column headerText="Operação">  
+                        <p:commandButton id="btnEditar" update=":frmEditar" icon="ui-icon-pencil" value="Editar">  
+                            <f:setPropertyActionListener value="#{reg}" target="#{vfAlternativasMB.selecionado}" />  
+                        </p:commandButton>
+                        <p:commandButton id="btnExcluir" update=":frmExcluir" oncomplete="PF('dlgConfExclusaoView').show()" icon="ui-icon-trash" value="Excluir">  
+                            <f:setPropertyActionListener value="#{reg}" target="#{vfAlternativasMB.selecionado}" />  
+                        </p:commandButton>
+                    </p:column>
+                </p:dataTable>  
+
+                <p:commandButton value="Novo" actionListener="#{vfAlternativasMB.novo()}" update=":frmEditar" icon="ui-icon-star"/>
+
+            </h:form>
+
+            <p:confirmDialog id="dlgConfExclusao" message="Tem certeza que deseja excluir (#{vfAlternativasMB.selecionado.idtVFAlternativas})?"  
+                             header="Exclusão de Registro" severity="alert" widgetVar="dlgConfExclusaoView" appendTo="@(body)">  
+                <h:form id="frmExcluir">
+                    <p:commandButton id="btnConfirm" value="Sim" update=":frmConsulta, :frmEditar, :frmExcluir" oncomplete="PF('dlgConfExclusaoView').hide()" actionListener="#{vfAlternativasMB.excluir()}" />  
+                    <p:commandButton id="btnDecline" value="Não" onclick="PF('dlgConfExclusaoView').hide()" type="button" />   
+                </h:form> 
+            </p:confirmDialog> 
+
+            <br/>
+            <br/>
+            <h:form id="frmEditar">
+                <p:panelGrid id="pngEditar" columns="2">  
+                    <p:column>
+                        <h:outputText value="Enunciado do Item: " />
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="txtItem" value="#{vfAlternativasMB.selecionado.txtItem}" size="50" required="true" requiredMessage="Nome do Tipo de Questão é um campo obrigatório!"/>  
+                    </p:column>
+                     <p:column>
+                        <h:outputText value="Resposta do V ou F: " />
+                    </p:column>
+                    <p:column>
+                        <p:selectOneRadio id="vlrVF" value="#{vfAlternativasMB.selecionado.vlrVF}">
+                            <f:selectItem itemLabel="Verdadeiro" itemValue="#{true}"  />
+                            <f:selectItem itemLabel="Falso" itemValue="#{false}" /> 
+                        </p:selectOneRadio>
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="Status do V ou F: " />
+                    </p:column>
+                    <p:column>
+                        <p:selectOneRadio id="stsVFAlternativas" value="#{vfAlternativasMB.selecionado.stsVFAlternativas}">
+                            <f:selectItem itemLabel="Ativo" itemValue="#{true}"  />
+                            <f:selectItem itemLabel="Inativo" itemValue="#{false}" /> 
+                        </p:selectOneRadio>
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="Cód. V ou F: " />
+                    </p:column>
+                    <p:column>
+                        <p:selectOneMenu id="cmbAssunto" value="#{vfAlternativasMB.selecionado.tbVF}" effect="fold" editable="false" converter="VfCV">
+                            <f:selectItems value="#{vfAlternativasMB.vfs}" var="c" itemLabel="#{c.txtEnunciado}" itemValue="#{c}"/>  
+                        </p:selectOneMenu>
+                    </p:column>
+                    <p:column>
+                        <p:commandButton id="btnSalvar" update=":frmConsulta, :frmEditar" icon="ui-icon-disk" value="Salvar"  actionListener="#{vfAlternativasMB.salvar()}" ajax="true"/>
+                    </p:column>
+
+                    <p:column>
+
+                    </p:column>
+
+                </p:panelGrid>  
+
+            </h:form> 
+
+
+        </p:panel>
+
+    </ui:define>
+</ui:composition>

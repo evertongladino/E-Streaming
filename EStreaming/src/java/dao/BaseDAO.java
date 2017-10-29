@@ -50,7 +50,7 @@ public class BaseDAO<Tab> {
         return tbDisciplina;
     }
     
-        public TbUsuario incluirUsuario(Tab obj) {
+    public TbUsuario incluirUsuario(Tab obj) {
         Transaction ts = hib.beginTransaction();
         TbUsuario usuario = (TbUsuario) obj;
         usuario.setDtaInsercao(new Date());
@@ -63,6 +63,15 @@ public class BaseDAO<Tab> {
     public boolean excluir(int idt) {
         Transaction ts = hib.beginTransaction();
         Tab obj = consultarPorIdt(idt);
+        hib.delete(obj);
+        hib.flush();
+        ts.commit();
+        return true;
+    }
+    
+    public boolean excluirVF(int idt) {
+        Transaction ts = hib.beginTransaction();
+        Tab obj = consultarPorIdtVF(idt);
         hib.delete(obj);
         hib.flush();
         ts.commit();
@@ -92,6 +101,14 @@ public class BaseDAO<Tab> {
         obj = (Tab) qy.uniqueResult();
         return obj;
     }
+    
+    public Tab consultarPorIdtVF(int idt) {
+        Tab obj;
+        Query qy = hib.createQuery("SELECT obj FROM " + getClasse().getSimpleName() + " obj WHERE idtVf=?");
+        qy.setInteger(0, idt);
+        obj = (Tab) qy.uniqueResult();
+        return obj;
+    }
 
     public Tab consultarPorMat(String mat) {
         Tab obj;
@@ -112,6 +129,14 @@ public class BaseDAO<Tab> {
         List<Tab> lista;
         Query qy = hib.createQuery("SELECT obj FROM " + getClasse().getSimpleName() + " obj WHERE nme" + getClasse().getSimpleName().substring(2) + " LIKE ?");
         qy.setString(0, "%" + nme + "%");
+        lista = qy.list();
+        return lista;
+    }
+    
+    public List<Tab> consultarPorTxt(String txt, String campoTxt) {
+        List<Tab> lista;
+        Query qy = hib.createQuery("SELECT obj FROM " + getClasse().getSimpleName() + " obj WHERE " + campoTxt + " LIKE ?");
+        qy.setString(0, "%" + txt + "%");
         lista = qy.list();
         return lista;
     }
