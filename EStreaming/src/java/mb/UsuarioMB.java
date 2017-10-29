@@ -47,7 +47,7 @@ public class UsuarioMB {
 
     public void salvar() {
         TbUsuarioDAO dao = new TbUsuarioDAO();
-        if (getSelecionado().getIdtUsuario() == 0) {
+        if (getSelecionado().getIdtUsuario() == null || getSelecionado().getIdtUsuario()  == 0) {
             getSelecionado().setIdtUsuario(null);
             dao.incluirUsuario(getSelecionado());
         } else {

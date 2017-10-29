@@ -95,7 +95,13 @@
                         <h:outputText value="Tipo do Usuário" />  
                     </p:column>
                     <p:column>
-                        <p:inputText id="tpoUsuario" value="#{usuarioMB.selecionado.tpoUsuario}" required="true" requiredMessage="Tipo do Usuário é um campo obrigatório!"/>  
+                        <p:selectOneMenu id="tpoUsuario" value="#{usuarioMB.selecionado.tpoUsuario}">
+                            <f:selectItem itemLabel="Aluno" itemValue="0"/>
+                            <f:selectItem itemLabel="Professor" itemValue="1"/>
+                            <f:selectItem itemLabel="Coordenador de curso" itemValue="2"/>
+                            <f:selectItem itemLabel="Coordenador de faculdade" itemValue="3"/>
+                            <f:selectItem itemLabel="Coordenador de instituição" itemValue="4"/>
+                        </p:selectOneMenu>
                     </p:column>
                     
                     <p:column>

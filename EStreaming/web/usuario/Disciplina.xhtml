@@ -73,9 +73,10 @@
                     <p:column>
                         <h:outputText value="Status da Disciplina" />  
                     </p:column>                    
-                    <p:column>
-                        <p:inputText id="stsDisciplina" value="#{disciplinaMB.selecionado.stsDisciplina}" size="80" required="true" requiredMessage="Status da Disciplina é um campo obrigatório!"/>  
-                    </p:column>    
+                    <p:selectOneRadio id="stsAssunto" value="#{disciplinaMB.selecionado.stsDisciplina}">
+                        <f:selectItem itemLabel="Ativo" itemValue="#{true}" />
+                        <f:selectItem itemLabel="Inativo" itemValue="#{false}" />
+                    </p:selectOneRadio>    
                     
                     <p:column>
                         <h:outputText value="Semestre da Disciplina" />  

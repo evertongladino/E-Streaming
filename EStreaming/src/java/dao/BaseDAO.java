@@ -35,14 +35,26 @@ public class BaseDAO<Tab> {
     }
     
     public TbInstituicao incluirInstituicao(Tab obj) {
-        TbInstituicao tbInstituicao = new TbInstituicao();
-        tbInstituicao = (TbInstituicao) obj;
-        tbInstituicao.setDtaInsercao(new Date());
-        Transaction ts = hib.beginTransaction();
-        hib.persist(tbInstituicao);
-        hib.flush();
-        ts.commit();
-        return tbInstituicao;
+    	Transaction ts = null;   	
+    	TbInstituicao tbInstituicao = new TbInstituicao();
+    	
+    	try {
+	        
+	        tbInstituicao = (TbInstituicao) obj;
+	        tbInstituicao.setDtaInsercao(new Date());
+	        ts = hib.beginTransaction();
+	        hib.persist(tbInstituicao);
+	        hib.flush();
+	        ts.commit();
+	        
+    	} catch (Exception e) {
+    		
+    		ts.rollback();    		
+    	} finally {
+    		
+    		//hib.close();
+    	}
+    	return tbInstituicao;
     }
     
     public TbFaculdade incluirFaculdade(Tab obj) {
