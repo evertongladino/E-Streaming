@@ -26,7 +26,7 @@ public class VfCV implements Converter {
         if (value == null) {
             tbVF = null;
         } else {
-            tbVF = dao.consultarPorIdt(Integer.parseInt(value));
+            tbVF = (TbVF) dao.consultarPorIdtVF(Integer.parseInt(value)); //consultarPorIdt(Integer.parseInt(value));
         }
         return tbVF;
     }
