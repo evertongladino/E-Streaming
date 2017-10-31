@@ -5,7 +5,9 @@
 package dao;
 
 import java.lang.reflect.ParameterizedType;
+import java.util.Date;
 import java.util.List;
+import model.TbMidia;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -34,6 +36,17 @@ public class BaseDAO<Tab> {
         hib.flush();
         ts.commit();
         return obj;
+    }
+    
+    public TbMidia incluirTbMidia(Tab obj) {
+        TbMidia tb = new TbMidia();
+        tb = (TbMidia) obj;
+        tb.setDtaInsercao(new Date());
+        Transaction ts = hib.beginTransaction();
+        hib.persist(tb);
+        hib.flush();
+        ts.commit();
+        return tb;
     }
 
     public boolean excluir(int idt) {

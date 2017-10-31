@@ -31,7 +31,7 @@
 
                 <p:dataTable id="dtbConsulta" var="reg" value="#{midiaMB.tbMidia}" tableStyle="width:auto;" paginator="true" rows="5">  
 
-                    <p:column headerText="Identificador" >  
+                    <p:column headerText="Identificador" >
                         <h:outputText value="#{reg.idtMidia}" />
                     </p:column>
                     
@@ -80,10 +80,8 @@
                         <h:outputText value="Tipo de mídia" />
                     </p:column>
                     <p:column>
-                        <!--O comboBox de tipo de mídia não está funcionando -->
-                        <p:selectOneMenu id="tpoMidia" value="#{midiaMB.selecionado.tbTipoMidia.tpoMidia}" style="width:150px">
-                            <f:selectItem itemLabel="Selecione tipo" itemValue="" />
-                            <f:selectItems itemLabel="#{midiaMB.selecionado.tbTipoMidia.tpoMidia}" value="#{reg.tbTipoMidia.idtTipoMidia}" />
+                        <p:selectOneMenu id="cmbMidia" value="#{midiaMB.selecionado.tbTipoMidia}" effect="fold" editable="false" converter="tipoMidiaCV">
+                            <f:selectItems value="#{midiaMB.tipoMidia}" var="c" itemLabel="#{c.tpoMidia}" itemValue="#{c}"/>
                         </p:selectOneMenu>
                     </p:column>
 

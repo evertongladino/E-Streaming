@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Página do Aluno</title>
+    </h:head>
+    <h:body>
+        <p:panel header="Página do Aluno">
+            <center>
+                <h1>ALUNO</h1>
+            </center>
+            <p:commandButton action="#{loginMB.deslogar()}" style="float:right"></p:commandButton>
+
+            <h:form>
+                <p:growl autoUpdate="true"/>
+
+                <p:panelMenu style="width:400px">
+                    <p:submenu label="Entrada de Dados">
+                        <p:menuitem value="Editor" outcome="/index" icon="ui-icon-document" />
+                        <p:menuitem value="Teclado" outcome="/index"  icon="ui-icon-clipboard" />
+                        <p:menuitem value="Slide" outcome="/index" icon="ui-icon-arrowthick-2-e-w" />
+                        <p:menuitem value="Círculo" outcome="/index" icon="ui-icon-arrowrefresh-1-w" />
+                        <p:menuitem value="Assinatura" outcome="/index" icon=" ui-icon-pencil" />
+                    </p:submenu>
+                    <p:submenu label="Conjunto de Dados">
+                        <p:menuitem value="Organograma"  outcome="/index" icon="ui-icon-circle-arrow-s"/>
+                        <p:menuitem value="Agenda"  outcome="/index" icon="ui-icon-calculator"/>
+                        <p:menuitem value="Arvore"  outcome="/index" icon="ui-icon-arrow-4-diag"/>
+                        <p:menuitem value="Diagrama"  outcome="/index" icon="ui-icon-shuffle"/>
+                        <p:menuitem value="Mapa"  outcome="/index" icon="ui-icon-pin-s"/>
+                        <p:menuitem value="Linha do Tempo"  outcome="/index" icon="ui-icon-calendar"/>
+                    </p:submenu>
+                    <p:submenu label="Gráficos" >
+                        <p:menuitem value="Area"  outcome="/index" icon="ui-icon-bookmark"/>
+                        <p:menuitem value="Barra"  outcome="/index" icon="ui-icon-grip-solid-vertical"/>
+                        <p:menuitem value="Pizza"  outcome="/index" icon="ui-icon-bullet"/>
+                        <p:menuitem value="Gauge"  outcome="/index" icon="ui-icon-radio-off"/>
+                    </p:submenu>
+                    <p:submenu label="Imagens" >
+                        <p:menuitem value="UpLoad"  outcome="/index" icon="ui-icon-circle-arrow-n"/>
+                        <p:menuitem value="Galeria"  outcome="/index" icon="ui-icon-copy"/>
+                    </p:submenu>
+                </p:panelMenu>
+            </h:form>
+        </p:panel>
+    </h:body>
+</html>
+

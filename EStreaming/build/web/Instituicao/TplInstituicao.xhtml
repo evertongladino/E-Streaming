@@ -21,17 +21,24 @@
                 </p:panel> 
             </p:layoutUnit>
 
-            <p:layoutUnit position="west" size="300" header="Menu do Professor" resizable="true" closable="true" collapsible="true">
+            <p:layoutUnit position="west" size="300" header="Menu" resizable="true" closable="true" collapsible="true">
                 <h:form>
                     <p:menu style="width:270px">
-                        <p:submenu label="Disciplinas">
-                            <p:menuitem value="Minhas Disciplinas" icon="ui-icon-note" url="/#"/>
+                        <p:submenu label="Manutenção">
+                            <p:menuitem value="Manter Tipo Questão" icon="ui-icon-calculator" url="/Instituicao/TipoQuestao.xhtml"/>
                         </p:submenu>
                         <p:submenu label="Assuntos">
-                            <p:menuitem value="CRUD de Assunto" icon="ui-icon-pin-w" url="/Professor/Assunto.xhtml"/>
+                            <p:menuitem value="CRUD de Assunto" icon="ui-icon-pin-w" url="/questao/Assunto.xhtml"/>
                         </p:submenu>
                         <p:submenu label="Mídias">
-                            <p:menuitem value="CRUD de Mídia" icon="ui-icon-play" url="/Professor/Midia.xhtml"/>
+                            <p:menuitem value="CRUD de Mídia" icon="ui-icon-play" url="/questao/Midia.xhtml"/>
+                            <p:menuitem value="Upload de Mídia (implementar)" icon="ui-icon-play" url="/questao/UploadMidia.xhtml"/>
+                        </p:submenu>
+                        <p:submenu label="Atividades">
+                            <p:menuitem value="Atividade Completar" icon="ui-icon-note" url="/questao/Completar.xhtml"/>
+                            <p:menuitem value="Completar Alternativas" icon="ui-icon-pencil" url="/questao/CompletarAlternativas.xhtml"/>
+                        </p:submenu>
+                        <p:submenu label="Consultas">
                         </p:submenu>
                         <p:submenu label="Relatórios">
                         </p:submenu>

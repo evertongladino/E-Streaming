@@ -5,7 +5,9 @@
 package mb;
 
 import dao.TbMidiaDAO;
+import dao.TbTipoMidiaDAO;
 import model.TbMidia;
+import model.TbTipoMidia;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -22,32 +24,41 @@ public class MidiaMB {
 
     private TbMidia selecionado;
     private List<TbMidia> tbMidia;
-    private String caminhoMidia;
+    private List<TbTipoMidia> tipoMidia;
+    private Integer idtMidia;
+    private String caminhoMidia = "";
 
     /**
-     * Creates a new instance of ProdutoMB
+     * Creates a new instance of MidiaMB
      */
     public MidiaMB() {
         selecionado = new TbMidia();
-        caminhoMidia = "";
+        idtMidia = null;
+        
+        TbTipoMidiaDAO daoTipoMidia = new TbTipoMidiaDAO();
+        tipoMidia = daoTipoMidia.consultarTodos();
+        
         filtrar();
     }
 
     public void filtrar() {
         TbMidiaDAO dao = new TbMidiaDAO();
-        setTbMidiaes(dao.consultarPorCaminho(getCaminhoMidia()));
+        setTbMidia(dao.consultarPorCaminho(getCaminhoMidia()));
     }
 
     public void novo() {
         setSelecionado(new TbMidia());
         getSelecionado().setIdtMidia(0);
+        getSelecionado().setStsMidia(true);
+        getSelecionado().getTbTipoMidia();
         caminhoMidia = "";
     }
 
     public void salvar() {
         TbMidiaDAO dao = new TbMidiaDAO();
         if (getSelecionado().getIdtMidia()== 0) {
-            getSelecionado().setIdtMidia(null);
+            getSelecionado().setIdtMidia(0);
+            getSelecionado().setDtaInsercao(new java.util.Date());
             dao.incluir(getSelecionado());
         } else {
             dao.juntar(getSelecionado());
@@ -86,6 +97,14 @@ public class MidiaMB {
     public void setSelecionado(TbMidia selecionado) {
         this.selecionado = selecionado;
     }
+    
+    public Integer getIdtMidia() {
+        return idtMidia;
+    }
+
+    public void setIdtMidia(Integer idtMidia) {
+        this.idtMidia = idtMidia;
+    }
 
     /**
      * @return the caminhoMidia
@@ -111,8 +130,16 @@ public class MidiaMB {
     /**
      * @param tbMidia the tdTipoQuestaoes to set
      */
-    public void setTbMidiaes(List<TbMidia> tbMidia) {
+    public void setTbMidia(List<TbMidia> tbMidia) {
         this.tbMidia = tbMidia;
+    }
+    
+    public void setTipoMidia(List<TbTipoMidia> tipoMidia) {
+        this.tipoMidia = tipoMidia;
+    }
+
+    public List<TbTipoMidia> getTipoMidia() {
+        return tipoMidia;
     }
 
 }

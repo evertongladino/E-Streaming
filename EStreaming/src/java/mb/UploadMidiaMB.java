@@ -47,7 +47,7 @@ public class UploadMidiaMB {
     public void salvar() {
         TbMidiaDAO dao = new TbMidiaDAO();
         if (getSelecionado().getIdtMidia()== 0) {
-            getSelecionado().setIdtMidia(null);
+            getSelecionado().setIdtMidia(0);
             dao.incluir(getSelecionado());
         } else {
             dao.juntar(getSelecionado());

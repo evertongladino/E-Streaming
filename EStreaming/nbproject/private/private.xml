@@ -2,22 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/José%20Lisboa/Documents/NetBeansProjects/EStreaming/src/java/model/TbTipoQuestao.java</file>
-            <file>file:/C:/Users/José%20Lisboa/Documents/NetBeansProjects/EStreaming/web/Professor/TplProfessor.xhtml</file>
-            <file>file:/C:/Users/José%20Lisboa/Documents/NetBeansProjects/EStreaming/src/java/mb/MidiaMB.java</file>
-            <file>file:/C:/Users/José%20Lisboa/Documents/NetBeansProjects/EStreaming/web/Professor/Midia.xhtml</file>
-            <file>file:/C:/Users/José%20Lisboa/Documents/NetBeansProjects/EStreaming/src/java/model/TbMidia.java</file>
-            <file>file:/C:/Users/José%20Lisboa/Documents/NetBeansProjects/EStreaming/src/java/mb/TipoQuestaoMB.java</file>
-            <file>file:/C:/Users/José%20Lisboa/Documents/NetBeansProjects/EStreaming/src/java/dao/TbTipoQuestaoDAO.java</file>
-            <file>file:/C:/Users/José%20Lisboa/Documents/NetBeansProjects/EStreaming/web/Instituicao/TplInstituicao.xhtml</file>
-            <file>file:/C:/Users/José%20Lisboa/Documents/NetBeansProjects/EStreaming/web/Instituicao/TipoQuestao.xhtml</file>
-            <file>file:/C:/Users/José%20Lisboa/Documents/NetBeansProjects/EStreaming/src/java/dao/TbUsuarioDAO.java</file>
-            <file>file:/C:/Users/José%20Lisboa/Documents/NetBeansProjects/EStreaming/web/Instituicao/MenuInstituicao.xhtml</file>
-            <file>file:/C:/Users/José%20Lisboa/Documents/NetBeansProjects/EStreaming/web/Professor/MenuProfessor.xhtml</file>
-            <file>file:/C:/Users/José%20Lisboa/Documents/NetBeansProjects/EStreaming/src/java/dao/BaseDAO.java</file>
-            <file>file:/C:/Users/José%20Lisboa/Documents/NetBeansProjects/EStreaming/src/java/dao/HibernateUtil.java</file>
-            <file>file:/C:/Users/José%20Lisboa/Documents/NetBeansProjects/EStreaming/src/java/mb/LoginMB.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

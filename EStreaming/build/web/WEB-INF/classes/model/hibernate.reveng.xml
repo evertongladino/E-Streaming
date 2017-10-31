@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+  <schema-selection match-catalog="estreaming"/>
+  <table-filter match-name="tb_tipo_questao"/>
+  <table-filter match-name="tb_faculdade"/>
+  <table-filter match-name="tb_completar_alternativas"/>
+  <table-filter match-name="ta_usuario_cursos"/>
+  <table-filter match-name="tb_instituicao"/>
+  <table-filter match-name="tb_v_f"/>
+  <table-filter match-name="ta_usuario_faculdade"/>
+  <table-filter match-name="ta_disciplina_cursos"/>
+  <table-filter match-name="tb_curso"/>
+  <table-filter match-name="tb_assunto"/>
+  <table-filter match-name="tb_completar"/>
+  <table-filter match-name="tb_disciplina"/>
+  <table-filter match-name="tb_tipo_midia"/>
+  <table-filter match-name="ta_assunto_midia"/>
+  <table-filter match-name="tb_somatorio"/>
+  <table-filter match-name="tb_usuario"/>
+  <table-filter match-name="tb_v_f_alternativas"/>
+  <table-filter match-name="tb_notas"/>
+  <table-filter match-name="tb_mult_alternativas"/>
+  <table-filter match-name="tb_mult_escolha"/>
+  <table-filter match-name="tb_midia"/>
+  <table-filter match-name="tb_somatorio_alternativas"/>
+</hibernate-reverse-engineering>

@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="TplProfessor.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+        
+    <ui:define name="conteudo">
+
+        <p:panel header="CRUD Alternativas">
+
+            <h:form id="frmConsulta">
+
+                <p:growl id="msgs" showDetail="true"/>
+
+                <p:panelGrid columns="4">
+                    <p:column>
+                        Selecione a questão pelo nº:
+                    </p:column>
+                    <p:column>
+                        <p:selectOneMenu id="cmbCompletarAlt" value="#{completarAlternativasMB.selecionado.idtCompletarAlternativas}" effect="fold" editable="false" converter="completarCV">
+                            <f:selectItems value="#{completarAlternativasMB.tbCompletar}" var="c" itemLabel="#{c.idtCompletar}" itemValue="#{c}"/>
+                        </p:selectOneMenu>
+                    </p:column>
+                    <p:column>
+                        <p:commandButton value="Consultar" actionListener="#{completarAlternativasMB.filtrar()}" update=":frmConsulta, :frmEditar" icon="ui-icon-search"/>
+                    </p:column>
+                </p:panelGrid>
+
+                <p:dataTable id="dtbConsulta" var="reg" value="#{completarMB.tbCompletar}" tableStyle="width:auto;" paginator="true" rows="5">  
+
+                    <p:column headerText="ID" >  
+                        <h:outputText value="#{reg.idtCompletar}" />
+                    </p:column>
+                    
+                    <p:column headerText="Texto da frase">
+                        <h:outputText value="#{reg.txtFrase}" />
+                    </p:column>
+
+                    <p:column headerText="Qtde. Campos">  
+                        <h:outputText value="#{reg.qtdCampos}" />  
+                    </p:column>
+                    
+                    <p:column headerText="Palavra(s) da frase">
+                        <h:outputText value="#{reg.tbCompletarAlternativases}" />
+                    </p:column>
+
+                    <p:column headerText="Operação">  
+                        <p:commandButton id="btnEditar" update=":frmEditar" icon="ui-icon-pencil" value="Editar">  
+                            <f:setPropertyActionListener value="#{reg}" target="#{completarMB.selecionado}" />  
+                        </p:commandButton>
+                        <p:commandButton id="btnExcluir" update=":frmExcluir" oncomplete="PF('dlgConfExclusaoView').show()" icon="ui-icon-trash" value="Excluir">  
+                            <f:setPropertyActionListener value="#{reg}" target="#{completarMB.selecionado}" />  
+                        </p:commandButton>
+                    </p:column>
+                </p:dataTable>  
+
+                <p:commandButton value="Novo" actionListener="#{completarMB.novo()}" update=":frmEditar" icon="ui-icon-plus"/>
+
+            </h:form>
+
+            <p:confirmDialog id="dlgConfExclusao" message="Tem certeza que deseja excluir a questão?"  
+                             header="Exclusão de Registro" severity="alert" widgetVar="dlgConfExclusaoView" appendTo="@(body)">  
+                <h:form id="frmExcluir">
+                    <p:commandButton id="btnConfirm" value="Sim" update=":frmConsulta, :frmEditar, :frmExcluir" oncomplete="PF('dlgConfExclusaoView').hide()" actionListener="#{completarMB.excluir()}" />  
+                    <p:commandButton id="btnDecline" value="Não" onclick="PF('dlgConfExclusaoView').hide()" type="button" />   
+                </h:form> 
+            </p:confirmDialog> 
+
+            <br/>
+            <br/>
+            <h:form id="frmEditar">
+                <p:panelGrid id="pngEditar" columns="2">
+                    <p:column>
+                        <h:outputText value="ID" />  
+                    </p:column>
+                    <p:column>
+                        <h:outputText id="idCompletar" value="#{completarMB.selecionado.idtCompletar}"/>  
+                    </p:column>
+                    
+                    <p:column>
+                        <h:outputText value="Tipo de questão" />  
+                    </p:column>
+                    <p:selectOneMenu id="cmbCompletar" value="#{completarMB.selecionado.tbTipoQuestao}" effect="fold" editable="false" converter="tipoQuestaoCV">
+                        <f:selectItems value="#{completarMB.tipoQuestoes}" var="c" itemLabel="#{c.nmeTipoQuestao}" itemValue="#{c}"/>
+                    </p:selectOneMenu>
+                    
+                    <p:column>
+                        <h:outputText value="Assunto" />
+                    </p:column>
+                    <p:selectOneMenu id="cmbAssunto" value="#{completarMB.selecionado.tbAssunto}" effect="fold" editable="false" converter="assuntoCV">
+                        <f:selectItems value="#{completarMB.tbAssunto}" var="a" itemLabel="#{a.txtTemaAssunto}" itemValue="#{a}"/>
+                    </p:selectOneMenu>
+                    
+                    <p:column>
+                        <h:outputText value="Enunciado" />
+                    </p:column>
+                    <p:column>
+                        <p:inputTextarea id="txtEnunciado" value="#{completarMB.selecionado.txtEnunciado}" required="true" requiredMessage="O enunciado é obrigatório!"/>  
+                    </p:column>
+                    
+                    <p:column>
+                        <h:outputText value="Texto da Frase" />
+                    </p:column>
+                    <p:column>
+                        <p:inputTextarea id="txtFrase" value="#{completarMB.selecionado.txtFrase}" required="true" requiredMessage="A frase é obrigatória!"/>  
+                    </p:column>
+                    
+                    <p:column>
+                        <h:outputText value="Qtde. de campos" />
+                    </p:column>
+                    <p:column>
+                        <p:inputNumber id="qtdCampos" value="#{completarMB.selecionado.qtdCampos}" size="5" required="true" requiredMessage="Quantidade obrigatória!"/>  
+                    </p:column>
+
+                    <p:column>
+                        <h:outputText value="Dta. inserção" />
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="#{completarMB.selecionado.dtaInsercao}" />  
+                    </p:column>
+                    
+                    
+                    <p:column>
+                        <p:commandButton id="btnSalvar" update=":frmConsulta, :frmEditar" icon="ui-icon-disk" value="Salvar"  actionListener="#{completarMB.salvar()}" ajax="true"/>
+                    </p:column>
+
+                </p:panelGrid>  
+
+            </h:form> 
+
+
+        </p:panel>
+
+    </ui:define>
+</ui:composition>
