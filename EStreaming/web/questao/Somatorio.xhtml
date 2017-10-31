@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="TplQuestao.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="conteudo">
+
+        <p:panel header="Manter Questao Somatorio">
+
+            <h:form id="frmConsulta">  
+
+                <p:growl id="msgs" showDetail="true"/>
+
+                <p:panelGrid columns="4">
+                    <p:column>
+                        Enunciado:
+                    </p:column>
+                    <p:column>
+                        <p:inputText size="30" maxlength="50" value="#{somatorioMB.txtEnunciado}"/>
+                    </p:column>
+                    <p:column>
+                        <p:commandButton value="Consultar" actionListener="#{somatorioMB.filtrar()}" update=":frmConsulta, :frmEditar" icon="ui-icon-search"/>
+                    </p:column>
+                </p:panelGrid>
+
+                <p:dataTable id="dtbConsulta" var="reg" value="#{somatorioMB.tbSomatorios}" tableStyle="width:auto;" paginator="true" rows="5">  
+
+                    <p:column headerText="Identificador" >  
+                        <h:outputText value="#{reg.idtSomatorio}" />  
+                    </p:column>  
+
+                    <p:column headerText="Enunciado">  
+                        <h:outputText value="#{reg.txtEnunciado}" />  
+                    </p:column> 
+
+                    <p:column headerText="Soma">  
+                        <h:outputText value="#{reg.soma}" />  
+                    </p:column> 
+
+                    <p:column headerText="Operação">  
+                        <p:commandButton id="btnEditar" update=":frmEditar" icon="ui-icon-pencil" value="Editar">  
+                            <f:setPropertyActionListener value="#{reg}" target="#{somatorioMB.selecionado}" />  
+                        </p:commandButton>
+                        <p:commandButton id="btnExcluir" update=":frmExcluir" oncomplete="PF('dlgConfExclusaoView').show()" icon="ui-icon-trash" value="Excluir">  
+                            <f:setPropertyActionListener value="#{reg}" target="#{somatorioMB.selecionado}" />  
+                        </p:commandButton>
+                    </p:column>
+                </p:dataTable>  
+
+                <p:commandButton value="Novo" actionListener="#{somatorioMB.novo()}" update=":frmEditar" icon="ui-icon-star"/>
+
+            </h:form>
+
+            <p:confirmDialog id="dlgConfExclusao" message="Tem certeza que deseja excluir (#{somatorioMB.selecionado.idtSomatorio})?"  
+                             header="Exclusão de Registro" severity="alert" widgetVar="dlgConfExclusaoView" appendTo="@(body)">  
+                <h:form id="frmExcluir">
+                    <p:commandButton id="btnConfirm" value="Sim" update=":frmConsulta, :frmEditar, :frmExcluir" oncomplete="PF('dlgConfExclusaoView').hide()" actionListener="#{somatorioMB.excluir()}" />  
+                    <p:commandButton id="btnDecline" value="Não" onclick="PF('dlgConfExclusaoView').hide()" type="button" />   
+                </h:form> 
+            </p:confirmDialog> 
+
+            <br/>
+            <br/>
+            <h:form id="frmEditar">
+                <p:panelGrid id="pngEditar" columns="2">  
+                    <p:column>
+                        <h:outputText value="Enunciado" />  
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="txtEnunciado" value="#{somatorioMB.selecionado.txtEnunciado}" size="50" required="true" requiredMessage="Enunciado é um campo obrigatório!"/>  
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="Assunto" />  
+                    </p:column>
+                    <p:column>
+                        <p:selectOneMenu id="cmbAssunto" value="#{somatorioMB.selecionado.tbAssunto}" effect="fold" editable="false" converter="assuntoCV">
+                            <f:selectItems value="#{somatorioMB.assuntos}" var="c" itemLabel="#{c.txtTemaAssunto}" itemValue="#{c}"/>  
+                        </p:selectOneMenu>
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="Status da Questao" />  
+                    </p:column>
+                    <p:column>
+                        <p:selectOneRadio id="stsSomatorio" value="#{somatorioMB.selecionado.stsSomatorio}">
+                            <f:selectItem itemLabel="Ativo" itemValue="#{true}"  />
+                            <f:selectItem itemLabel="Inativo" itemValue="#{false}" /> 
+                        </p:selectOneRadio>
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="Ordem" />  
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="ordSomatorio" value="#{somatorioMB.selecionado.ordSomatorio}" size="50" required="true" requiredMessage="Ordem é um campo obrigatório!"/>  
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="Soma" />  
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="soma" value="#{somatorioMB.selecionado.soma}" size="50" required="true" requiredMessage="Soma é um campo obrigatório!"/>  
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="Tipo de Questao" />  
+                    </p:column>
+                    <p:column>
+                        <p:selectOneMenu id="cmbTipoQuestao" value="#{somatorioMB.selecionado.tbTipoQuestao}" effect="fold" editable="false" converter="tipoQuestaoCV">
+                            <f:selectItems value="#{somatorioMB.tipoQuestoes}" var="c" itemLabel="#{c.nmeTipoQuestao}" itemValue="#{c}"/>  
+                        </p:selectOneMenu>
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="Finalizado?" />  
+                    </p:column>
+                    <p:column>
+                        <p:selectOneRadio id="flgFinalizada" value="#{somatorioMB.selecionado.stsSomatorio}">
+                            <f:selectItem itemLabel="Sim" itemValue="#{true}"  />
+                            <f:selectItem itemLabel="Nao" itemValue="#{false}" /> 
+                        </p:selectOneRadio>
+                    </p:column>
+                    <p:column>
+                        <p:commandButton id="btnSalvar" update=":frmConsulta, :frmEditar" icon="ui-icon-disk" value="Salvar"  actionListener="#{somatorioMB.salvar()}" ajax="true"/>
+                    </p:column>
+
+                </p:panelGrid>  
+
+            </h:form> 
+
+
+        </p:panel>
+
+    </ui:define>
+</ui:composition>

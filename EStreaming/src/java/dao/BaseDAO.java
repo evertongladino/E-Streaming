@@ -153,6 +153,13 @@ public class BaseDAO<Tab> {
         return obj;
     }
 
+    public Tab consultarPorTipoAssunto(int idt) {
+        Tab obj;
+        Query qy = hib.createQuery("SELECT obj FROM " + getClasse().getSimpleName() + " obj WHERE idt" + getClasse().getSimpleName().substring(2) + "=?");
+        qy.setInteger(0, idt);
+        obj = (Tab) qy.uniqueResult();
+        return obj;
+    }
     public Tab consultarPorMat(String mat) {
         Tab obj;
         Query qy = hib.createQuery("SELECT obj FROM " + getClasse().getSimpleName() + " obj WHERE mat" + getClasse().getSimpleName().substring(2) + " = ?");
@@ -183,7 +190,15 @@ public class BaseDAO<Tab> {
         lista = qy.list();
         return lista;
     }
-
+    
+    public List<Tab> consultarPorTxt(String txt, String campoTxt) {
+        List<Tab> lista;
+        Query qy = hib.createQuery("SELECT obj FROM " + getClasse().getSimpleName() + " obj WHERE " + campoTxt + " LIKE ?");
+        qy.setString(0, "%" + txt + "%");
+        lista = qy.list();
+        return lista;
+    }
+    
     public List<Tab> consultarPorSgl(String sgl) {
         List<Tab> lista;
         Query qy = hib.createQuery("SELECT obj FROM " + getClasse().getSimpleName() + " obj WHERE sgl" + getClasse().getSimpleName().substring(2) + " LIKE ?");
