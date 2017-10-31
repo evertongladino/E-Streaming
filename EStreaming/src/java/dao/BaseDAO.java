@@ -216,13 +216,13 @@ public class BaseDAO<Tab> {
         return lista;
     }
     
-    public List<Tab> consultarPorTxt(String txt, String campoTxt) {
-        List<Tab> lista;
-        Query qy = hib.createQuery("SELECT obj FROM " + getClasse().getSimpleName() + " obj WHERE " + campoTxt + " LIKE ?");
-        qy.setString(0, "%" + txt + "%");
-        lista = qy.list();
-        return lista;
-    }
+//    public List<Tab> consultarPorTxt(String txt, String campoTxt) {
+//        List<Tab> lista;
+//        Query qy = hib.createQuery("SELECT obj FROM " + getClasse().getSimpleName() + " obj WHERE " + campoTxt + " LIKE ?");
+//        qy.setString(0, "%" + txt + "%");
+//        lista = qy.list();
+//        return lista;
+//    }
     
     public List<Tab> consultarPorSgl(String sgl) {
         List<Tab> lista;

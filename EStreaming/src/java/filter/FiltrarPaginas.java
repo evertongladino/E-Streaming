@@ -31,11 +31,7 @@ public class FiltrarPaginas implements PhaseListener {
             String perfil = (sessao.getAttribute("SESSAO_PERFIL") == null ? "INVALIDO" : (String) sessao.getAttribute("SESSAO_PERFIL"));
             if (!pagina.contains(perfil)) {
                 //NavigationHandler navHandler = contexto.getApplication().getNavigationHandler();
-<<<<<<< HEAD
                 //navHandler.handleNavigation(contexto, null, "/nok");
-=======
-               // navHandler.handleNavigation(contexto, null, "/nok");
->>>>>>> refs/remotes/origin/CRUDsParaiba
             }
         }
 

@@ -40,9 +40,4 @@ public class AssuntoCV implements Converter {
         }
         return String.valueOf(id);
     }
-
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> refs/remotes/origin/Cruds_Caio_v2

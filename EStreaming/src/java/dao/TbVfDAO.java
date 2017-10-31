@@ -5,10 +5,11 @@
  */
 package dao;
 
-import javafx.scene.control.Tab;
+
 import model.TbVF;
 import org.hibernate.Query;
 import org.hibernate.Transaction;
+import org.primefaces.component.tabview.Tab;
 
 /**
  *
