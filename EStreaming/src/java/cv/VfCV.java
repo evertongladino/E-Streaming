@@ -4,45 +4,41 @@
  */
 package cv;
 
-import dao.TbAssuntoDAO;
-import model.TbAssunto;
+import dao.TbVfDAO;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import model.TbVF;
 
 /**
  *
  * @author hiragi
  */
-@FacesConverter(value = "assuntoCV")
-public class AssuntoCV implements Converter {
+@FacesConverter(value = "VfCV")
+public class VfCV implements Converter {
 
-    private TbAssuntoDAO dao = new TbAssuntoDAO();
+    private TbVfDAO dao = new TbVfDAO();
 
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
-        TbAssunto tbAssunto;
+        TbVF tbVF;
         if (value == null) {
-            tbAssunto = null;
+            tbVF = null;
         } else {
-            tbAssunto = dao.consultarPorIdt(Integer.parseInt(value));
+            tbVF = (TbVF) dao.consultarPorIdtVF(Integer.parseInt(value)); //consultarPorIdt(Integer.parseInt(value));
         }
-        return tbAssunto;
+        return tbVF;
     }
 
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object value) {
         int id = 0;
         if (value != null) {
-            TbAssunto tbAssunto = (TbAssunto) value;
-            id = tbAssunto.getIdtAssunto();
+            TbVF tbVF = (TbVF) value;
+            id = tbVF.getIdtVf();
         }
         return String.valueOf(id);
     }
 
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> refs/remotes/origin/Cruds_Caio_v2
