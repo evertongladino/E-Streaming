@@ -69,13 +69,21 @@ public class BaseDAO<Tab> {
     }
     
     public TbCurso incluirCurso(Tab obj) {
-        TbCurso tbCurso = new TbCurso();
-        tbCurso = (TbCurso) obj;
-        tbCurso.setDtaInsercao(new Date());
         Transaction ts = hib.beginTransaction();
-        hib.persist(tbCurso);
-        hib.flush();
-        ts.commit();
+        TbCurso tbCurso = new TbCurso();
+        try {
+            
+            tbCurso = (TbCurso) obj;
+            tbCurso.setDtaInsercao(new Date());
+
+            hib.persist(tbCurso);
+            hib.flush();
+            ts.commit();
+            
+        } catch (Exception e) {
+            
+            ts.rollback();
+        }
         return tbCurso;
     }
 

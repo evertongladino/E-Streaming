@@ -46,6 +46,10 @@ public class TipoQuestaoMB {
 
     public void salvar() {
         TbTipoQuestaoDAO dao = new TbTipoQuestaoDAO();
+        if (getSelecionado().getIdtTipoQuestao() == null) {
+            
+            getSelecionado().setIdtTipoQuestao(0);
+        } 
         if (getSelecionado().getIdtTipoQuestao() == 0) {
             getSelecionado().setIdtTipoQuestao(null);
             dao.incluir(getSelecionado());
