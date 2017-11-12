@@ -62,7 +62,7 @@ public class SomatorioMB {
 
     public void salvar() {
         TbSomatorioDAO dao = new TbSomatorioDAO();
-        if (getSelecionado().getIdtSomatorio()== 0) {
+        if (getSelecionado().getIdtSomatorio() == null || getSelecionado().getIdtSomatorio()== 0) {
             getSelecionado().setIdtSomatorio(null);
             getSelecionado().setDtaInsercao(new java.util.Date());
             dao.incluir(getSelecionado());

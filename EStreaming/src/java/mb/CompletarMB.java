@@ -70,7 +70,7 @@ public class CompletarMB {
 
     public void salvar() {
         TbCompletarDAO dao = new TbCompletarDAO();
-        if (getSelecionado().getIdtCompletar() == 0) {
+        if (getSelecionado().getIdtCompletar() == null || getSelecionado().getIdtCompletar() == 0) {
             getSelecionado().setIdtCompletar(null);
             getSelecionado().setDtaInsercao(new java.util.Date());
             dao.incluir(getSelecionado());

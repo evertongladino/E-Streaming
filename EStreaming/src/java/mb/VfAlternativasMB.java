@@ -56,7 +56,7 @@ public class VfAlternativasMB {
 
     public void salvar() {
         TbVfAlternativasDAO dao = new TbVfAlternativasDAO();
-        if (getSelecionado().getIdtVFAlternativas()== 0) {
+        if (getSelecionado().getIdtVFAlternativas()== null || getSelecionado().getIdtVFAlternativas()== 0) {
             getSelecionado().setIdtVFAlternativas(null);
             dao.incluir(getSelecionado());
         } else {
@@ -69,9 +69,9 @@ public class VfAlternativasMB {
     }
 
     public void excluir() {
-        TbVfDAO dao = new TbVfDAO();
+        TbVfAlternativasDAO dao = new TbVfAlternativasDAO();
         if (getSelecionado().getIdtVFAlternativas()!= 0) {
-            if (dao.excluir(getSelecionado().getIdtVFAlternativas())) {
+            if (dao.excluirVFAlternativa(getSelecionado().getIdtVFAlternativas())) {
                 FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Resultado da Exclusão", "Exclusão efetuada com sucesso.");
                 FacesContext.getCurrentInstance().addMessage(null, msg);
             } else {

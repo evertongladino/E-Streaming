@@ -5,9 +5,11 @@
  */
 package dao;
 
+import model.TbVF;
 import model.TbVFAlternativas;
 import org.hibernate.Query;
 import org.hibernate.Transaction;
+import org.primefaces.component.tabview.Tab;
 /**
  *
  * @author Caio Henrique
@@ -20,6 +22,28 @@ public class TbVfAlternativasDAO extends BaseDAO<TbVFAlternativas> {
         hib.flush();
         ts.commit();
         return obj;
+    }
+    
+    public boolean excluirVFAlternativa(int idt) {
+        Transaction ts = hib.beginTransaction();
+        try {
+            TbVFAlternativas obj = consultarPorIdtVFAlternativa(idt);
+            hib.delete(obj);
+            hib.flush();
+            ts.commit();
+        } catch (Exception e) {
+            
+            ts.rollback();
+        }
+        return true;
+    }
+    
+    public TbVFAlternativas consultarPorIdtVFAlternativa(int idt) {
+        Tab obj;
+        Query qy = hib.createQuery("SELECT obj FROM " + getClasse().getSimpleName() + " obj WHERE idt_v_f_alternativas=?");
+        qy.setInteger(0, idt);
+        TbVFAlternativas tbVFAlternativa = (TbVFAlternativas) qy.uniqueResult();
+        return tbVFAlternativa;
     }
     
 }

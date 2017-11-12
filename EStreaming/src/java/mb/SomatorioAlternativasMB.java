@@ -56,7 +56,7 @@ public class SomatorioAlternativasMB {
 
     public void salvar() {
         TbSomatorioAlternativasDAO dao = new TbSomatorioAlternativasDAO();
-        if (getSelecionado().getIdtSomatorioAlternativas()== 0) {
+        if (getSelecionado().getIdtSomatorioAlternativas()== null || getSelecionado().getIdtSomatorioAlternativas()== 0) {
             getSelecionado().setIdtSomatorioAlternativas(null);
             dao.incluir(getSelecionado());
         } else {

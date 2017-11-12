@@ -64,7 +64,7 @@ public class MultEscolhaMB {
 
     public void salvar() {
         TbMultEscolhaDAO dao = new TbMultEscolhaDAO();
-        if (getSelecionado().getIdtMultEscolha() == 0) {
+        if (getSelecionado().getIdtMultEscolha() == null || getSelecionado().getIdtMultEscolha() == 0) {
             getSelecionado().setIdtMultEscolha(null);
             getSelecionado().setDtaInsercao(new java.util.Date());
             dao.incluir(getSelecionado());

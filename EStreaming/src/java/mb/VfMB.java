@@ -62,7 +62,7 @@ public class VfMB {
 
     public void salvar() {
         TbVfDAO dao = new TbVfDAO();
-        if (getSelecionado().getIdtVf()== 0) {
+        if (getSelecionado().getIdtVf()== null || getSelecionado().getIdtVf()== 0) {
             getSelecionado().setDtaInsercao(new Date());
             getSelecionado().setFlgFinalizada('N');
             getSelecionado().setIdtVf(null);

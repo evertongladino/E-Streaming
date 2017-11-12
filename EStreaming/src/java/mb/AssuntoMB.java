@@ -73,7 +73,7 @@ public class AssuntoMB {
     }
 
     public void excluir() {
-        TbUsuarioDAO dao = new TbUsuarioDAO();
+        TbAssuntoDAO dao = new TbAssuntoDAO();
         if (getSelecionado().getIdtAssunto() != 0) {
             if (dao.excluir(getSelecionado().getIdtAssunto())) {
                 FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Resultado da Exclusão", "Exclusão efetuada com sucesso.");

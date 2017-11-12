@@ -131,9 +131,17 @@ public class BaseDAO<Tab> {
     public boolean excluir(int idt) {
         Transaction ts = hib.beginTransaction();
         Tab obj = consultarPorIdt(idt);
-        hib.delete(obj);
-        hib.flush();
-        ts.commit();
+        
+        try {
+            
+            hib.delete(obj);
+            hib.flush();
+            ts.commit();            
+        }
+        catch (Exception e) {
+            
+            ts.rollback();
+        }
         return true;
     }
     
@@ -148,17 +156,27 @@ public class BaseDAO<Tab> {
 
     public Tab alterar(Tab obj) {
         Transaction ts = hib.beginTransaction();
+        try {
         hib.update(obj);
         hib.flush();
         ts.commit();
+        } catch (Exception e) {
+            
+            ts.rollback();
+        }
         return obj;
     }
 
     public Tab juntar(Tab obj) {
         Transaction ts = hib.beginTransaction();
-        hib.merge(obj);
-        hib.flush();
-        ts.commit();
+        try {
+            hib.merge(obj);
+            hib.flush();
+            ts.commit();
+        } catch (Exception e) {
+            
+            ts.rollback();
+        }
         return obj;
     }
 

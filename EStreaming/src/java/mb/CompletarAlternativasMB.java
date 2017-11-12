@@ -65,7 +65,7 @@ public class CompletarAlternativasMB {
 
     public void salvar() {
         TbCompletarAlternativasDAO dao = new TbCompletarAlternativasDAO();
-        if (getSelecionado().getIdtCompletarAlternativas() == 0) {
+        if (getSelecionado().getIdtCompletarAlternativas() == null || getSelecionado().getIdtCompletarAlternativas() == 0) {
             getSelecionado().setIdtCompletarAlternativas(null);
             dao.incluir(getSelecionado());
         } else {

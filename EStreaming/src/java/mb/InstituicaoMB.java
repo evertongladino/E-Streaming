@@ -50,7 +50,7 @@ public class InstituicaoMB {
     public void salvar() {
         TbInstituicaoDAO dao = new TbInstituicaoDAO();
         if (getSelecionado().getIdtInstituicao() == null || getSelecionado().getIdtInstituicao() == 0) {
-            //getSelecionado().setIdtInstituicao(0);
+            getSelecionado().setIdtInstituicao(null);
             getSelecionado().setDtaInsercao(new java.util.Date());
             dao.incluirInstituicao(getSelecionado());
         } else {

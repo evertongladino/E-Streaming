@@ -55,7 +55,7 @@ public class MultAlternativasMB {
 
     public void salvar() {
         TbMultAlternativasDAO dao = new TbMultAlternativasDAO();
-        if (getSelecionado().getIdtAlternativas()== 0) {
+        if (getSelecionado().getIdtAlternativas()== null || getSelecionado().getIdtAlternativas()== 0) {
             getSelecionado().setIdtAlternativas(null);
             dao.incluir(getSelecionado());
         } else {
@@ -68,7 +68,7 @@ public class MultAlternativasMB {
     }
 
     public void excluir() {
-        TbMultEscolhaDAO dao = new TbMultEscolhaDAO();
+        TbMultAlternativasDAO dao = new TbMultAlternativasDAO();
         if (getSelecionado().getIdtAlternativas()!= 0) {
             if (dao.excluir(getSelecionado().getIdtAlternativas())) {
                 FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Resultado da Exclusão", "Exclusão efetuada com sucesso.");

@@ -120,11 +120,13 @@
                     </p:column>
                     <p:column>
                         <p:selectOneRadio id="flgFinalizada" value="#{multEscolhaMB.selecionado.flgFinalizada}">
-                            <f:selectItem itemLabel="Sim" itemValue="#{true}"  />
-                            <f:selectItem itemLabel="Nao" itemValue="#{false}" /> 
+                            <f:selectItem itemLabel="Sim" itemValue="#{'1'}" />
+                            <f:selectItem itemLabel="Não" itemValue="#{'0'}" />
                         </p:selectOneRadio>
                     </p:column>
-
+                    <p:column>
+                        <p:commandButton id="btnSalvar" update=":frmConsulta, :frmEditar" icon="ui-icon-disk" value="Salvar"  actionListener="#{multEscolhaMB.salvar()}" ajax="true"/>
+                    </p:column>
                 </p:panelGrid>  
 
             </h:form> 
