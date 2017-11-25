@@ -30,4 +30,12 @@ public class TbCompletarDAO extends BaseDAO<TbCompletar>{
         lista = qy.list();
         return lista;
     }
+    
+    public List<TbCompletar> consultarPorAssunto(int codAssunto) {
+        List<TbCompletar> lista;
+        Query qy = hib.createQuery("SELECT obj FROM " + getClasse().getSimpleName() + " obj where cod_assunto=?");
+        qy.setInteger(0, codAssunto);
+        lista = qy.list();
+        return lista;
+    }
 }

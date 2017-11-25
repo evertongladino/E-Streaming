@@ -5,7 +5,10 @@
  */
 package dao;
 
+import java.util.List;
 import model.TbMultEscolha;
+import org.hibernate.Query;
+import org.primefaces.component.tabview.Tab;
 
 /**
  *
@@ -13,4 +16,11 @@ import model.TbMultEscolha;
  */
 public class TbMultEscolhaDAO extends BaseDAO<TbMultEscolha>{
     
+    public List<TbMultEscolha> consultarPorAssunto(int codAssunto) {
+        List<TbMultEscolha> lista;
+        Query qy = hib.createQuery("SELECT obj FROM " + getClasse().getSimpleName() + " obj where cod_assunto=?");
+        qy.setInteger(0, codAssunto);
+        lista = qy.list();
+        return lista;
+    }
 }

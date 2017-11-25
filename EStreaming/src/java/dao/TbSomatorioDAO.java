@@ -5,7 +5,10 @@
  */
 package dao;
 
+import java.util.List;
 import model.TbSomatorio;
+import org.hibernate.Query;
+import org.primefaces.component.tabview.Tab;
 
 /**
  *
@@ -13,4 +16,11 @@ import model.TbSomatorio;
  */
 public class TbSomatorioDAO extends BaseDAO<TbSomatorio>{
     
+    public List<TbSomatorio> consultarPorAssunto(int codAssunto) {
+        List<TbSomatorio> lista;
+        Query qy = hib.createQuery("SELECT obj FROM " + getClasse().getSimpleName() + " obj where cod_assunto=?");
+        qy.setInteger(0, codAssunto);
+        lista = qy.list();
+        return lista;
+    }  
 }
