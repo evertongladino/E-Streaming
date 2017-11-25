@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pm="http://primefaces.org/mobile">
+
+      <f:view renderKitId="PRIMEFACES_MOBILE" />
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF8" />
+        <title>E-Streaming</title>
+    </h:head>
+
+    <h:body>
+
+        <p:layout fullPage="true">
+
+            <p:layoutUnit  position="north" size="150" header="EStreaming" resizable="true" closable="true" collapsible="true">
+                <p:panel header="EStreaming" footer="Versão: 1.0 - UniCEUB - Centro Universitário de Brasília">  
+                    <h:outputText value="Bem vindo ao sistema EStreaming!"/>
+                </p:panel> 
+            </p:layoutUnit>
+
+            <p:layoutUnit position="west" header="Menu">
+                <h:form>
+                    <p:accordionPanel>
+                        <p:tab title="Manutenção">
+                            <p:menuitem value="Manter Usuário" icon="ui-icon-calculator" url="/usuario/Usuario.xhtml"/>
+                            <a href="/EStreaming/usuario/Usuario.xhtml">Manter Usuário</a>
+                            <p:menuitem value="Manter Tipo Questão" icon="ui-icon-calculator" url="/instituicao/TipoQuestao.xhtml"/>
+                            <p:menuitem value="Manter Disciplina" icon="ui-icon-calculator" url="/usuario/Disciplina.xhtml"/>
+                            <p:menuitem value="Manter Instituicao" icon="ui-icon-calculator" url="/instituicao/Instituicao.xhtml"/>
+                            <p:menuitem value="Manter Faculdade" icon="ui-icon-calculator" url="/instituicao/Faculdade.xhtml"/>
+                            <p:menuitem value="Manter Curso" icon="ui-icon-calculator" url="/instituicao/Curso.xhtml"/>
+                            <p:menuitem value="Manter Assunto" icon="ui-icon-calculator" url="/questao/Assunto.xhtml"/>
+                            <p:menuitem value="Manter Questao Multi-Escolha" icon="ui-icon-calculator" url="/questao/MultEscolha.xhtml"/>
+                            <p:menuitem value="Manter Alternativas multipla Escolha" icon="ui-icon-calculator" url="/questao/MultAlternativas.xhtml"/>
+                            <p:menuitem value="Manter Questao Somatorio" icon="ui-icon-calculator" url="/questao/Somatorio.xhtml"/>
+                            <p:menuitem value="Manter Alternativas Somatorio" icon="ui-icon-calculator" url="/questao/SomatorioAlternativas.xhtml"/>
+                            <p:menuitem value="Manter V ou F" icon="ui-icon-calculator" url="/questao/Vf.xhtml"/>
+                            <p:menuitem value="Manter V ou F Alternativas" icon="ui-icon-calculator" url="/questao/VfAlternativas.xhtml"/>
+                        </p:tab>
+                        <p:tab title="Mídias">
+                            <p:menuitem value="CRUD de Mídia" icon="ui-icon-play" url="/questao/Midia.xhtml"/>
+                            <p:menuitem value="Upload de Mídia (implementar)" icon="ui-icon-play" url="/questao/UploadMidia.xhtml"/>
+                        </p:tab>
+                        <p:tab title="Atividades">
+                            <p:menuitem value="Atividade Completar" icon="ui-icon-note" url="/questao/Completar.xhtml"/>
+                            <p:menuitem value="Completar Alternativas" icon="ui-icon-pencil" url="/questao/CompletarAlternativas.xhtml"/>
+                        </p:tab>
+                        <p:tab title="Relatórios">
+                        </p:tab>
+                        <p:tab title="Mobile">
+                            <p:menuitem value="Teste" icon="ui-icon-note" url="/mobile/Teste.xhtml"/>
+                        </p:tab>
+                    </p:accordionPanel>
+                </h:form>
+                <p:ajaxStatus>  
+                    <f:facet name="start">  
+                        <p:graphicImage value="/imagens/loading.gif" />  
+                    </f:facet>  
+                    <f:facet name="complete">  
+                        <h:outputText value="" />  
+                    </f:facet>  
+                </p:ajaxStatus>  
+            </p:layoutUnit>
+
+
+            <p:layoutUnit position="center" header="Conteúdo">
+                <ui:insert name="conteudo">
+                    <p:panel header="EStreaming">  
+                        <h:outputText value="Seja Bem vindo!"/>
+                    </p:panel>
+                </ui:insert>
+            </p:layoutUnit>
+
+        </p:layout>
+    </h:body>
+</html>
+

@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="../usuario/TplUsuario.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+                <f:view renderKitId="PRIMEFACES_MOBILE" />
+
+    <ui:define name="conteudo">
+
+        <p:panel header="Teste">
+
+            <h:form>
+                <p:commandButton value="Default" type="button"/>
+                <p:commandButton value="With Icon" type="button" icon="ui-icon-check"/>
+                <p:commandButton value="Icon Position" type="button" icon="ui-icon-refresh" iconPos="right"/>                
+                <p:commandButton value="Inline" type="button" icon="ui-icon-delete" styleClass="ui-btn-inline" />
+                <p:commandButton type="button" icon="ui-icon-info" />
+                <p:commandButton value="Ajax" />
+                <p:commandButton value="Non-Ajax" ajax="false"/>
+                <p:commandButton value="Theme" type="button" icon="ui-icon-delete" styleClass="ui-btn-b" />
+                <p:commandButton value="Mini" type="button" styleClass="ui-mini"/>
+            </h:form>
+
+        </p:panel>
+
+    </ui:define>
+</ui:composition>
