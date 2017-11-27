@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pm="http://primefaces.org/mobile">
+
+<f:view renderKitId="PRIMEFACES_MOBILE" />
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF8" />
+        <title>E-Streaming</title>
+    </h:head>
+
+    <h:body>
+
+        <p:layout fullPage="true">
+
+            <p:layoutUnit  position="north" size="150" header="SchoolBus" resizable="true" closable="true" collapsible="true">
+                <p:panel header="EStreaming" footer="Versão: 1.0 - UniCEUB - Centro Universitário de Brasília">  
+                    <h:outputText value="Bem vindo ao sistema EStreaming!"/>
+                </p:panel> 
+            </p:layoutUnit>
+
+            <p:layoutUnit position="west" size="250" header="Menu" resizable="true" closable="true" collapsible="true" styleClass="ui-responsive">
+                <h:form>
+                    <p:accordionPanel activeIndex="null">
+                        <p:tab title="Manutenção">
+                            <p:menu>
+                                <p:submenu>
+                                    <p:menuitem value="Manter Assunto" icon="ui-icon-calculator" url="/questao/AssuntoMbl.xhtml"/>
+                                    <p:menuitem value="Manter Curso" icon="ui-icon-calculator" url="/instituicao/CursoMbl.xhtml"/>
+                                    <p:menuitem value="Manter Disciplina" icon="ui-icon-calculator" url="/usuario/DisciplinaMbl.xhtml"/>
+                                    <p:menuitem value="Manter Faculdade" icon="ui-icon-calculator" url="/instituicao/FaculdadeMbl.xhtml"/>
+                                    <p:menuitem value="Manter Instituicao" icon="ui-icon-calculator" url="/instituicao/InstituicaoMbl.xhtml"/>
+                                    <p:menuitem value="Manter Tipo Questão" icon="ui-icon-calculator" url="/instituicao/TipoQuestaoMbl.xhtml"/>
+                                    <p:menuitem value="Manter Usuário" icon="ui-icon-calculator" url="/usuario/UsuarioMbl.xhtml"/>
+                                    <p:menuitem value="Manter Completar" icon="ui-icon-note" url="/questao/CompletarMbl.xhtml"/>
+                                    <p:menuitem value="Manter Completar Alternativas" icon="ui-icon-pencil" url="/questao/CompletarAlternativasMbl.xhtml"/>
+                                    <p:menuitem value="Manter Multipla-Escolha" icon="ui-icon-calculator" url="/questao/MultEscolhaMbl.xhtml"/>
+                                    <p:menuitem value="Manter Alternativas multipla Escolha" icon="ui-icon-calculator" url="/questao/MultAlternativasMbl.xhtml"/>
+                                    <p:menuitem value="Manter Somatorio" icon="ui-icon-calculator" url="/questao/SomatorioMbl.xhtml"/>
+                                    <p:menuitem value="Manter Alternativas Somatorio" icon="ui-icon-calculator" url="/questao/SomatorioAlternativasMbl.xhtml"/>
+                                    <p:menuitem value="Manter V ou F" icon="ui-icon-calculator" url="/questao/VfMbl.xhtml"/>
+                                    <p:menuitem value="Manter V ou F Alternativas" icon="ui-icon-calculator" url="/questao/VfAlternativasMbl.xhtml"/>
+                                </p:submenu>
+                            </p:menu>
+                        </p:tab>
+                    </p:accordionPanel>
+                    <p:accordionPanel>
+                        <p:tab title="Mídias">
+                            <p:menu>
+                                <p:submenu>
+                                    <p:menuitem value="CRUD de Mídia" icon="ui-icon-play" url="/questao/MidiaMbl.xhtml"/>
+                                    <p:menuitem value="Upload de Mídia (implementar)" icon="ui-icon-play" url="/questao/UploadMidiaMbl.xhtml"/>
+                                </p:submenu>
+                            </p:menu>
+                        </p:tab>
+                    </p:accordionPanel>
+                    <p:accordionPanel activeIndex="null">
+                        <p:tab title="Relatórios">
+                            <p:menu>
+                                <p:submenu>
+                                </p:submenu>
+                            </p:menu>
+                        </p:tab>
+                    </p:accordionPanel>
+                </h:form>
+                <p:ajaxStatus>  
+                    <f:facet name="start">  
+                        <p:graphicImage value="/imagens/loading.gif" />  
+                    </f:facet>  
+                    <f:facet name="complete">  
+                        <h:outputText value="" />  
+                    </f:facet>  
+                </p:ajaxStatus>  
+            </p:layoutUnit>
+
+
+            <p:layoutUnit position="center" header="Conteúdo">
+                <ui:insert name="conteudo">
+                    <p:panel header="EStreaming">  
+                        <h:outputText value="Seja Bem vindo!"/>
+                    </p:panel>
+                </ui:insert>
+            </p:layoutUnit>
+
+        </p:layout>
+    </h:body>
+</html>
+
