@@ -46,10 +46,8 @@ public class LoginMB {
             FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Falha no login", "Você não tem permissão para entrar no sistema.");
             FacesContext.getCurrentInstance().addMessage(null, msg);
         } else {
-            String perfil="";
-            if (pessoa.getTpoUsuario()=='4'){
-                perfil="instituicao";
-            }
+            String perfil="instituicao";
+            
             setPerfil(perfil);
             
             setNome(pessoa.getEmlUsuario());
@@ -68,7 +66,6 @@ public class LoginMB {
             }
         }
         sessao.setAttribute("SESSAO_PERFIL", getPerfil());
-        sessao.setAttribute("IDT_USUARIO", pessoa.getIdtUsuario());
         return ret;
     }
     
