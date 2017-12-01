@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="TplUsuarioMbl.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+      <f:view renderKitId="PRIMEFACES_MOBILE" />
+    <ui:define name="conteudo">
+
+        <p:panel header="Manter Disciplina">
+
+            <h:form id="frmConsulta">  
+
+                <p:growl id="msgs" showDetail="true"/>
+
+                <p:panelGrid columns="4">
+                    <p:column>
+                        Nome da Disciplina:
+                    </p:column>
+                    <p:column>
+                        <p:inputText size="30" maxlength="50" value="#{disciplinaMB.nmeDisciplina}"/>
+                    </p:column>
+                    <p:column>
+                        <p:commandButton value="Consultar" actionListener="#{disciplinaMB.filtrar()}" update=":frmConsulta, :frmEditar" icon="ui-icon-search"/>
+                    </p:column>
+                </p:panelGrid>
+
+                <p:dataTable id="dtbConsulta" var="reg" value="#{disciplinaMB.tbDisciplina}" tableStyle="width:auto;" paginator="true" rows="5">  
+
+                    <p:column headerText="Identificador" >  
+                        <h:outputText value="#{reg.idtDisciplina}" />  
+                    </p:column>  
+
+                    <p:column headerText="Nome">  
+                        <h:outputText value="#{reg.nmeDisciplina}" />  
+                    </p:column>  
+
+                    <p:column headerText="Operação">  
+                        <p:commandButton id="btnEditar" update=":frmEditar" icon="ui-icon-pencil" value="Editar">  
+                            <f:setPropertyActionListener value="#{reg}" target="#{disciplinaMB.selecionado}" />  
+                        </p:commandButton>
+                        <p:commandButton id="btnExcluir" update=":frmExcluir" oncomplete="PF('dlgConfExclusaoView').show()" icon="ui-icon-trash" value="Excluir">  
+                            <f:setPropertyActionListener value="#{reg}" target="#{disciplinaMB.selecionado}" />  
+                        </p:commandButton>
+                    </p:column>
+                </p:dataTable>  
+
+                <p:commandButton value="Novo" actionListener="#{disciplinaMB.novo()}" update=":frmEditar" icon="ui-icon-star"/>
+
+            </h:form>
+
+            <p:confirmDialog id="dlgConfExclusao" message="Tem certeza que deseja excluir (#{disciplinaMB.selecionado.nmeDisciplina})?"  
+                             header="Exclusão de Registro" severity="alert" widgetVar="dlgConfExclusaoView" appendTo="@(body)">  
+                <h:form id="frmExcluir">
+                    <p:commandButton id="btnConfirm" value="Sim" update=":frmConsulta, :frmEditar, :frmExcluir" oncomplete="PF('dlgConfExclusaoView').hide()" actionListener="#{disciplinaMB.excluir()}" />  
+                    <p:commandButton id="btnDecline" value="Não" onclick="PF('dlgConfExclusaoView').hide()" type="button" />   
+                </h:form> 
+            </p:confirmDialog> 
+
+            <br/>
+            <br/>
+            <h:form id="frmEditar">
+                <p:panelGrid id="pngEditar" columns="2">                    
+                    <p:column>
+                        <h:outputText value="Nome da Disciplina" />  
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="nmeDisciplina" value="#{disciplinaMB.selecionado.nmeDisciplina}" size="80" required="true" requiredMessage="Nome da Disciplina é um campo obrigatório!"/>  
+                    </p:column>
+                    
+                    <p:column>
+                        <h:outputText value="Status da Disciplina" />  
+                    </p:column>                    
+                    <p:selectOneRadio id="stsAssunto" value="#{disciplinaMB.selecionado.stsDisciplina}">
+                        <f:selectItem itemLabel="Ativo" itemValue="#{true}" />
+                        <f:selectItem itemLabel="Inativo" itemValue="#{false}" />
+                    </p:selectOneRadio>    
+                    
+                    <p:column>
+                        <h:outputText value="Semestre da Disciplina" />  
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="semDisciplina" value="#{disciplinaMB.selecionado.semDisciplina}" size="80" required="false"/>  
+                    </p:column>
+                    
+                    <p:column>
+                        <p:commandButton id="btnSalvar" update=":frmConsulta, :frmEditar" icon="ui-icon-disk" value="Salvar"  actionListener="#{disciplinaMB.salvar()}" ajax="true"/>
+                    </p:column>
+
+                    <p:column>
+
+                    </p:column>
+
+                </p:panelGrid>  
+
+            </h:form> 
+
+
+        </p:panel>
+
+    </ui:define>
+</ui:composition>

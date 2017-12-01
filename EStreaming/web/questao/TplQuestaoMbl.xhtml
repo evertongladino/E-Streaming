@@ -4,8 +4,10 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pm="http://primefaces.org/mobile">
 
+<f:view renderKitId="PRIMEFACES_MOBILE" />
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF8" />
         <title>E-Streaming</title>
@@ -21,38 +23,13 @@
                 </p:panel> 
             </p:layoutUnit>
 
-            <p:layoutUnit position="west" size="300" header="Menu" resizable="true" closable="true" collapsible="true">
+            <p:layoutUnit position="west" size="250" header="Menu" resizable="true" closable="true" collapsible="true" styleClass="ui-responsive">
                 <h:form>
-                    <p:menu style="width:270px">
-                        <p:submenu label="Manutenção">
-                            <p:menuitem value="Manter Assunto" icon="ui-icon-calculator" url="/questao/Assunto.xhtml"/>
-                                   <p:menuitem value="Manter Curso" icon="ui-icon-calculator" url="/instituicao/Curso.xhtml"/>
-                                    <p:menuitem value="Manter Disciplina" icon="ui-icon-calculator" url="/usuario/Disciplina.xhtml"/>
-                                    <p:menuitem value="Manter Faculdade" icon="ui-icon-calculator" url="/instituicao/Faculdade.xhtml"/>
-                                    <p:menuitem value="Manter Instituicao" icon="ui-icon-calculator" url="/instituicao/Instituicao.xhtml"/>
-                                    <p:menuitem value="Manter Tipo Questão" icon="ui-icon-calculator" url="/instituicao/TipoQuestao.xhtml"/>
-                                    <p:menuitem value="Manter Usuário" icon="ui-icon-calculator" url="/usuario/Usuario.xhtml"/>
-                                    <p:menuitem value="Manter Completar" icon="ui-icon-note" url="/questao/Completar.xhtml"/>
-                                    <p:menuitem value="Manter Completar Alternativas" icon="ui-icon-pencil" url="/questao/CompletarAlternativas.xhtml"/>
-                                    <p:menuitem value="Manter Multipla-Escolha" icon="ui-icon-calculator" url="/questao/MultEscolha.xhtml"/>
-                                    <p:menuitem value="Manter Alternativas multipla Escolha" icon="ui-icon-calculator" url="/questao/MultAlternativas.xhtml"/>
-                                    <p:menuitem value="Manter Somatorio" icon="ui-icon-calculator" url="/questao/Somatorio.xhtml"/>
-                                    <p:menuitem value="Manter Alternativas Somatorio" icon="ui-icon-calculator" url="/questao/SomatorioAlternativas.xhtml"/>
-                                    <p:menuitem value="Manter V ou F" icon="ui-icon-calculator" url="/questao/Vf.xhtml"/>
-                                    <p:menuitem value="Manter V ou F Alternativas" icon="ui-icon-calculator" url="/questao/VfAlternativas.xhtml"/>
-                        </p:submenu>
-                        <p:submenu label="Mídias">
-                            <p:menuitem value="CRUD de Mídia" icon="ui-icon-play" url="/questao/Midia.xhtml"/>
-                            <p:menuitem value="Upload de Mídia (implementar)" icon="ui-icon-play" url="/questao/UploadMidia.xhtml"/>
-                        </p:submenu>
-                        <p:submenu label="Atividades">
-                            <p:menuitem value="Atividade Completar" icon="ui-icon-note" url="/questao/Completar.xhtml"/>
-                            <p:menuitem value="Completar Alternativas" icon="ui-icon-pencil" url="/questao/CompletarAlternativas.xhtml"/>
-                        </p:submenu>
-                        <p:submenu label="Relatórios">
-                        </p:submenu>
-                        <p:submenu label="Mobile">
-                            <p:menuitem value="Manter Assunto" icon="ui-icon-calculator" url="/questao/AssuntoMbl.xhtml"/>
+                    <p:accordionPanel activeIndex="null">
+                        <p:tab title="Manutenção">
+                            <p:menu>
+                                <p:submenu>
+                                    <p:menuitem value="Manter Assunto" icon="ui-icon-calculator" url="/questao/AssuntoMbl.xhtml"/>
                                     <p:menuitem value="Manter Curso" icon="ui-icon-calculator" url="/instituicao/CursoMbl.xhtml"/>
                                     <p:menuitem value="Manter Disciplina" icon="ui-icon-calculator" url="/usuario/DisciplinaMbl.xhtml"/>
                                     <p:menuitem value="Manter Faculdade" icon="ui-icon-calculator" url="/instituicao/FaculdadeMbl.xhtml"/>
@@ -67,10 +44,28 @@
                                     <p:menuitem value="Manter Alternativas Somatorio" icon="ui-icon-calculator" url="/questao/SomatorioAlternativasMbl.xhtml"/>
                                     <p:menuitem value="Manter V ou F" icon="ui-icon-calculator" url="/questao/VfMbl.xhtml"/>
                                     <p:menuitem value="Manter V ou F Alternativas" icon="ui-icon-calculator" url="/questao/VfAlternativasMbl.xhtml"/>
+                                </p:submenu>
+                            </p:menu>
+                        </p:tab>
+                    </p:accordionPanel>
+                    <p:accordionPanel>
+                        <p:tab title="Mídias">
+                            <p:menu>
+                                <p:submenu>
                                     <p:menuitem value="CRUD de Mídia" icon="ui-icon-play" url="/questao/MidiaMbl.xhtml"/>
                                     <p:menuitem value="Upload de Mídia (implementar)" icon="ui-icon-play" url="/questao/UploadMidiaMbl.xhtml"/>
-                        </p:submenu>
-                    </p:menu>
+                                </p:submenu>
+                            </p:menu>
+                        </p:tab>
+                    </p:accordionPanel>
+                    <p:accordionPanel activeIndex="null">
+                        <p:tab title="Relatórios">
+                            <p:menu>
+                                <p:submenu>
+                                </p:submenu>
+                            </p:menu>
+                        </p:tab>
+                    </p:accordionPanel>
                 </h:form>
                 <p:ajaxStatus>  
                     <f:facet name="start">  

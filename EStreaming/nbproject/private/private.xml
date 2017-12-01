@@ -2,6 +2,12 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/litchi.zulato/Desktop/E-Streaming/EStreaming/src/java/mb/LoginMB.java</file>
+            <file>file:/C:/Users/litchi.zulato/Desktop/E-Streaming/EStreaming/src/java/hibernate.cfg.xml</file>
+            <file>file:/C:/Users/litchi.zulato/Desktop/E-Streaming/EStreaming/web/instituicao/TplInstituicao.xhtml</file>
+            <file>file:/C:/Users/litchi.zulato/Desktop/E-Streaming/EStreaming/src/java/dao/BaseDAO.java</file>
+            <file>file:/C:/Users/litchi.zulato/Desktop/E-Streaming/EStreaming/src/java/dao/HibernateUtil.java</file>
+        </group>
     </open-files>
 </project-private>

@@ -25,19 +25,21 @@
                 <h:form>
                     <p:menu style="width:270px">
                         <p:submenu label="Manutenção">
-                            <p:menuitem value="Manter Usuário" icon="ui-icon-calculator" url="/usuario/Usuario.xhtml"/>
-                            <p:menuitem value="Manter Tipo Questão" icon="ui-icon-calculator" url="/instituicao/TipoQuestao.xhtml"/>
-                            <p:menuitem value="Manter Disciplina" icon="ui-icon-calculator" url="/usuario/Disciplina.xhtml"/>
-                            <p:menuitem value="Manter Instituicao" icon="ui-icon-calculator" url="/instituicao/Instituicao.xhtml"/>
-                            <p:menuitem value="Manter Faculdade" icon="ui-icon-calculator" url="/instituicao/Faculdade.xhtml"/>
-                            <p:menuitem value="Manter Curso" icon="ui-icon-calculator" url="/instituicao/Curso.xhtml"/>
                             <p:menuitem value="Manter Assunto" icon="ui-icon-calculator" url="/questao/Assunto.xhtml"/>
-                            <p:menuitem value="Manter Questao Multi-Escolha" icon="ui-icon-calculator" url="/questao/MultEscolha.xhtml"/>
-                            <p:menuitem value="Manter Alternativas multipla Escolha" icon="ui-icon-calculator" url="/questao/MultAlternativas.xhtml"/>
-                            <p:menuitem value="Manter Questao Somatorio" icon="ui-icon-calculator" url="/questao/Somatorio.xhtml"/>
-                            <p:menuitem value="Manter Alternativas Somatorio" icon="ui-icon-calculator" url="/questao/SomatorioAlternativas.xhtml"/>
-                            <p:menuitem value="Manter V ou F" icon="ui-icon-calculator" url="/questao/Vf.xhtml"/>
-                            <p:menuitem value="Manter V ou F Alternativas" icon="ui-icon-calculator" url="/questao/VfAlternativas.xhtml"/>
+                                    <p:menuitem value="Manter Curso" icon="ui-icon-calculator" url="/instituicao/Curso.xhtml"/>
+                                    <p:menuitem value="Manter Disciplina" icon="ui-icon-calculator" url="/usuario/Disciplina.xhtml"/>
+                                    <p:menuitem value="Manter Faculdade" icon="ui-icon-calculator" url="/instituicao/Faculdade.xhtml"/>
+                                    <p:menuitem value="Manter Instituicao" icon="ui-icon-calculator" url="/instituicao/Instituicao.xhtml"/>
+                                    <p:menuitem value="Manter Tipo Questão" icon="ui-icon-calculator" url="/instituicao/TipoQuestao.xhtml"/>
+                                    <p:menuitem value="Manter Usuário" icon="ui-icon-calculator" url="/usuario/Usuario.xhtml"/>
+                                    <p:menuitem value="Manter Completar" icon="ui-icon-note" url="/questao/Completar.xhtml"/>
+                                    <p:menuitem value="Manter Completar Alternativas" icon="ui-icon-pencil" url="/questao/CompletarAlternativas.xhtml"/>
+                                    <p:menuitem value="Manter Multipla-Escolha" icon="ui-icon-calculator" url="/questao/MultEscolha.xhtml"/>
+                                    <p:menuitem value="Manter Alternativas multipla Escolha" icon="ui-icon-calculator" url="/questao/MultAlternativas.xhtml"/>
+                                    <p:menuitem value="Manter Somatorio" icon="ui-icon-calculator" url="/questao/Somatorio.xhtml"/>
+                                    <p:menuitem value="Manter Alternativas Somatorio" icon="ui-icon-calculator" url="/questao/SomatorioAlternativas.xhtml"/>
+                                    <p:menuitem value="Manter V ou F" icon="ui-icon-calculator" url="/questao/Vf.xhtml"/>
+                                    <p:menuitem value="Manter V ou F Alternativas" icon="ui-icon-calculator" url="/questao/VfAlternativas.xhtml"/>
                         </p:submenu>
                         <p:submenu label="Mídias">
                             <p:menuitem value="CRUD de Mídia" icon="ui-icon-play" url="/questao/Midia.xhtml"/>
@@ -48,6 +50,25 @@
                             <p:menuitem value="Completar Alternativas" icon="ui-icon-pencil" url="/questao/CompletarAlternativas.xhtml"/>
                         </p:submenu>
                         <p:submenu label="Relatórios">
+                        </p:submenu>
+                        <p:submenu label="Mobile">
+                            <p:menuitem value="Manter Assunto" icon="ui-icon-calculator" url="/questao/AssuntoMbl.xhtml"/>
+                                    <p:menuitem value="Manter Curso" icon="ui-icon-calculator" url="/instituicao/CursoMbl.xhtml"/>
+                                    <p:menuitem value="Manter Disciplina" icon="ui-icon-calculator" url="/usuario/DisciplinaMbl.xhtml"/>
+                                    <p:menuitem value="Manter Faculdade" icon="ui-icon-calculator" url="/instituicao/FaculdadeMbl.xhtml"/>
+                                    <p:menuitem value="Manter Instituicao" icon="ui-icon-calculator" url="/instituicao/InstituicaoMbl.xhtml"/>
+                                    <p:menuitem value="Manter Tipo Questão" icon="ui-icon-calculator" url="/instituicao/TipoQuestaoMbl.xhtml"/>
+                                    <p:menuitem value="Manter Usuário" icon="ui-icon-calculator" url="/usuario/UsuarioMbl.xhtml"/>
+                                    <p:menuitem value="Manter Completar" icon="ui-icon-note" url="/questao/CompletarMbl.xhtml"/>
+                                    <p:menuitem value="Manter Completar Alternativas" icon="ui-icon-pencil" url="/questao/CompletarAlternativasMbl.xhtml"/>
+                                    <p:menuitem value="Manter Multipla-Escolha" icon="ui-icon-calculator" url="/questao/MultEscolhaMbl.xhtml"/>
+                                    <p:menuitem value="Manter Alternativas multipla Escolha" icon="ui-icon-calculator" url="/questao/MultAlternativasMbl.xhtml"/>
+                                    <p:menuitem value="Manter Somatorio" icon="ui-icon-calculator" url="/questao/SomatorioMbl.xhtml"/>
+                                    <p:menuitem value="Manter Alternativas Somatorio" icon="ui-icon-calculator" url="/questao/SomatorioAlternativasMbl.xhtml"/>
+                                    <p:menuitem value="Manter V ou F" icon="ui-icon-calculator" url="/questao/VfMbl.xhtml"/>
+                                    <p:menuitem value="Manter V ou F Alternativas" icon="ui-icon-calculator" url="/questao/VfAlternativasMbl.xhtml"/>
+                                    <p:menuitem value="CRUD de Mídia" icon="ui-icon-play" url="/questao/MidiaMbl.xhtml"/>
+                                    <p:menuitem value="Upload de Mídia (implementar)" icon="ui-icon-play" url="/questao/UploadMidiaMbl.xhtml"/>
                         </p:submenu>
                     </p:menu>
                 </h:form>
